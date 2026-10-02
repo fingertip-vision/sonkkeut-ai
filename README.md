@@ -1,12 +1,13 @@
 # sonkkeut-ai · 손끝길 영상 AI
 
 스마트폰 카메라로 키오스크 화면과 손끝을 함께 보고, 목표 버튼까지 손가락을 음성·진동으로 유도하는 온디바이스 AI입니다.
-이 레포에는 AI 담당 2명 중 **영상 쪽(김우주)** 기능과 모델 학습 코드가 들어 있습니다.
+이 레포에는 영상 AI·모델 학습 코드와 Android 앱에서 사용하는 한국어 OCR·화면 구조화·오프라인 음성 제어 모듈이 들어 있습니다.
 
 | 기능 | 내용 | 코드 |
 | --- | --- | --- |
 | F-02 화면 평면 추정 | M1으로 화면 네 꼭짓점 검출 → M1-R로 꼭짓점 정밀 보정 → 호모그래피 → 광류로 매 프레임 추적 | `plane.py`, `corner_net.py` |
 | F-03 화면 요소 인식 | 펼친 화면에서 M2로 탭·메뉴·가격·버튼·뒤로가기 탐지, 겹침 정리, 읽는 순서 정렬 | `sonkkeut_vision/elements.py` |
+| F-04·F-05 OCR·화면 구조 | Android에 포함한 한국어 ML Kit로 글자·메뉴·선택·장바구니·총액 해석 | `android/react-native-sonkkeut/android/src/main/java/kr/sonkkeut/android/KoreanStructure.kt` |
 | F-08 손끝 추적 | MediaPipe 손 관절 21점 → 검지 끝 → 화면 좌표, 5프레임 평균, 검지를 접으면 안내 중지 | `sonkkeut_vision/fingertip.py` |
 | F-09 손끝 유도(오차 계산) | 8방향·3거리 구간, 음성 0.8초 간격, 0.3초 머무르면 "지금 누르세요" | `sonkkeut_vision/guidance.py` |
 | F-10 누름 결과 확인 | 화면 변화 감지 → 새 화면 구조를 기대 결과와 비교 | `sonkkeut_vision/verify.py` |
@@ -25,6 +26,14 @@
 두 구현이 같은 결과를 내는지는 `bash android/parity/run_tests.sh`로 확인합니다(파이썬이 만든 정답과 Kotlin 출력 비교).
 
 ## 빠른 시작 (Windows)
+
+### 앱 연결 검증 (2026-10-03)
+
+`sonkkeut-ai.tar`에 포함된 M1·M2·M1-R ONNX 모델 3개를 Android 앱에 연결했습니다. 모델 SHA-256과 입출력 형식은 `android/react-native-sonkkeut/android/src/main/assets/sonkkeut/model-manifest.json`에 있습니다.
+
+Python AI 로직 테스트 22개, ONNX 모델 3개의 CPU 추론, Android API 35의 ARM64 실행 환경에서 모델 3개 추론·한국어 OCR·전체 엔진 초기화(MediaPipe 포함)를 확인했습니다. 실제 휴대폰 카메라의 주문 전체 흐름과 기능 명세서의 현장 정확도·지연 목표는 아직 측정하지 않았습니다.
+
+현재 앱 연결은 로컬에서 검증했고 프론트 변경은 프론트 Git 저장소에 업로드하지 않습니다.
 
 1. `setup.bat` 더블클릭 — 패키지 설치, 손 관절 모델 내려받기, 테스트까지 한 번에 합니다.
    예전에 학습에 쓴 `Documents\sonkkeut\.venv`가 있으면 그대로 씁니다(PyTorch 재설치 없음).

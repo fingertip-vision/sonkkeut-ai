@@ -33,6 +33,7 @@ class NativeFeedback(context: Context) : TextToSpeech.OnInitListener {
     @Volatile private var hz = 0.0
     @Volatile private var hzUpdated = 0L
     private var lastHint: String? = null
+    private var pendingSpeech: String? = null
 
     private val pulse = object : Runnable {
         override fun run() {
@@ -56,6 +57,7 @@ class NativeFeedback(context: Context) : TextToSpeech.OnInitListener {
             tts.language = Locale.KOREAN
             tts.setSpeechRate(1.15f)
             ttsReady = true
+            pendingSpeech?.let { text -> pendingSpeech = null; say(text, true) }
         }
     }
 
@@ -71,7 +73,7 @@ class NativeFeedback(context: Context) : TextToSpeech.OnInitListener {
     }
 
     fun say(text: String, urgent: Boolean) {
-        if (!ttsReady) return
+        if (!ttsReady) { pendingSpeech = text; return }
         if (!urgent && tts.isSpeaking) return
         tts.speak(text, if (urgent) TextToSpeech.QUEUE_FLUSH else TextToSpeech.QUEUE_ADD, null, text)
     }
@@ -86,5 +88,12 @@ class NativeFeedback(context: Context) : TextToSpeech.OnInitListener {
         handler.removeCallbacksAndMessages(null)
         thread.quitSafely()
         tts.shutdown()
+    }
+
+    fun silence() {
+        hz = 0.0
+        pendingSpeech = null
+        tts.stop()
+        vibrator?.cancel()
     }
 }

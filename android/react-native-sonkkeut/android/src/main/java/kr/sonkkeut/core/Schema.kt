@@ -101,6 +101,7 @@ class ScreenStructure(
     val elements: List<Element>,
     val cartCount: Int? = null,
     val selected: List<String>? = null,
+    val totalPrice: Int? = null,
 ) {
     fun toMap(): Map<String, Any?> = buildMap {
         put("screen_type", screenType)
@@ -108,6 +109,7 @@ class ScreenStructure(
         put("elements", elements.map { it.toMap() })
         cartCount?.let { put("cart_count", it) }
         selected?.let { put("selected", it) }
+        totalPrice?.let { put("total_price", it) }
     }
 
     companion object {

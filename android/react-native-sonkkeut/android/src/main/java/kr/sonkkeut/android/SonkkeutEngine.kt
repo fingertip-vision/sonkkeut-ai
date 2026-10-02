@@ -2,6 +2,7 @@ package kr.sonkkeut.android
 
 import android.content.Context
 import android.media.Image
+import android.os.Build
 import android.util.Log
 import kr.sonkkeut.core.Expect
 import kr.sonkkeut.core.FrameResult
@@ -32,6 +33,7 @@ object SonkkeutEngine {
     private val lock = Any()
     private var pipeline: VisionPipeline? = null
     private var hands: MediaPipeHands? = null
+    private val models = mutableListOf<OnnxModel>()
     private val ops = OpenCvImageOps()
     private val yuvBuf = YuvToRgb()
 
@@ -42,25 +44,36 @@ object SonkkeutEngine {
     var feedback: NativeFeedback? = null
 
     /** 언어 쪽(노현석: F-04·F-05)이 꽂는 자리. 기본값은 요소만 담은 구조 */
-    @Volatile var structureProvider: StructureProvider = StructureProvider { els, _, _, kid -> ScreenStructure.basic(els, kid) }
+    private val koreanStructure by lazy { KoreanStructure() }
+    @Volatile var structureProvider: StructureProvider = StructureProvider { els, crops, flat, kid -> koreanStructure.build(els, crops, flat, kid) }
+
+    fun setMenuAliases(aliases: Map<String, String>) { koreanStructure.aliases = aliases }
 
     val isReady get() = pipeline != null
 
     fun init(context: Context, nativeFeedback: Boolean = true) {
         synchronized(lock) {
             if (pipeline != null) return
+            check(Build.SUPPORTED_ABIS.any { it.startsWith("arm") }) {
+                "손 인식은 ARM Android 휴대폰에서 사용할 수 있습니다. 실제 휴대폰에 앱을 설치해 주세요."
+            }
             check(OpenCVLoader.initLocal()) { "OpenCV를 불러오지 못했습니다" }
             val am = context.assets
             fun asset(name: String) = am.open("sonkkeut/$name").use { it.readBytes() }
-            val m1 = OnnxModel(asset("m1_screen_corners_int8.onnx"))
-            val m2 = OnnxModel(asset("m2_screen_elements_int8.onnx"))
-            val refiner = runCatching { OnnxModel(asset("m1r_corner_refiner.onnx"), threads = 1) }.getOrNull()
-            val h = MediaPipeHands(context)
-            hands = h
-            pipeline = VisionPipeline(m1, m2, ops, h, refiner,
-                structureProvider = StructureProvider { els, crops, flat, kid -> structureProvider.build(els, crops, flat, kid) })
-            if (nativeFeedback) feedback = NativeFeedback(context)
-            Log.i(TAG, "모델 준비 완료 (보정망 ${if (refiner != null) "사용" else "없음"})")
+            try {
+                val m1 = OnnxModel(asset("m1_screen_corners_int8.onnx")).also { models.add(it) }
+                val m2 = OnnxModel(asset("m2_screen_elements_int8.onnx")).also { models.add(it) }
+                val refiner = OnnxModel(asset("m1r_corner_refiner.onnx"), threads = 1).also { models.add(it) }
+                val h = MediaPipeHands(context)
+                hands = h
+                if (nativeFeedback) feedback = NativeFeedback(context)
+                pipeline = VisionPipeline(m1, m2, ops, h, refiner,
+                    structureProvider = StructureProvider { els, crops, flat, kid -> structureProvider.build(els, crops, flat, kid) })
+                Log.i(TAG, "모델 준비 완료 (첨부 모델 M1, M2, M1-R 사용)")
+            } catch (e: Throwable) {
+                release()
+                throw e
+            }
         }
     }
 
@@ -69,6 +82,8 @@ object SonkkeutEngine {
             running = false
             hands?.close()
             feedback?.shutdown()
+            models.forEach { it.close() }
+            models.clear()
             pipeline = null
             hands = null
             feedback = null
@@ -112,7 +127,15 @@ object SonkkeutEngine {
         val frame = MatFrame(resizeLongSide(upright))
         return try {
             val res: FrameResult = synchronized(lock) { p.process(frame, System.nanoTime() / 1e9) }
-            val map = res.toMap() + ("frame_size" to listOf(frame.width, frame.height))
+            val target = p.guide.target
+            val plane = res.plane
+            val targetBox = if (target != null && plane != null) {
+                val b = target.box
+                val points = listOf(kr.sonkkeut.core.Pt(b.x1, b.y1), kr.sonkkeut.core.Pt(b.x2, b.y1),
+                    kr.sonkkeut.core.Pt(b.x2, b.y2), kr.sonkkeut.core.Pt(b.x1, b.y2)).map { plane.toImage(it) }
+                listOf(points.minOf { it.x }, points.minOf { it.y }, points.maxOf { it.x }, points.maxOf { it.y })
+            } else null
+            val map = res.toMap() + ("frame_size" to listOf(frame.width, frame.height)) + ("target_image_box" to targetBox)
             lastResult = map
             feedback?.onResult(res)
             listener?.invoke(map)

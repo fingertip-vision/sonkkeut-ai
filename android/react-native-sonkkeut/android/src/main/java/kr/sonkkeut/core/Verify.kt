@@ -65,7 +65,7 @@ class PressVerifier(val timeout: Double = 1.5) {
             return Verdict("fail", "unexpected:" + failed.joinToString(","),
                 "의도와 다른 화면입니다. 이전 화면으로 돌아가는 버튼을 안내할게요", extra)
         }
-        if (unknown.isNotEmpty() && checks.none { it.first != "changed" }) {
+        if (unknown.isNotEmpty()) {
             return Verdict("uncertain", "unverifiable:" + unknown.joinToString(","), "화면이 바뀌었습니다. 확인 중입니다", extra)
         }
         return Verdict("success", "ok", exp.successSpeak ?: "눌렸습니다", extra)

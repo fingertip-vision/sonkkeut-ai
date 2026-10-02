@@ -9,7 +9,7 @@
 JS(useSonkkeut) ◀──결과 이벤트──────────┘  { event: {speak, vibe_hz, ...}, structure, verdict, hint }
 ```
 
-지원: **안드로이드만** (iOS는 아직 없음), React Native 0.73 이상, VisionCamera 4.5 이상.
+지원: **Android ARM64** (iOS는 아직 없음). 이번 연결은 React Native 0.76.9, VisionCamera 4.6.4, Worklets Core 1.5.0에서 검증했습니다.
 
 ## 1. 설치 (sonkkeut-frontend 앱에서)
 
@@ -17,7 +17,7 @@ JS(useSonkkeut) ◀──결과 이벤트──────────┘  { ev
 # 카메라와 프레임 처리기
 npm i react-native-vision-camera react-native-worklets-core
 # 이 모듈 (sonkkeut-ai 레포를 앱 레포 옆에 클론해 두었다고 가정)
-npm i ../sonkkeut-ai/android/react-native-sonkkeut
+npm i ../sonkkeut-ai/android/react-native-sonkkeut --install-links
 ```
 
 `babel.config.js`에 worklets 플러그인을 추가합니다 (VisionCamera 프레임 처리기에 필요).
@@ -29,7 +29,8 @@ module.exports = {
 }
 ```
 
-`android/app/src/main/AndroidManifest.xml`에 카메라 권한이 있어야 합니다 (`<uses-permission android:name="android.permission.CAMERA" />`).
+`android/app/src/main/AndroidManifest.xml`에 카메라·마이크·진동 권한을 선언하고 카메라·마이크는 실행 중 요청합니다. Android 11 이상 TTS와 음성 인식 서비스 검색을 위해 `android.intent.action.TTS_SERVICE`, `android.speech.RecognitionService`의 queries도 선언합니다.
+앱의 `defaultConfig.ndk`에는 `abiFilters "arm64-v8a"`를 지정해 모든 네이티브 라이브러리를 같은 ABI로 패키징합니다.
 빌드할 때 MediaPipe 손 관절 모델(약 7.8MB)을 한 번 내려받으므로 첫 빌드는 인터넷이 필요합니다.
 
 ```bash
@@ -91,6 +92,10 @@ function Guide() {
 
 ## 4. 언어 쪽(노현석) 연결
 
+기본 `structureProvider`는 포함된 `KoreanStructure`로 한국어 OCR과 화면 종류·선택·장바구니 수량·총액을 해석합니다. 이미지는 서버로 보내지 않습니다. 선택 상태는 `선택됨` 문구를 근거로 하며, 증거가 부족하면 진행하지 않습니다. 표시 방식이 다른 실제 키오스크는 추가 검증·규칙 조정이 필요합니다.
+
+JS에서 `Sonkkeut.setMenuAliases({아아: '아메리카노'})`로 서버에서 받은 메뉴 사전을 연결합니다. `say`, `silence`, `listen`, `cancelListening`은 앱의 주문 입력·확인에 쓰며, `listen()`은 Android 12 이상의 기기 내 음성 인식이 준비된 경우에만 실행합니다. 미지원 기기는 문자 입력으로 대체합니다.
+
 글자 인식(F-04)과 화면 종류 판단(F-05)은 Kotlin에서 `SonkkeutEngine.structureProvider`에 꽂습니다.
 키오스크 화면이 바뀔 때마다 요소 목록과 요소별 잘라낸 이미지(OpenCV `Mat`, RGB)를 받아 `ScreenStructure`를 돌려주면,
 그 결과(`screen_type`, `text`, `price`, `cart_count`, `selected`)가 JS의 `screen`과 누름 결과 판정에 그대로 쓰입니다.
@@ -120,6 +125,6 @@ example/KioskGuideScreen.tsx         카메라 화면 예시
 - `core/`는 파이썬 기준 구현과 같은 입력에 같은 출력을 내는지 PC에서 확인했습니다 (`bash android/parity/run_tests.sh`).
   안내 이벤트 3,600건, 키오스크 화면 판단 480건, 모델 출력 해석(박스·꼭짓점) 등 전부 일치했습니다.
   같은 Kotlin 코드로 돌린 누르기 시뮬레이션은 40회 중 40회 성공, 버튼 밖에서 '누르세요' 0회였습니다.
-- `android/`, `rn/`은 실제 안드로이드 SDK로 아직 빌드하지 못했습니다. 각 라이브러리의 API 모양을 흉내 낸 대역으로
-  Kotlin 문법·타입 검사까지만 했습니다. 첫 빌드에서 라이브러리 버전 차이로 작은 수정이 필요할 수 있습니다.
+- 이번 변경에서 실제 Android SDK로 APK 빌드를 통과했습니다. API 35 에뮬레이터의 ARM64 실행 환경에서 전체 엔진 초기화, ONNX 3개 추론, 한국어 OCR과 로컬 서버 연동을 확인했습니다.
 - 휴대폰에서의 처리 시간은 아직 재지 않았습니다. 결과의 `timings.total_ms`로 바로 확인할 수 있습니다.
+- `screen_type_not`가 맞더라도 요구한 `cart_delta`를 읽지 못하면 성공으로 판정하지 않습니다. Python과 Kotlin 모두 `uncertain`을 반환합니다.

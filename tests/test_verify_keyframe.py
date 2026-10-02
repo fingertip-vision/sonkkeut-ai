@@ -31,6 +31,16 @@ def test_expectations():
     assert v.judge(S("start")).result == "restarted"
 
 
+def test_missing_required_evidence_is_never_success():
+    v = PressVerifier()
+    v.arm(0, S("option"), {"screen_type_not": "option", "cart_delta": 1})
+    assert v.judge(S("menu")).result == "uncertain"
+    v.arm(0, S("option", cart_count=0), {"screen_type_not": "option", "cart_delta": 1})
+    assert v.judge(S("menu", cart_count=0)).result == "fail"
+    v.arm(0, S("option", cart_count=0), {"screen_type_not": "option", "cart_delta": 1})
+    assert v.judge(S("menu", cart_count=1)).result == "success"
+
+
 def _screen(seed, h=200, w=120):
     rng = np.random.default_rng(seed)
     img = np.full((h, w, 3), 230, np.uint8)

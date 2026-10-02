@@ -1,6 +1,14 @@
 package kr.sonkkeut.rn
 
 import android.os.SystemClock
+import android.os.Handler
+import android.os.Looper
+import android.os.Build
+import android.content.Intent
+import android.os.Bundle
+import android.speech.SpeechRecognizer
+import android.speech.RecognizerIntent
+import android.speech.RecognitionListener
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
@@ -22,6 +30,63 @@ import java.util.concurrent.Executors
 class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBaseJavaModule(ctx) {
     private val io = Executors.newSingleThreadExecutor()
     private var lastEmit = 0L
+    private val main = Handler(Looper.getMainLooper())
+    private var speech: SpeechRecognizer? = null
+    private var speechPromise: Promise? = null
+
+    @ReactMethod
+    fun say(text: String) { main.post { SonkkeutEngine.feedback?.say(text, true) } }
+
+    @ReactMethod
+    fun silence() { main.post { SonkkeutEngine.feedback?.silence() } }
+
+    @ReactMethod
+    fun setMenuAliases(aliases: ReadableMap) {
+        SonkkeutEngine.setMenuAliases(aliases.toHashMap().mapValues { it.value.toString() })
+    }
+
+    @ReactMethod
+    fun listen(promise: Promise) {
+        main.post {
+            if (speechPromise != null) { promise.reject("BUSY", "이미 듣고 있습니다"); return@post }
+            if (Build.VERSION.SDK_INT < 31 || !SpeechRecognizer.isOnDeviceRecognitionAvailable(ctx)) {
+                promise.reject("OFFLINE_UNAVAILABLE", "이 기기의 오프라인 음성 인식이 준비되지 않았습니다. 주문을 입력해 주세요.")
+                return@post
+            }
+            SonkkeutEngine.feedback?.silence()
+            speech?.destroy()
+            speech = SpeechRecognizer.createOnDeviceSpeechRecognizer(ctx)
+            speechPromise = promise
+            speech!!.setRecognitionListener(object : RecognitionListener {
+                override fun onReadyForSpeech(p: Bundle?) {}
+                override fun onBeginningOfSpeech() {}
+                override fun onRmsChanged(v: Float) {}
+                override fun onBufferReceived(b: ByteArray?) {}
+                override fun onEndOfSpeech() {}
+                override fun onPartialResults(b: Bundle?) {}
+                override fun onEvent(t: Int, b: Bundle?) {}
+                override fun onError(e: Int) { speechPromise?.reject("SPEECH_$e", "다시 말씀해 주세요. 한국어 오프라인 언어팩도 확인해 주세요."); speechPromise = null }
+                override fun onResults(b: Bundle?) {
+                    val value = b?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull()
+                    if (value.isNullOrBlank()) speechPromise?.reject("EMPTY", "다시 말씀해 주세요")
+                    else speechPromise?.resolve(value)
+                    speechPromise = null
+                }
+            })
+            speech!!.startListening(Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR")
+                putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true)
+            })
+        }
+    }
+
+    @ReactMethod
+    fun cancelListening() { main.post {
+        speech?.cancel()
+        speechPromise?.reject("CANCELLED", "음성 입력을 중지했습니다")
+        speechPromise = null
+    } }
 
     override fun getName() = "Sonkkeut"
 
@@ -47,6 +112,7 @@ class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBas
     @ReactMethod
     fun stop() {
         SonkkeutEngine.running = false
+        main.post { SonkkeutEngine.feedback?.silence() }
     }
 
     @ReactMethod
@@ -95,6 +161,7 @@ class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBas
         SonkkeutEngine.listener = null
         SonkkeutEngine.running = false
         io.shutdown()
+        main.post { speech?.destroy(); speech = null; speechPromise = null; SonkkeutEngine.release() }
         super.invalidate()
     }
 

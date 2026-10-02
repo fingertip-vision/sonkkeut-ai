@@ -32,6 +32,7 @@ export interface ScreenStructure {
   keyframe_id: number
   elements: ScreenElement[]
   cart_count?: number
+  total_price?: number
   selected?: string[]
 }
 
@@ -73,6 +74,7 @@ export interface SonkkeutResult {
   corners?: number[]
   /** 처리한 영상 크기 [폭, 높이] (회전 보정 후) */
   frame_size?: [number, number]
+  target_image_box?: [number, number, number, number] | null
   timings: Record<string, number>
 }
 
@@ -97,6 +99,11 @@ const Native = NativeModules.Sonkkeut as
       setTargetAtImage(px: number, py: number, expect: Expect | null): Promise<string | null>
       clearTarget(): void
       requestKeyframe(): void
+      say(text: string): void
+      silence(): void
+      listen(): Promise<string>
+      cancelListening(): void
+      setMenuAliases(aliases: Record<string, string>): void
     }
   | undefined
 
@@ -120,6 +127,11 @@ export function sonkkeutProcess(frame: Frame, rotation?: number) {
 }
 
 export const Sonkkeut = {
+  say: (text: string) => Native?.say(text),
+  silence: () => Native?.silence(),
+  listen: () => Native?.listen() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
+  cancelListening: () => Native?.cancelListening(),
+  setMenuAliases: (aliases: Record<string, string>) => Native?.setMenuAliases(aliases),
   init: (options: { nativeFeedback?: boolean } = {}) => Native?.init(options) ?? Promise.resolve(false),
   start: () => Native?.start(),
   stop: () => Native?.stop(),

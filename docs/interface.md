@@ -2,7 +2,7 @@
 
 손끝길 AI는 둘이 나눠 만든다. 서로의 내부를 몰라도 되도록, 아래 세 지점에서만 데이터를 주고받는다.
 좌표는 모두 **펼친 화면 기준 0~1 비율**이다(x: 왼쪽 0 → 오른쪽 1, y: 위 0 → 아래 1).
-카메라 픽셀 좌표는 영상 AI 밖으로 나가지 않는다.
+손끝 유도와 누름 검증에는 화면 좌표를 사용합니다. Android 앱의 저시력 미리보기 강조에는 별도 `frame_size`, `target_image_box` 카메라 픽셀 좌표를 제공하며 화면 좌표와 혼용하지 않습니다.
 
 | 담당 | 기능 | 코드 |
 | --- | --- | --- |
@@ -49,11 +49,12 @@ def structure_fn(elements, crops, flat, keyframe_id) -> dict:
   "keyframe_id": 12,
   "elements": [{"id": "e7", "kind": "menu", "text": "아메리카노", "price": 4500, "box": [...], "conf": 0.95}],
   "cart_count": 2,                // 선택. 장바구니 개수를 알면 넣기 (누름 결과 확인에 사용)
-  "selected": ["e12"]             // 선택. 선택 상태로 보이는 옵션 id 목록
+  "selected": ["e12"],            // 선택. 선택 상태로 확인한 옵션 id 목록
+  "total_price": 9000              // 선택. 장바구니 총액을 읽은 경우
 }
 ```
 
-F-05가 준비되기 전에는 `elements_to_structure()`가 `screen_type: "unknown"`, 텍스트 없이 대신 돌려준다.
+Android 기본 provider는 한국어 OCR을 포함합니다. Python에서 F-05를 연결하지 않으면 `elements_to_structure()`가 `screen_type: "unknown"`, 텍스트 없이 대신 돌려줍니다.
 
 ## ② 언어 → 영상: 목표 버튼 지정
 
@@ -65,6 +66,7 @@ pipe.set_target("e7", expect={"screen_type": "option", "success_speak": "옵션 
 
 `expect`(누른 뒤 기대 결과) 형식은 `sonkkeut_vision/verify.py` 머리말에 있다.
 `screen_type`, `screen_type_not`, `cart_delta`, `selected`, `changed`를 조합할 수 있다.
+요구한 조건 하나라도 관측할 수 없으면 `uncertain`이며, 다른 조건이 맞았다는 이유로 성공하지 않습니다. 앱은 누름 성공을 확인한 뒤에만 수량과 다음 목표를 갱신해야 합니다.
 
 영상 쪽은 결과를 `FrameResult`로 돌려준다.
 

@@ -97,7 +97,7 @@ class PressVerifier:
             return Verdict("fail", "unexpected:" + ",".join(failed),
                            "의도와 다른 화면입니다. 이전 화면으로 돌아가는 버튼을 안내할게요",
                            {"from": b_type, "to": a_type})
-        if unknown and not [k for k, _ in checks if k != "changed"]:
+        if unknown:
             # 확인할 수단이 없음 (예: F-05가 화면 종류를 'unknown'으로 줌)
             return Verdict("uncertain", "unverifiable:" + ",".join(unknown), "화면이 바뀌었습니다. 확인 중입니다",
                            {"from": b_type, "to": a_type})
