@@ -101,7 +101,8 @@ pipe.set_target("e7", expect={"screen_type": "option", "success_speak": "옵션 
 
 ## ④ 모바일 모델 파일 (앱 탑재용)
 
-`models/mobile/` 에 ONNX INT8 모델이 있다. 안드로이드에서는 ONNX Runtime Mobile(`com.microsoft.onnxruntime:onnxruntime-android`)로 불러온다.
+앱 탑재용 ONNX 모델은 `android/react-native-sonkkeut/android/src/main/assets/sonkkeut/` 에 있다(`scripts/export_mobile.py`가 만든다).
+앱은 이 모델을 직접 다룰 필요 없이 `react-native-sonkkeut` 모듈을 쓰면 된다(→ `android/react-native-sonkkeut/README.md`). 아래는 참고용이다.
 
 | 파일 | 입력 | 출력 | 후처리 |
 | --- | --- | --- | --- |

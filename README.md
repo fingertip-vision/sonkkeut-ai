@@ -15,6 +15,15 @@
 언어 쪽(노현석: F-04 문자 인식 ~ F-07 버튼 순서 계획), 앱(임현승: 음성·진동 출력)과의 연결 규약은
 [`docs/interface.md`](docs/interface.md)에 있습니다.
 
+이 레포는 두 부분으로 되어 있습니다.
+
+| 부분 | 언어 | 용도 |
+| --- | --- | --- |
+| `sonkkeut_vision/`, `training/`, `scripts/` | 파이썬 | 모델 학습, 기준 구현, PC 데모·평가 |
+| `android/react-native-sonkkeut/` | Kotlin + TS | **앱에 들어가는 모듈.** 프론트는 이것만 설치하면 됨 → [사용법](android/react-native-sonkkeut/README.md) |
+
+두 구현이 같은 결과를 내는지는 `bash android/parity/run_tests.sh`로 확인합니다(파이썬이 만든 정답과 Kotlin 출력 비교).
+
 ## 빠른 시작 (Windows)
 
 1. `setup.bat` 더블클릭 — 패키지 설치, 손 관절 모델 내려받기, 테스트까지 한 번에 합니다.
@@ -63,11 +72,13 @@ sonkkeut_vision/   영상 AI 패키지 (위 표)
   viz.py           화면 표시
 training/          합성 데이터 생성과 학습 (kiosk_synth, corner_synth, train, corner_refiner)
 models/            학습된 가중치 (M1 꼭짓점, M1-R 보정, M2 화면 요소)
-  mobile/          앱 탑재용 ONNX INT8 (docs/interface.md ④)
 scripts/           run_camera, simulate, bench, eval_scenarios, eval_conditions, eval_real_hand,
                    export_mobile, demo_image
 tests/             단위 테스트 + 실제 가중치로 하는 통합 테스트
 docs/interface.md  언어 AI·앱과의 연결 규약
+android/
+  react-native-sonkkeut/  앱용 모듈 (Kotlin core = 파이썬 sonkkeut_vision 이식, ONNX INT8 모델 포함)
+  parity/                 파이썬 ↔ Kotlin 동등성 테스트, Kotlin 파이프라인 시뮬레이션
 ```
 
 ## 설계에서 고민한 점
@@ -144,5 +155,5 @@ sigma를 조여 다시 학습하면(0.025, 0.08) 오히려 정확도가 떨어�
 
 - [ ] 실제 키오스크 사진 50~100장으로 M1·M2 실측 (기획서 수치는 합성 데이터 점수가 아니라 실측으로)
 - [ ] PC에서 `run_camera.bat`으로 실제 손·실제 화면 확인 (모니터에 키오스크 화면을 띄워도 됨)
-- [ ] 휴대폰에서 `models/mobile/` ONNX INT8 모델 처리 시간 측정 (임현승·전채영과 함께)
-- [ ] 노현석 모듈(F-04·F-05)과 `structure_fn` 연결, 목업 키오스크 3개 흐름 통합 테스트
+- [ ] 프론트 앱에 `react-native-sonkkeut` 설치 후 첫 빌드, 휴대폰에서 처리 시간 측정 (임현승·전채영과 함께)
+- [ ] 노현석 모듈(F-04·F-05)과 연결 — 파이썬은 `structure_fn`, 앱은 Kotlin `SonkkeutEngine.structureProvider`

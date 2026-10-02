@@ -21,3 +21,10 @@ yolov8n-pose.pt
 .vscode/
 *.iml
 .ruff_cache/
+
+# 앱 모듈
+android/parity/golden/
+android/react-native-sonkkeut/android/build/
+android/react-native-sonkkeut/android/.gradle/
+android/react-native-sonkkeut/android/src/main/assets/sonkkeut/hand_landmarker.task
+node_modules/

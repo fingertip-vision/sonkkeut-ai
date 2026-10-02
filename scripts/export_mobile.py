@@ -1,6 +1,8 @@
 """
 모바일(안드로이드) 탑재용 모델 내보내기: ONNX(FP32) + ONNX INT8(정적 양자화)
 
+  결과는 android/react-native-sonkkeut/android/src/main/assets/sonkkeut/ 에 바로 들어간다.
+
   python scripts/export_mobile.py --calib-m2 ../path/data/m2/images/train --calib-m1 ../path/data/m1/images/train
 
 왜 ONNX인가: 안드로이드 앱(Kotlin)에서 ONNX Runtime Mobile로 바로 돌릴 수 있고,
@@ -20,6 +22,8 @@ import cv2
 import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 앱 모듈이 그대로 읽는 위치 (react-native-sonkkeut의 assets)
+ASSETS = os.path.join(ROOT, "android", "react-native-sonkkeut", "android", "src", "main", "assets", "sonkkeut")
 
 
 def letterbox(img, size=640):
@@ -76,9 +80,16 @@ def main():
     ap.add_argument("--calib-m2", required=True)
     ap.add_argument("--n", type=int, default=200)
     a = ap.parse_args()
+    # M1-R 꼭짓점 보정망도 ONNX로 (training/corner_refiner.py export)
+    sys.path.insert(0, os.path.join(ROOT, "training"))
+    import corner_refiner
+    corner_refiner.export_onnx(os.path.join(ROOT, "models", "m1r_corner_refiner.pt"), os.path.join(ASSETS, "m1r_corner_refiner.onnx"))
     for pt, calib in ((os.path.join(ROOT, "models", "m1_screen_corners.pt"), a.calib_m1),
                       (os.path.join(ROOT, "models", "m2_screen_elements.pt"), a.calib_m2)):
         fp32, int8 = export_one(pt, calib, a.n)
+        os.makedirs(ASSETS, exist_ok=True)
+        import shutil
+        shutil.copy(int8, os.path.join(ASSETS, os.path.basename(int8)))
         print(f"{os.path.basename(fp32)} {os.path.getsize(fp32) / 1e6:.1f}MB -> "
               f"{os.path.basename(int8)} {os.path.getsize(int8) / 1e6:.1f}MB")
 
