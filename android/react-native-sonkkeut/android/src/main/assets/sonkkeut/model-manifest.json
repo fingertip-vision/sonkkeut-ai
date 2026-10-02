@@ -1,0 +1,125 @@
+{
+  "version": "2026.10.02",
+  "source_archive": "sonkkeut-ai.tar",
+  "source_archive_sha256": "152b4e207fd2d877a4785da8d75717baa85643723caec00fb7f3030fec95b257",
+  "models": [
+    {
+      "name": "m1_screen_corners_int8.onnx",
+      "sha256": "9121f7de3b200231d022790ac6345497ab4d32022a3280889e0e616e750cdfce",
+      "size_bytes": 6097266,
+      "input": {
+        "name": "images",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "type": "tensor(float)"
+      },
+      "outputs": [
+        {
+          "name": "output0",
+          "shape": [
+            1,
+            17,
+            8400
+          ]
+        }
+      ],
+      "metadata": {
+        "onnx.infer": "onnxruntime.quant",
+        "docs": "https://docs.ultralytics.com",
+        "onnx.quant.pre_process": "onnxruntime.quant",
+        "kpt_shape": "[4, 3]",
+        "task": "pose",
+        "channels": "3",
+        "end2end": "False",
+        "description": "Ultralytics YOLOv8n-pose model trained on data\\m1\\data.yaml",
+        "author": "Ultralytics",
+        "head": "Pose",
+        "kpt_names": "{0: ['0', '1', '2', '3']}",
+        "version": "8.4.171",
+        "batch": "1",
+        "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+        "stride": "32",
+        "date": "2026-10-02T08:45:31.531656+09:00",
+        "imgsz": "[640, 640]",
+        "names": "{0: 'screen'}",
+        "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': None, 'dynamic': False, 'simplify': True, 'opset': None}"
+      },
+      "cpu_smoke_test": "passed"
+    },
+    {
+      "name": "m1r_corner_refiner.onnx",
+      "sha256": "331f3073d5fad57a79485c5b18f03cea94bbd6e782d2bd0fb0905b0986b33c50",
+      "size_bytes": 1632622,
+      "input": {
+        "name": "patches",
+        "shape": [
+          "n",
+          1,
+          64,
+          64
+        ],
+        "type": "tensor(float)"
+      },
+      "outputs": [
+        {
+          "name": "offsets",
+          "shape": [
+            1,
+            2
+          ]
+        }
+      ],
+      "metadata": {},
+      "cpu_smoke_test": "passed"
+    },
+    {
+      "name": "m2_screen_elements_int8.onnx",
+      "sha256": "8c30a754567fb9b4e1fceba5533cc103a429aaeb2bd1deabfd93137f7fba1a4f",
+      "size_bytes": 5701588,
+      "input": {
+        "name": "images",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "type": "tensor(float)"
+      },
+      "outputs": [
+        {
+          "name": "output0",
+          "shape": [
+            1,
+            9,
+            8400
+          ]
+        }
+      ],
+      "metadata": {
+        "onnx.infer": "onnxruntime.quant",
+        "docs": "https://docs.ultralytics.com",
+        "onnx.quant.pre_process": "onnxruntime.quant",
+        "channels": "3",
+        "end2end": "False",
+        "description": "Ultralytics m2_screen_elements model trained on data\\m2\\data.yaml",
+        "author": "Ultralytics",
+        "head": "Detect",
+        "version": "8.4.171",
+        "batch": "1",
+        "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+        "stride": "32",
+        "task": "detect",
+        "date": "2026-10-02T08:46:24.338051+09:00",
+        "imgsz": "[640, 640]",
+        "names": "{0: 'tab', 1: 'menu', 2: 'price', 3: 'button', 4: 'back'}",
+        "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': None, 'dynamic': False, 'simplify': True, 'opset': None}"
+      },
+      "cpu_smoke_test": "passed"
+    }
+  ]
+}
