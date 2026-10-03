@@ -15,8 +15,12 @@ class Element(
     var parent: String? = null,
     var text: String? = null,
     var price: Int? = null,
+    var confOcr: Double? = null,
+    var uncertain: Boolean? = null,
+    var ocrSource: String? = null,
+    var qty: Int? = null,
 ) {
-    fun copy(conf: Double = this.conf) = Element(id, kind, box, conf, parent, text, price)
+    fun copy(conf: Double = this.conf) = Element(id, kind, box, conf, parent, text, price, confOcr, uncertain, ocrSource, qty)
 
     fun toMap(): Map<String, Any?> = buildMap {
         put("id", id)
@@ -26,6 +30,10 @@ class Element(
         parent?.let { put("parent", it) }
         text?.let { put("text", it) }
         price?.let { put("price", it) }
+        confOcr?.let { put("conf_ocr", round4(it)) }
+        uncertain?.let { put("uncertain", it) }
+        ocrSource?.let { put("ocr_source", it) }
+        qty?.let { put("qty", it) }
     }
 }
 

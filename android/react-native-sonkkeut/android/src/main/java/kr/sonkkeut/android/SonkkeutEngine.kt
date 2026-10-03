@@ -44,10 +44,16 @@ object SonkkeutEngine {
     var feedback: NativeFeedback? = null
 
     /** 언어 쪽(노현석: F-04·F-05)이 꽂는 자리. 기본값은 요소만 담은 구조 */
-    private val koreanStructure by lazy { KoreanStructure() }
-    @Volatile var structureProvider: StructureProvider = StructureProvider { els, crops, flat, kid -> koreanStructure.build(els, crops, flat, kid) }
+    private var koreanStructure: KoreanStructure? = null
+    private var menuAliases: Map<String, String> = emptyMap()
+    @Volatile var structureProvider: StructureProvider = StructureProvider { els, crops, flat, kid ->
+        koreanStructure?.build(els, crops, flat, kid) ?: ScreenStructure.basic(els, kid)
+    }
 
-    fun setMenuAliases(aliases: Map<String, String>) { koreanStructure.aliases = aliases }
+    fun setMenuAliases(aliases: Map<String, String>) = synchronized(lock) {
+        menuAliases = aliases.toMap()
+        koreanStructure?.aliases = menuAliases
+    }
 
     val isReady get() = pipeline != null
 
@@ -61,6 +67,7 @@ object SonkkeutEngine {
             val am = context.assets
             fun asset(name: String) = am.open("sonkkeut/$name").use { it.readBytes() }
             try {
+                koreanStructure = KoreanStructure(context.applicationContext).also { it.aliases = menuAliases }
                 val m1 = OnnxModel(asset("m1_screen_corners_int8.onnx")).also { models.add(it) }
                 val m2 = OnnxModel(asset("m2_screen_elements_int8.onnx")).also { models.add(it) }
                 val refiner = OnnxModel(asset("m1r_corner_refiner.onnx"), threads = 1).also { models.add(it) }
@@ -80,6 +87,9 @@ object SonkkeutEngine {
     fun release() {
         synchronized(lock) {
             running = false
+            val ocr = koreanStructure
+            koreanStructure = null
+            runCatching { ocr?.close() }.onFailure { Log.w(TAG, "OCR 자원 해제 실패") }
             hands?.close()
             feedback?.shutdown()
             models.forEach { it.close() }

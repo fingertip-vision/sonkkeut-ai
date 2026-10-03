@@ -1,0 +1,8 @@
+# Preserve byte-exact model companions; the final dictionary entry is a space token.
+*.onnx -text
+*.so -text
+android/react-native-sonkkeut/android/src/main/assets/sonkkeut/m3_kiosk_rec_v2_dictionary.txt -text -whitespace
+android/react-native-sonkkeut/android/src/main/assets/sonkkeut/m3_kiosk_rec_v2_metadata.json -text -whitespace
+# Preserve upstream notices and patch context, including intentional whitespace.
+android/react-native-sonkkeut/android/src/main/assets/sonkkeut/licenses/** -text -whitespace
+android/react-native-sonkkeut/android/native-whisper/patches/*.patch text eol=lf -whitespace

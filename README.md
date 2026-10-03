@@ -1,26 +1,30 @@
-# sonkkeut-ai · 손끝길 영상 AI
+# sonkkeut-ai · 손끝길 통합 AI
 
 스마트폰 카메라로 키오스크 화면과 손끝을 함께 보고, 목표 버튼까지 손가락을 음성·진동으로 유도하는 온디바이스 AI입니다.
-이 레포에는 영상 AI·모델 학습 코드와 Android 앱에서 사용하는 한국어 OCR·화면 구조화·오프라인 음성 제어 모듈이 들어 있습니다.
+이 레포에는 영상 AI·모델 학습 코드, 팀 OCR v2·Whisper v3, 화면 구조화·주문 해석·버튼 계획과 Android 앱용 모듈이 들어 있습니다. 카메라와 음성 모델은 Android 안에서 실행하며, 같은 모델을 실행하는 선택형 Python CPU 런타임도 제공합니다.
 
 | 기능 | 내용 | 코드 |
 | --- | --- | --- |
 | F-02 화면 평면 추정 | M1으로 화면 네 꼭짓점 검출 → M1-R로 꼭짓점 정밀 보정 → 호모그래피 → 광류로 매 프레임 추적 | `plane.py`, `corner_net.py` |
 | F-03 화면 요소 인식 | 펼친 화면에서 M2로 탭·메뉴·가격·버튼·뒤로가기 탐지, 겹침 정리, 읽는 순서 정렬 | `sonkkeut_vision/elements.py` |
-| F-04·F-05 OCR·화면 구조 | Android에 포함한 한국어 ML Kit로 글자·메뉴·선택·장바구니·총액 해석 | `android/react-native-sonkkeut/android/src/main/java/kr/sonkkeut/android/KoreanStructure.kt` |
+| F-04·F-05 OCR·화면 구조 | 팀 OCR v2의 ONNX·CTC 인식으로 한국어 읽기, ML Kit 줄 위치·선택·장바구니·총액 보완, 낮은 신뢰도는 불확실 표시 | `sonkkeut_ai/ocr.py`, `sonkkeut_ai/runtime.py`, `android/react-native-sonkkeut/android/src/main/java/kr/sonkkeut/android/KoreanStructure.kt` |
+| F-06 음성 주문 | 팀 Whisper v3·CTranslate2로 한국어 인식, 메뉴 문맥을 반영한 주문 해석과 사용자 확인 | `sonkkeut_ai/speech.py`, `core/order_nlu.py`, Android 네이티브 Whisper 모듈 |
+| F-07 버튼 계획 | 확인한 주문과 화면 구조를 받아 다음 목표·기대 결과 반환, 증거가 부족하면 재확인 | `core/planner.py`, `sonkkeut_ai/runtime.py`, 프론트 주문 상태 기계 |
 | F-08 손끝 추적 | MediaPipe 손 관절 21점 → 검지 끝 → 화면 좌표, 5프레임 평균, 검지를 접으면 안내 중지 | `sonkkeut_vision/fingertip.py` |
 | F-09 손끝 유도(오차 계산) | 8방향·3거리 구간, 음성 0.8초 간격, 0.3초 머무르면 "지금 누르세요" | `sonkkeut_vision/guidance.py` |
 | F-10 누름 결과 확인 | 화면 변화 감지 → 새 화면 구조를 기대 결과와 비교 | `sonkkeut_vision/verify.py` |
 | (공통) 키프레임 판단 | 화면이 바뀌고 멈췄을 때만 무거운 화면 읽기 실행, 손 영역은 비교에서 제외 | `sonkkeut_vision/keyframe.py` |
 
 언어 쪽(노현석: F-04 문자 인식 ~ F-07 버튼 순서 계획), 앱(임현승: 음성·진동 출력)과의 연결 규약은
-[`docs/interface.md`](docs/interface.md)에 있습니다.
+[`docs/interface.md`](docs/interface.md)에 있습니다. 새 OCR·음성·주문·계획의 통합 계약과 실제 추론 실행법은
+[`docs/unified-ai.md`](docs/unified-ai.md), 선택형 HTTP 제공자의 형식은 [`docs/unified-ai.openapi.json`](docs/unified-ai.openapi.json)을 확인하세요.
 
-이 레포는 두 부분으로 되어 있습니다.
+구현은 다음 역할로 나뉩니다.
 
 | 부분 | 언어 | 용도 |
 | --- | --- | --- |
 | `sonkkeut_vision/`, `training/`, `scripts/` | 파이썬 | 모델 학습, 기준 구현, PC 데모·평가 |
+| `ocr/`, `asr/`, `core/`, `sonkkeut_ai/` | 파이썬 | 팀 언어 모델·주문 계획 및 공통 응답 계약, 선택형 로컬 CPU HTTP 제공자 |
 | `android/react-native-sonkkeut/` | Kotlin + TS | **앱에 들어가는 모듈.** 프론트는 이것만 설치하면 됨 → [사용법](android/react-native-sonkkeut/README.md) |
 
 두 구현이 같은 결과를 내는지는 `bash android/parity/run_tests.sh`로 확인합니다(파이썬이 만든 정답과 Kotlin 출력 비교).
@@ -29,11 +33,13 @@
 
 ### 앱 연결 검증 (2026-10-03)
 
-`sonkkeut-ai.tar`에 포함된 M1·M2·M1-R ONNX 모델 3개를 Android 앱에 연결했습니다. 모델 SHA-256과 입출력 형식은 `android/react-native-sonkkeut/android/src/main/assets/sonkkeut/model-manifest.json`에 있습니다.
+`sonkkeut-ai.tar`의 M1·M2·M1-R 세 모델을 유지하고, `hyunseok/m3-ocr-core-asr`의 팀 OCR v2·Whisper v3를 통합했습니다. OCR은 공식 Paddle2ONNX로 변환한 ONNX를 APK에 넣습니다. Whisper 모델은 원본 GitHub 릴리스 ZIP 약 485 MB를 첫 사용 시 내려받아 SHA-256·압축 내부 파일을 확인한 뒤 기기 안에서 실행합니다. 모델 버전은 `2026.10.03`이며 SHA-256·입출력·원본 URL은 [`../model-manifest.json`](../model-manifest.json)과 APK의 `sonkkeut/model-manifest.json`에 있습니다.
 
-Python AI 로직 테스트 22개, ONNX 모델 3개의 CPU 추론, Android API 35의 ARM64 실행 환경에서 모델 3개 추론·한국어 OCR·전체 엔진 초기화(MediaPipe 포함)를 확인했습니다. 실제 휴대폰 카메라의 주문 전체 흐름과 기능 명세서의 현장 정확도·지연 목표는 아직 측정하지 않았습니다.
+선택형 CPU 런타임에서 Python 테스트 38개가 통과했습니다(기존 PyTorch 실가중치 테스트 3개는 이 환경에서 제외). OCR은 합성 한국어 3개를 실제 ONNX로 읽고 같은 출력의 Kotlin CTC 결과와 비교했습니다. 팀 Whisper 실가중치는 합성 한국어 주문을 인식했고, HTTP에서도 OCR → 음성·주문 해석 → 확인된 주문의 목표 계획을 검증했습니다. Android API 35의 ARM64 변환 실행 환경에서는 자체 Whisper·메뉴 문맥을 적용한 실제 추론을 확인했습니다. 이 환경에서의 20.376초는 물리적 휴대폰 성능이 아닙니다. 화면을 놓치거나 OCR이 불확실하면 누름을 차단합니다.
 
-현재 앱 연결은 로컬에서 검증했고 프론트 변경은 프론트 Git 저장소에 업로드하지 않습니다.
+서비스는 [공개 시뮬레이션](https://sonkkeutgil-mvp-oct02.enterenter0311.chatgpt.site/simulation)으로 확인할 수 있습니다. 웹 시뮬레이션은 모의 인식·가상 손을 사용합니다. 공개 백엔드는 메뉴·동의한 익명 통계를 제공하며 Paddle·Whisper를 실행하지 않습니다. 실제 휴대폰의 카메라·마이크 주문 전체 흐름과 기능 명세서의 현장 정확도·지연 목표는 아직 측정하지 않았습니다. 모델별 합성 검증 범위는 [`docs/unified-ai.md`](docs/unified-ai.md), APK·공개 서비스의 검증 기록은 [`../DEPLOYMENT_STATUS.json`](../DEPLOYMENT_STATUS.json)과 [`../LOCAL_GUIDE.md`](../LOCAL_GUIDE.md)를 확인하세요.
+
+OCR·음성 CPU 런타임만 실행하려면 기존 백엔드 가상환경과 분리한 환경에 `requirements-unified.txt`를 설치하세요. 모델을 내려받는 방법, `VisionPipeline.structure_fn` 연결과 `sonkkeut.ai.v1` 프론트 응답 예시는 [`docs/unified-ai.md`](docs/unified-ai.md)에 있습니다. 이 경로는 PyTorch 없이 OCR·음성·주문·계획을 실행하며, 카메라 M1·M2의 기존 Python 경로에는 아래 전체 개발 환경이 필요합니다.
 
 1. `setup.bat` 더블클릭 — 패키지 설치, 손 관절 모델 내려받기, 테스트까지 한 번에 합니다.
    예전에 학습에 쓴 `Documents\sonkkeut\.venv`가 있으면 그대로 씁니다(PyTorch 재설치 없음).
@@ -82,11 +88,16 @@ sonkkeut_vision/   영상 AI 패키지 (위 표)
 training/          합성 데이터 생성과 학습 (kiosk_synth, corner_synth, train, corner_refiner)
 models/            학습된 가중치 (M1 꼭짓점, M1-R 보정, M2 화면 요소)
 scripts/           run_camera, simulate, bench, eval_scenarios, eval_conditions, eval_real_hand,
-                   export_mobile, demo_image
+                   export_mobile, demo_image, fetch_unified_models, export_unified_ocr,
+                   verify_unified_models, export_unified_schema
+ocr/, asr/, core/  팀 OCR·Whisper 모델 학습 코드와 주문 해석·계획
+sonkkeut_ai/       실제 ONNX OCR·Whisper CPU 추론, 통합 계약·선택형 FastAPI 제공자
 tests/             단위 테스트 + 실제 가중치로 하는 통합 테스트
 docs/interface.md  언어 AI·앱과의 연결 규약
+docs/unified-ai.md 통합 모델 실행법·출처·좌표·응답 계약·검증 범위
+docs/unified-ai.openapi.json  선택형 HTTP 제공자의 요청·응답 스키마
 android/
-  react-native-sonkkeut/  앱용 모듈 (Kotlin core = 파이썬 sonkkeut_vision 이식, ONNX INT8 모델 포함)
+  react-native-sonkkeut/  앱용 모듈 (Kotlin 영상 엔진·ONNX OCR·자체 Whisper ARM64 런타임)
   parity/                 파이썬 ↔ Kotlin 동등성 테스트, Kotlin 파이프라인 시뮬레이션
 ```
 
@@ -158,11 +169,12 @@ sigma를 조여 다시 학습하면(0.025, 0.08) 오히려 정확도가 떨어�
 - 실제 손 시나리오의 실패 3건은 모두 손을 끝까지 찾지 못한 경우입니다. 손만 오려 붙인 합성 이미지라 팔이 없어
   손바닥 검출기가 놓치는 것으로 보이며(손 검출률 36/60), 실제 촬영에서 다시 확인해야 합니다.
 - 실제 키오스크 사진과 실제 카메라로는 아직 검증하지 못했습니다. 클라우드에서 외부 사진을 내려받을 수 없었습니다.
-- 휴대폰에서의 처리 시간은 아직 재지 않았습니다(위 시간은 PC CPU).
+- 물리적 휴대폰에서의 처리 시간은 아직 재지 않았습니다(위 표는 PC CPU, 통합 Whisper의 Android 기록은 ARM64 변환 에뮬레이터).
 
 ## 다음 할 일
 
 - [ ] 실제 키오스크 사진 50~100장으로 M1·M2 실측 (기획서 수치는 합성 데이터 점수가 아니라 실측으로)
 - [ ] PC에서 `run_camera.bat`으로 실제 손·실제 화면 확인 (모니터에 키오스크 화면을 띄워도 됨)
-- [ ] 프론트 앱에 `react-native-sonkkeut` 설치 후 첫 빌드, 휴대폰에서 처리 시간 측정 (임현승·전채영과 함께)
-- [ ] 노현석 모듈(F-04·F-05)과 연결 — 파이썬은 `structure_fn`, 앱은 Kotlin `SonkkeutEngine.structureProvider`
+- [x] 프론트 앱에 `react-native-sonkkeut` 연결하고 Android 빌드·합성 모델 추론 확인
+- [x] 팀 OCR·Whisper·주문 계획 연결 — Python `structure_fn`·공통 응답, Android 자체 모델 추론
+- [ ] 물리적 휴대폰으로 카메라·음성·주문 전체 흐름과 처리 시간 측정

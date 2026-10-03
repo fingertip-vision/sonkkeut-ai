@@ -1,7 +1,6 @@
 # react-native-sonkkeut
 
-손끝길 영상 AI를 React Native 앱에 붙이는 모듈입니다. AI 계산(화면 인식, 손끝 추적, 유도, 누름 확인)은
-전부 휴대폰 안에서 Kotlin + ONNX Runtime + MediaPipe로 돌고, JS는 결과만 받습니다. 서버가 필요 없습니다.
+손끝길 영상·글자·음성 AI를 React Native 앱에 붙이는 모듈입니다. 화면·요소 검출, 자체 OCR, 자체 Whisper 음성 인식, 손끝 추적과 누름 확인은 휴대폰 안에서 실행하고 JS는 화면 구조와 주문 문장을 받습니다. 음성 모델은 처음 한 번 인터넷으로 내려받습니다. 매장 메뉴와 동의한 익명 통계는 서비스 백엔드에 연결합니다.
 
 ```
 카메라(VisionCamera) ──프레임──▶ [Kotlin] 화면 꼭짓점 → 화면 요소 → 손끝 → 유도 → 누름 확인
@@ -92,9 +91,26 @@ function Guide() {
 
 ## 4. 언어 쪽(노현석) 연결
 
-기본 `structureProvider`는 포함된 `KoreanStructure`로 한국어 OCR과 화면 종류·선택·장바구니 수량·총액을 해석합니다. 이미지는 서버로 보내지 않습니다. 선택 상태는 `선택됨` 문구를 근거로 하며, 증거가 부족하면 진행하지 않습니다. 표시 방식이 다른 실제 키오스크는 추가 검증·규칙 조정이 필요합니다.
+기본 `structureProvider`는 M2 요소 검출과 ML Kit의 글자 줄 위치를 사용하고, 팀의 `kiosk_rec_v2`를 ONNX로 변환한 `KioskCtcRecognizer`가 각 줄을 읽습니다. 출력에는 `conf_ocr`, `uncertain`, `ocr_source`, `qty`를 보존합니다. 자체 모델 인식 실패 시 `mlkit_fallback`과 불확실 표시를 남기며, 불확실한 글자로 목표를 고르지 않습니다. 선택 상태는 `선택됨` 문구를 근거로 하며 증거가 부족하면 진행하지 않습니다.
 
-JS에서 `Sonkkeut.setMenuAliases({아아: '아메리카노'})`로 서버에서 받은 메뉴 사전을 연결합니다. `say`, `silence`, `listen`, `cancelListening`은 앱의 주문 입력·확인에 쓰며, `listen()`은 Android 12 이상의 기기 내 음성 인식이 준비된 경우에만 실행합니다. 미지원 기기는 문자 입력으로 대체합니다.
+JS에서 `Sonkkeut.setMenuAliases({아아: '아메리카노', 카페라떼: '카페라떼'})`로 메뉴 사전을 연결합니다. OCR 별칭과 실제 Whisper의 메뉴 문맥에 함께 사용합니다. 음성 문장은 앱에서 메뉴·수량·온도·매장/포장으로 해석한 후 사용자 확인을 받아 안내합니다. 모델과 원본 라이선스·재현 정보는 [`../../docs/unified-ai.md`](../../docs/unified-ai.md)에 있습니다.
+
+```ts
+const state = await Sonkkeut.getSpeechModelStatus();
+const unsubscribe = Sonkkeut.addModelDownloadListener(({bytes, total_bytes, stage}) => {
+  // 앱에서 다운로드 진행률과 설치 상태를 표시한다.
+});
+// 사용자가 약 485MB 다운로드를 선택한 후 호출한다.
+if (!state.installed) await Sonkkeut.downloadSpeechModel();
+else if (!state.ready) await Sonkkeut.prepareSpeechModel();
+const orderText = await Sonkkeut.listen(); // 기본: 자체 CT2 Whisper elder v3
+Sonkkeut.cancelListening();              // 녹음 중지 및 오래된 결과 차단
+unsubscribe();
+```
+
+`cancelSpeechModelDownload()`로 다운로드를 중지할 수 있습니다. ZIP SHA-256 및 각 파일의 크기·해시를 확인한 후 앱 전용 폴더에 설치합니다. 16kHz 모노 PCM을 자체 C++ 전처리와 CTranslate2 ARM64 CPU에서 처리하며, 음성은 서버로 보내거나 파일로 보관하지 않습니다. `addSpeechListener()`는 provider·실제 추론 시간·sequence score·무음 확률을 제공합니다. sequence score를 단어 정확도로 해석하지 마세요.
+
+`listen('system')`은 별도 대체 기능입니다. Android 12 이상에서 기기 오프라인 한국어 인식 서비스가 있을 때만 사용할 수 있으며 자체 Whisper 결과로 표시하지 않습니다. 문자 입력도 사용할 수 있습니다. 녹음 종료는 단순 에너지 기준이며 학습된 VAD 모델은 아닙니다.
 
 글자 인식(F-04)과 화면 종류 판단(F-05)은 Kotlin에서 `SonkkeutEngine.structureProvider`에 꽂습니다.
 키오스크 화면이 바뀔 때마다 요소 목록과 요소별 잘라낸 이미지(OpenCV `Mat`, RGB)를 받아 `ScreenStructure`를 돌려주면,
@@ -115,7 +131,9 @@ android/src/main/java/kr/sonkkeut/
              Plane(F-02) · Detect(F-03 해석) · Fingertip(F-08) · Guide(F-09) · Verify(F-10) · Keyframe · Pipeline
   android/   OpenCV·ONNX Runtime·MediaPipe 구현, SonkkeutEngine(앱 전체에서 하나), 기본 음성·진동
   rn/        React Native 모듈(제어·이벤트) + VisionCamera 프레임 처리 플러그인 "sonkkeut"
-android/src/main/assets/sonkkeut/   모델 (M1·M2 ONNX INT8, M1-R 보정망, 손 관절은 빌드 때 내려받음)
+android/src/main/assets/sonkkeut/   M1·M2 ONNX INT8, M1-R, M3 OCR와 사전·명세·라이선스
+android/src/main/jniLibs/arm64-v8a/ CTranslate2와 Whisper JNI (음성 가중치는 최초 실행 때 다운로드)
+android/native-whisper/            고정 버전 원본 다운로드·패치·재빌드 스크립트와 C++ 소스
 src/index.ts                         JS API (useSonkkeut, Sonkkeut, 타입)
 example/KioskGuideScreen.tsx         카메라 화면 예시
 ```
@@ -125,6 +143,8 @@ example/KioskGuideScreen.tsx         카메라 화면 예시
 - `core/`는 파이썬 기준 구현과 같은 입력에 같은 출력을 내는지 PC에서 확인했습니다 (`bash android/parity/run_tests.sh`).
   안내 이벤트 3,600건, 키오스크 화면 판단 480건, 모델 출력 해석(박스·꼭짓점) 등 전부 일치했습니다.
   같은 Kotlin 코드로 돌린 누르기 시뮬레이션은 40회 중 40회 성공, 버튼 밖에서 '누르세요' 0회였습니다.
-- 이번 변경에서 실제 Android SDK로 APK 빌드를 통과했습니다. API 35 에뮬레이터의 ARM64 실행 환경에서 전체 엔진 초기화, ONNX 3개 추론, 한국어 OCR과 로컬 서버 연동을 확인했습니다.
+- 자체 OCR의 합성 한국어 문구 3개는 실제 ONNX 출력과 Kotlin CTC 디코딩이 일치했습니다. 자체 Whisper는 API 35 에뮬레이터의 ARM64 번역 실행 환경에서 실제 PCM→멜→CT2→한국어 주문을 확인했습니다. 메뉴 문맥을 사용한 주문은 아메리카노 2잔, 카페라떼 1잔, 포장을 정확히 읽었습니다. 약 20.4초는 해당 에뮬레이터 수치이며 휴대폰 지연 목표의 측정값이 아닙니다.
+- Windows CPU 통합 런타임의 OCR→음성→주문 해석→확인된 목표 계획도 실제 HTTP 요청으로 검증했습니다. 브라우저 시뮬레이션의 모의 AI와 구분합니다.
 - 휴대폰에서의 처리 시간은 아직 재지 않았습니다. 결과의 `timings.total_ms`로 바로 확인할 수 있습니다.
 - `screen_type_not`가 맞더라도 요구한 `cart_delta`를 읽지 못하면 성공으로 판정하지 않습니다. Python과 Kotlin 모두 `uncertain`을 반환합니다.
+- 실제 휴대폰 카메라로 전체 주문을 수행하는 현장 검증은 남아 있습니다. 현재 APK는 개발 서명 시연용입니다. CTranslate2/JNI는 16KB ELF 정렬로 빌드했지만 전체 APK의 16KB 페이지 지원은 검증하지 않았으며 현재 NDK 26.1 C++ 런타임은 4KB 정렬입니다.

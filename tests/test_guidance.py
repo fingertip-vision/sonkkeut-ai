@@ -97,6 +97,18 @@ def test_low_conf_blocks_press():
     assert all(e.type == "hold" for e in evs) and evs[0].speak == "잠시 멈춰 주세요"
 
 
+def test_losing_screen_resets_press_dwell():
+    g = Guide(speak_interval=0.0)
+    g.set_target(BTN)
+    finger = tip(0.5, 0.45)
+    g.update(finger, 0.0)
+    assert g.update(finger, 0.2).type != "press"
+    assert g.update(finger, 0.25, target_conf=0.0).type == "hold"
+    assert g.update(finger, 0.4).type != "press"
+    assert g.update(finger, 0.6).type != "press"
+    assert g.update(finger, 0.71).type == "press"
+
+
 def test_no_hand_after_one_second():
     g = make()
     assert g.update(Fingertip(pos=None, lost_for=0.5), 0.0) is None

@@ -1,0 +1,5 @@
+[
+  {"image": "sample-0.png", "expected": "아메리카노", "source": "synthetic Windows Malgun Gothic 36px"},
+  {"image": "sample-1.png", "expected": "4,500원", "source": "synthetic Windows Malgun Gothic 36px"},
+  {"image": "sample-2.png", "expected": "따뜻하게", "source": "synthetic Windows Malgun Gothic 36px"}
+]

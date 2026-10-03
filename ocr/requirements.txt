@@ -1,0 +1,19 @@
+# OCR(M3)·core(F-05~07) 공용 환경 — Python 3.11, Windows, CUDA 12.6
+# paddlepaddle-gpu 는 공식 인덱스에서: pip install paddlepaddle-gpu==3.2.0 -i https://www.paddlepaddle.org.cn/packages/stable/cu126/
+paddlepaddle-gpu==3.2.0
+paddleocr==3.7.0
+paddlex==3.7.2
+numpy==1.26.4            # 2.x 가 들어오면 albumentations/paddlex 가 깨진다
+opencv-contrib-python==4.10.0.84
+albumentations==1.4.10
+albucore==0.0.12         # stringzilla 빌드 실패 회피: pip install --no-deps
+scikit-image==0.24.0
+scipy==1.14.1
+shapely==2.1.2
+pyclipper==1.4.0
+lmdb==2.3.0
+PyYAML==6.0.2
+pillow==12.1.0
+RapidFuzz==3.14.6
+faster-whisper==1.2.1    # core/asr.py (CPU)
+# 학습 코드는 PaddleOCR 저장소: git clone --depth 1 https://github.com/PaddlePaddle/PaddleOCR.git ocr/PaddleOCR

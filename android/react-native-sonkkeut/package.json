@@ -1,7 +1,7 @@
 {
   "name": "react-native-sonkkeut",
-  "version": "0.1.0",
-  "description": "손끝길 온디바이스 영상 AI (화면 인식·손끝 유도·누름 확인) React Native 모듈",
+  "version": "0.1.1",
+  "description": "손끝길 온디바이스 영상·OCR·음성 AI React Native 모듈",
   "main": "src/index.ts",
   "react-native": "src/index.ts",
   "types": "src/index.ts",

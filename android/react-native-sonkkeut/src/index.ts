@@ -14,7 +14,7 @@ import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
 import { type Frame, useFrameProcessor, VisionCameraProxy } from 'react-native-vision-camera'
 
 // ---------- 결과 형식 (sonkkeut-ai/docs/interface.md와 같음) ----------
-export type Kind = 'tab' | 'menu' | 'price' | 'button' | 'back'
+export type Kind = 'tab' | 'menu' | 'price' | 'button' | 'back' | 'cart_item' | 'text' | 'title'
 
 export interface ScreenElement {
   id: string
@@ -25,6 +25,10 @@ export interface ScreenElement {
   parent?: string
   text?: string
   price?: number
+  conf_ocr?: number
+  uncertain?: boolean
+  ocr_source?: 'm3_kiosk_rec_v2' | 'mlkit_fallback' | string
+  qty?: number
 }
 
 export interface ScreenStructure {
@@ -88,6 +92,23 @@ export interface Expect {
   success_speak?: string
 }
 
+export interface SpeechModelStatus {
+  provider: 'ct2-whisper-v3' | string
+  model_version: string
+  installed: boolean
+  ready: boolean
+  downloading: boolean
+  busy: boolean
+  requires_download: boolean
+  download_size_bytes?: number
+}
+
+export interface ModelDownloadProgress { bytes: number; total_bytes: number; stage: string }
+export interface SpeechInferenceInfo {
+  provider: string; model_version: string; sequence_score?: number
+  no_speech_probability: number; inference_ms: number; audio_seconds: number
+}
+
 // ---------- 네이티브 연결 ----------
 const Native = NativeModules.Sonkkeut as
   | {
@@ -102,7 +123,12 @@ const Native = NativeModules.Sonkkeut as
       say(text: string): void
       silence(): void
       listen(): Promise<string>
+      listenModel(): Promise<string>
       cancelListening(): void
+      getSpeechModelStatus(): Promise<SpeechModelStatus>
+      prepareSpeechModel(): Promise<SpeechModelStatus>
+      downloadSpeechModel(): Promise<SpeechModelStatus>
+      cancelSpeechModelDownload(): void
       setMenuAliases(aliases: Record<string, string>): void
     }
   | undefined
@@ -129,8 +155,21 @@ export function sonkkeutProcess(frame: Frame, rotation?: number) {
 export const Sonkkeut = {
   say: (text: string) => Native?.say(text),
   silence: () => Native?.silence(),
-  listen: () => Native?.listen() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
+  listen: (provider: 'custom' | 'system' = 'custom') =>
+    (provider === 'custom' ? Native?.listenModel() : Native?.listen()) ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
   cancelListening: () => Native?.cancelListening(),
+  getSpeechModelStatus: () => Native?.getSpeechModelStatus() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
+  prepareSpeechModel: () => Native?.prepareSpeechModel() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
+  downloadSpeechModel: () => Native?.downloadSpeechModel() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
+  cancelSpeechModelDownload: () => Native?.cancelSpeechModelDownload(),
+  addModelDownloadListener(cb: (progress: ModelDownloadProgress) => void) {
+    const sub = new NativeEventEmitter(NativeModules.Sonkkeut).addListener('SonkkeutModelDownload', cb)
+    return () => sub.remove()
+  },
+  addSpeechListener(cb: (info: SpeechInferenceInfo) => void) {
+    const sub = new NativeEventEmitter(NativeModules.Sonkkeut).addListener('SonkkeutSpeechResult', cb)
+    return () => sub.remove()
+  },
   setMenuAliases: (aliases: Record<string, string>) => Native?.setMenuAliases(aliases),
   init: (options: { nativeFeedback?: boolean } = {}) => Native?.init(options) ?? Promise.resolve(false),
   start: () => Native?.start(),
@@ -171,6 +210,7 @@ export interface UseSonkkeutOptions {
   onEvent?: (e: GuidanceEvent) => void
   onVerdict?: (v: Verdict) => void
   onScreen?: (s: ScreenStructure) => void
+  onResult?: (r: SonkkeutResult) => void
 }
 
 /**
@@ -193,6 +233,7 @@ export function useSonkkeut(options: UseSonkkeutOptions = {}) {
       .catch((e) => alive && setError(String(e?.message ?? e)))
     const off = Sonkkeut.addListener((r) => {
       setResult(r)
+      cbs.current.onResult?.(r)
       if (r.structure) {
         setScreen(r.structure)
         cbs.current.onScreen?.(r.structure)

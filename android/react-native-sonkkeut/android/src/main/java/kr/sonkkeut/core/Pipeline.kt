@@ -61,6 +61,9 @@ class VisionPipeline(
     // ---------- 언어 쪽(F-07)·앱에서 부르는 API ----------
     fun setTarget(elementId: String, expect: Expect? = null) {
         val el = elements.firstOrNull { it.id == elementId } ?: throw NoSuchElementException("현재 화면에 $elementId 가 없습니다")
+        require(el.uncertain != true && (el.confOcr?.let { it.isFinite() && it >= 0.8 } ?: true)) {
+            "글자를 확실하게 읽지 못한 요소에는 안내할 수 없습니다"
+        }
         guide.setTarget(el, plane.state?.aspect)
         this.expect = expect
         verifier.disarm()
@@ -68,7 +71,8 @@ class VisionPipeline(
 
     /** 화면 좌표(0~1)를 눌러 목표 지정 (데모·저시력 모드용). 겹치면 가장 작은 요소 */
     fun setTargetAt(x: Double, y: Double, expect: Expect? = null): Element? {
-        val hit = elements.filter { it.box.contains(x, y) }.minByOrNull { it.box.w * it.box.h } ?: return null
+        val hit = elements.filter { it.uncertain != true && (it.confOcr?.let { c -> c.isFinite() && c >= 0.8 } ?: true) && it.box.contains(x, y) }
+            .minByOrNull { it.box.w * it.box.h } ?: return null
         setTarget(hit.id, expect)
         return hit
     }
@@ -87,6 +91,9 @@ class VisionPipeline(
         val tgt = guide.target ?: return false
         val best = elements.maxByOrNull { if (it.kind == tgt.kind) iou(it.box, tgt.box) else 0.0 }
         if (best != null && best.kind == tgt.kind && iou(best.box, tgt.box) > 0.5) {
+            if (best.uncertain == true || (best.confOcr?.let { !it.isFinite() || it < 0.8 } ?: false)) {
+                clearTarget(); return true
+            }
             guide.updateTargetBox(best); return false
         }
         if (handBox != null && overlaps(handBox, tgt.box)) return false // 손가락이 가린 것
@@ -115,6 +122,8 @@ class VisionPipeline(
         val t0 = System.nanoTime()
         val (w, h) = p.flatSize(longSide)
         val flat = ops.warp(frame, flatMatrix(p, w, h, margin), w, h)
+        val crops = LinkedHashMap<String, FrameImage>()
+        try {
         val t1 = System.nanoTime()
         val lb = Letterbox.of(w, h, 640)
         val out = m2.run(ops.letterboxTensor(flat, lb), longArrayOf(1, 3, 640, 640))
@@ -124,22 +133,31 @@ class VisionPipeline(
         timings["m2_ms"] = (System.nanoTime() - t1) / 1e6
         val k = 1.0 + 2 * margin
         val pad = 0.008
-        val crops = els.associate { e ->
+        for (e in els) {
             val x1 = ((e.box.x1 + margin) / k - pad) * w
             val y1 = ((e.box.y1 + margin) / k - pad) * h
             val x2 = ((e.box.x2 + margin) / k + pad) * w
             val y2 = ((e.box.y2 + margin) / k + pad) * h
-            e.id to ops.crop(flat, x1.toInt().coerceAtLeast(0), y1.toInt().coerceAtLeast(0), x2.toInt().coerceAtMost(w), y2.toInt().coerceAtMost(h))
+            val left = x1.toInt().coerceIn(0, w)
+            val top = y1.toInt().coerceIn(0, h)
+            val right = x2.toInt().coerceIn(0, w)
+            val bottom = y2.toInt().coerceIn(0, h)
+            if (right > left && bottom > top) crops[e.id] = ops.crop(flat, left, top, right, bottom)
         }
         val s = structureProvider.build(els, crops, flat, kid)
-        crops.values.forEach { ops.release(it) }
-        ops.release(flat)
         // 언어 쪽이 텍스트를 채워 돌려줬다면 요소에도 반영
         val byId = s.elements.associateBy { it.id }
-        for (e in els) byId[e.id]?.let { d -> e.text = d.text ?: e.text; e.price = d.price ?: e.price }
+        for (e in els) byId[e.id]?.let { d ->
+            e.text = d.text ?: e.text; e.price = d.price ?: e.price
+            e.confOcr = d.confOcr; e.uncertain = d.uncertain; e.ocrSource = d.ocrSource; e.qty = d.qty
+        }
         elements = els
         structure = s
         return s
+        } finally {
+            crops.values.forEach { ops.release(it) }
+            ops.release(flat)
+        }
     }
 
     // ---------- 매 프레임 ----------
@@ -152,7 +170,9 @@ class VisionPipeline(
         res.timings["plane_ms"] = (System.nanoTime() - t0) / 1e6
         if (pl == null) {
             res.tip = tracker.update(frame, null, t)
-            res.event = if (guide.target != null && hint == null) guide.update(res.tip, t) else null
+            // A stale screen coordinate must never produce a press instruction.
+            // Reset dwell even when the plane is lost for only a single frame.
+            res.event = if (guide.target != null) guide.update(res.tip, t, targetConf = 0.0) else null
             res.timings["total_ms"] = (System.nanoTime() - t0) / 1e6
             return res
         }
@@ -197,7 +217,8 @@ class VisionPipeline(
             }
         }
 
-        if (guide.target != null && !verifier.armed && res.verdict == null) {
+        // Let the app consume a new screen and apply its next target before guiding.
+        if (!isKf && guide.target != null && !verifier.armed && res.verdict == null) {
             val ev = guide.update(tip, t)
             res.event = ev
             if (ev?.type == "press") verifier.arm(t, structure, expect)

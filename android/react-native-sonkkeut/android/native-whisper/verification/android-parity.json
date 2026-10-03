@@ -1,0 +1,11 @@
+{
+  "values": 240000,
+  "maximum_absolute_error": 1.9788742065429688e-05,
+  "mean_absolute_error": 2.4225810690836624e-08,
+  "p99_absolute_error": 5.960464477539062e-07,
+  "reference_min": -0.6760275363922119,
+  "reference_max": 1.323972463607788,
+  "native_min": -0.6760275363922119,
+  "native_max": 1.323972463607788,
+  "passed": true
+}

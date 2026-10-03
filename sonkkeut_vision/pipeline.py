@@ -117,6 +117,10 @@ class VisionPipeline:
         for e in els:
             d = by_id.get(e.id, {})
             e.text, e.price = d.get("text", e.text), d.get("price", e.price)
+            if "conf" in d:
+                e.conf = min(e.conf, float(d["conf"]))
+            if d.get("uncertain"):
+                e.conf = 0.0  # OCR uncertainty must also stop fingertip press guidance.
         return self.structure
 
     # ---------- 매 프레임 ----------
@@ -129,7 +133,8 @@ class VisionPipeline:
         res.timings.update(self.plane_est.last_timing)
         if plane is None:
             res.tip = self.tracker.update(frame, None, t)
-            res.event = self.guide.update(res.tip, t) if self.guide.target is not None and not hint else None
+            # Losing the plane invalidates screen coordinates and resets dwell.
+            res.event = self.guide.update(res.tip, t, target_conf=0.0) if self.guide.target is not None else None
             res.timings["total_ms"] = (time.perf_counter() - t0) * 1000
             return res
         if plane.reframed and plane.ref_prev is not None:
@@ -170,7 +175,8 @@ class VisionPipeline:
                 res.verdict = self.verifier.timeout_verdict()
                 self.guide.pressed_latch = False  # 다시 누르도록 재안내
 
-        if self.guide.target is not None and not self.verifier.armed and res.verdict is None:
+        # The app must apply its next target after consuming the new screen.
+        if not is_kf and self.guide.target is not None and not self.verifier.armed and res.verdict is None:
             ev = self.guide.update(tip, t)
             res.event = ev
             if ev is not None and ev.type == "press":

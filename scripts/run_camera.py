@@ -68,6 +68,10 @@ def main():
     ap.add_argument("--save", default=None, help="결과 영상 저장 경로(.mp4)")
     ap.add_argument("--log", default=None, help="안내 이벤트를 JSON Lines로 저장")
     ap.add_argument("--tts", action="store_true")
+    assets = os.path.join(ROOT, "android", "react-native-sonkkeut", "android", "src", "main", "assets", "sonkkeut")
+    ap.add_argument("--ocr-model", default=os.path.join(assets, "m3_kiosk_rec_v2.onnx"))
+    ap.add_argument("--ocr-dictionary", default=os.path.join(assets, "m3_kiosk_rec_v2_dictionary.txt"))
+    ap.add_argument("--vision-only", action="store_true", help="기존 화면/손끝 모델만 실행 (자체 OCR 비활성)")
     a = ap.parse_args()
 
     src = int(a.source) if a.source.isdigit() else a.source
@@ -78,7 +82,14 @@ def main():
     if not cap.isOpened():
         raise SystemExit(f"카메라/영상을 열 수 없습니다: {a.source}")
 
-    pipe = VisionPipeline(a.m1, a.m2, device=a.device)
+    if a.vision_only:
+        pipe = VisionPipeline(a.m1, a.m2, device=a.device)
+    else:
+        from sonkkeut_ai.ocr import KioskRecognizer
+        from sonkkeut_ai.runtime import create_vision_pipeline
+        ocr = KioskRecognizer(a.ocr_model, a.ocr_dictionary)
+        pipe = create_vision_pipeline(a.m1, a.m2, ocr, device=a.device)
+        print("자체 OCR v2와 화면·손끝 모델 준비 완료")
     speaker = Speaker(a.tts)
     state = {"click": None, "last_speak": None}
     writer, logf = None, open(a.log, "w", encoding="utf-8") if a.log else None

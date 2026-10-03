@@ -28,3 +28,21 @@ android/react-native-sonkkeut/android/build/
 android/react-native-sonkkeut/android/.gradle/
 android/react-native-sonkkeut/android/src/main/assets/sonkkeut/hand_landmarker.task
 node_modules/
+
+# New OCR/ASR training workspaces and user audio stay out of the integration source.
+asr/ct2/
+asr/hf/
+asr/out/
+ocr/pretrained/
+ocr/output/
+ocr/PaddleOCR/
+core/data/utt100_wav/
+!core/data/
+core/data/*
+!core/data/utt100.json
+!core/data/tts.ps1
+*.zip
+*.wav
+*.bin
+*.pdparams
+*.pdiparams
