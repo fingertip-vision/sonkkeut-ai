@@ -1,0 +1,20 @@
+# 데이터·모델·실행 결과는 올리지 않는다 (AIHub 데이터는 재배포 금지)
+.venv/
+__pycache__/
+data/
+!core/data/
+runs/
+out/
+ct2/
+models/
+output/
+pretrained/
+*.log
+*.wav
+*.zip
+*.tar
+*.pdparams
+*.pdiparams
+*.bin
+ocr/PaddleOCR/
+aihub/

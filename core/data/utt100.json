@@ -1,0 +1,1747 @@
+[
+ {
+  "id": 0,
+  "text": "저기요 자몽에이드 따뜻하게 세 잔 이요",
+  "items": [
+   {
+    "menu": "자몽에이드",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 1,
+  "text": "음 유자차 1 잔 줘요",
+  "items": [
+   {
+    "menu": "유자차",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 2,
+  "text": "초코라떼 따뜻하게 2잔 줘요",
+  "items": [
+   {
+    "menu": "초코라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 3,
+  "text": "저기요 녹차라떼 그리고 에스프레소 하나씩 요",
+  "items": [
+   {
+    "menu": "녹차라떼",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "에스프레소",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "each"
+ },
+ {
+  "id": 4,
+  "text": "음 아이스로 캐모마일 2 잔 하고 베이글 하나 그리고 뜨거운 청포도에이드 1 잔 요 여기서 먹고 가요",
+  "items": [
+   {
+    "menu": "캐모마일",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "베이글",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "청포도에이드",
+    "qty": 1,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items3"
+ },
+ {
+  "id": 5,
+  "text": "그 아이스로 복숭아아이스티 두잔 하고 아메리카노 차가운 그란데 한 잔 하고 카페라떼 뜨거운 두 잔 주세요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "복숭아아이스티",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "아메리카노",
+    "qty": 1,
+    "options": {
+     "temp": "ice",
+     "size": "그란데"
+    }
+   },
+   {
+    "menu": "카페라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items3"
+ },
+ {
+  "id": 6,
+  "text": "음 레몬에이드하고 콜드브루 두 잔씩 주세요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "레몬에이드",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "콜드브루",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "each"
+ },
+ {
+  "id": 7,
+  "text": "저기요 녹차라떼 벤티 하나 주문할게요",
+  "items": [
+   {
+    "menu": "녹차라떼",
+    "qty": 1,
+    "options": {
+     "size": "벤티"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 8,
+  "text": "저기요 얼그레이 따뜻한 1 잔 그리고 크루아상 두 개 그리고 시원한 그란데 사이즈 초코라떼 1 잔 요",
+  "items": [
+   {
+    "menu": "얼그레이",
+    "qty": 1,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "크루아상",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "초코라떼",
+    "qty": 1,
+    "options": {
+     "temp": "ice",
+     "size": "그란데"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 9,
+  "text": "그 따뜻한 얼그레이 두 잔 주세요",
+  "items": [
+   {
+    "menu": "얼그레이",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 10,
+  "text": "어 레몬에이드랑 아메리카노 하나씩 줘요",
+  "items": [
+   {
+    "menu": "레몬에이드",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "아메리카노",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "each"
+ },
+ {
+  "id": 11,
+  "text": "캐모마일 따뜻하게 세 잔, 크루아상 두 개랑 아이스로 바닐라라떼 세 잔 이요",
+  "items": [
+   {
+    "menu": "캐모마일",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "크루아상",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "바닐라라떼",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 12,
+  "text": "어 베이글 2 개 그리고 따뜻하게 캐모마일 3 잔이랑 카페모카 뜨거운 한 잔 주세요",
+  "items": [
+   {
+    "menu": "베이글",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "캐모마일",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "카페모카",
+    "qty": 1,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 13,
+  "text": "음 콜드브루랑 초코라떼 하나씩 할게요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "콜드브루",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "초코라떼",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "each"
+ },
+ {
+  "id": 14,
+  "text": "어 마카롱랑 헤이즐넛라떼 두 잔씩 이요",
+  "items": [
+   {
+    "menu": "마카롱",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "헤이즐넛라떼",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "each"
+ },
+ {
+  "id": 15,
+  "text": "치즈케이크 3 개 부탁해요 포장이요",
+  "items": [
+   {
+    "menu": "치즈케이크",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 16,
+  "text": "그 페퍼민트 1 잔, 초코라떼 시원한 두 잔 주시겠어요 포장해 주세요",
+  "items": [
+   {
+    "menu": "페퍼민트",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "초코라떼",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 17,
+  "text": "저 복숭아아이스티하고 카푸치노 두 잔씩 할게요",
+  "items": [
+   {
+    "menu": "복숭아아이스티",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "카푸치노",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "each"
+ },
+ {
+  "id": 18,
+  "text": "그 레몬차 두잔 따뜻하게 주문할게요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "레몬차",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 19,
+  "text": "저기요 아메리카노 3잔 요 가져갈게요",
+  "items": [
+   {
+    "menu": "아메리카노",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 20,
+  "text": "그 따뜻한 망고스무디 세 잔이랑 소금빵 1 개, 차가운 카페모카 1잔 할게요",
+  "items": [
+   {
+    "menu": "망고스무디",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "소금빵",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "카페모카",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 21,
+  "text": "음 자몽에이드 1 잔 줘요 가져갈게요",
+  "items": [
+   {
+    "menu": "자몽에이드",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 22,
+  "text": "그 녹차라떼 차갑게 세잔 줘요 포장이요",
+  "items": [
+   {
+    "menu": "녹차라떼",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 23,
+  "text": "딸기스무디 2 잔 주세요",
+  "items": [
+   {
+    "menu": "딸기스무디",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 24,
+  "text": "어 딸기스무디 차가운 그란데 사이즈 1 잔 요 가져갈게요",
+  "items": [
+   {
+    "menu": "딸기스무디",
+    "qty": 1,
+    "options": {
+     "temp": "ice",
+     "size": "그란데"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 25,
+  "text": "저기요 초코라떼 두 잔 따뜻한 주시겠어요 포장이요",
+  "items": [
+   {
+    "menu": "초코라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 26,
+  "text": "저기요 아이스 레몬차 한 잔 줘요",
+  "items": [
+   {
+    "menu": "레몬차",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 27,
+  "text": "저기요 카페라떼 한잔 차갑게 할게요",
+  "items": [
+   {
+    "menu": "카페라떼",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 28,
+  "text": "어 얼그레이 아이스 1 잔 주문할게요",
+  "items": [
+   {
+    "menu": "얼그레이",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 29,
+  "text": "저 녹차라떼 뜨거운 세 잔 할게요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "녹차라떼",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 30,
+  "text": "어 얼그레이 차갑게 1 잔, 티라미수 2 개 부탁해요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "얼그레이",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "티라미수",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "items2"
+ },
+ {
+  "id": 31,
+  "text": "저 캐모마일 따뜻한 세 잔 주세요",
+  "items": [
+   {
+    "menu": "캐모마일",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 32,
+  "text": "레몬차 시원한 한 잔, 아이스 녹차라떼 2 잔 주세요",
+  "items": [
+   {
+    "menu": "레몬차",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "녹차라떼",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items2"
+ },
+ {
+  "id": 33,
+  "text": "치즈케이크 한 개, 카푸치노 하나 주세요 가져갈게요",
+  "items": [
+   {
+    "menu": "치즈케이크",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "카푸치노",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 34,
+  "text": "음 청포도에이드랑 카페라떼 두 잔씩 할게요",
+  "items": [
+   {
+    "menu": "청포도에이드",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "카페라떼",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "each"
+ },
+ {
+  "id": 35,
+  "text": "어 따뜻하게 카라멜마끼아또 하나 주세요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "카라멜마끼아또",
+    "qty": 1,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 36,
+  "text": "마카롱 3 개 할게요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "마카롱",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 37,
+  "text": "얼그레이 차갑게 하나, 아이스 아메리카노 3 잔 주문할게요 포장이요",
+  "items": [
+   {
+    "menu": "얼그레이",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "아메리카노",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 38,
+  "text": "그 레몬차 한 잔 줘요 포장이요",
+  "items": [
+   {
+    "menu": "레몬차",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 39,
+  "text": "어 레몬차 세 잔 차가운 하고 차가운 청포도에이드 1 잔 부탁해요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "레몬차",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "청포도에이드",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items2"
+ },
+ {
+  "id": 40,
+  "text": "카페라떼 핫으로 2 잔 주문할게요 가져갈게요",
+  "items": [
+   {
+    "menu": "카페라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 41,
+  "text": "크루아상 1 개 요",
+  "items": [
+   {
+    "menu": "크루아상",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 42,
+  "text": "마카롱 그리고 크루아상 하나씩 주문할게요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "마카롱",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "크루아상",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "each"
+ },
+ {
+  "id": 43,
+  "text": "딸기라떼 제일 큰 걸로 하나랑 크루아상 세개 주세요 포장해 주세요",
+  "items": [
+   {
+    "menu": "딸기라떼",
+    "qty": 1,
+    "options": {
+     "size": "벤티"
+    }
+   },
+   {
+    "menu": "크루아상",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 44,
+  "text": "저기요 카라멜마끼아또 핫으로 그란데 3 잔, 유자차 아이스 3 잔 그리고 페퍼민트 1 잔 부탁해요",
+  "items": [
+   {
+    "menu": "카라멜마끼아또",
+    "qty": 3,
+    "options": {
+     "temp": "hot",
+     "size": "그란데"
+    }
+   },
+   {
+    "menu": "유자차",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "페퍼민트",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 45,
+  "text": "그 딸기라떼 핫으로 2 잔 주문할게요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "딸기라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 46,
+  "text": "저 얼그레이 따뜻하게 두 잔 하고 소금빵 두 개 할게요 가져갈게요",
+  "items": [
+   {
+    "menu": "얼그레이",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "소금빵",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 47,
+  "text": "저기요 마카롱 하나 그리고 에스프레소 세 잔 줘요 포장해 주세요",
+  "items": [
+   {
+    "menu": "마카롱",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "에스프레소",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 48,
+  "text": "저기요 돌체라떼 3 잔 뜨거운 요",
+  "items": [
+   {
+    "menu": "돌체라떼",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 49,
+  "text": "망고스무디 시원한 그란데 사이즈 하나 주세요 여기서 먹고 가요",
+  "items": [
+   {
+    "menu": "망고스무디",
+    "qty": 1,
+    "options": {
+     "temp": "ice",
+     "size": "그란데"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 50,
+  "text": "저 카페모카 한 잔 아이스 주문할게요",
+  "items": [
+   {
+    "menu": "카페모카",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 51,
+  "text": "저 카페라떼 그란데 두 잔 주세요",
+  "items": [
+   {
+    "menu": "카페라떼",
+    "qty": 2,
+    "options": {
+     "size": "그란데"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 52,
+  "text": "카페라떼 아이스로 한 잔 줘요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "카페라떼",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 53,
+  "text": "딸기라떼 3 잔 아이스로 그리고 소금빵 2 개 주세요",
+  "items": [
+   {
+    "menu": "딸기라떼",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "소금빵",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items2"
+ },
+ {
+  "id": 54,
+  "text": "레몬에이드 하나 주문할게요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "레몬에이드",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 55,
+  "text": "시원한 콜드브루 제일 큰 걸로 2 잔, 돌체라떼 그란데 2 잔 그리고 차가운 카라멜마끼아또 하나 부탁해요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "콜드브루",
+    "qty": 2,
+    "options": {
+     "temp": "ice",
+     "size": "벤티"
+    }
+   },
+   {
+    "menu": "돌체라떼",
+    "qty": 2,
+    "options": {
+     "size": "그란데"
+    }
+   },
+   {
+    "menu": "카라멜마끼아또",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items3"
+ },
+ {
+  "id": 56,
+  "text": "음 카페라떼 1 잔 아이스 하고 복숭아아이스티 하나 따뜻한 주세요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "카페라떼",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "복숭아아이스티",
+    "qty": 1,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items2"
+ },
+ {
+  "id": 57,
+  "text": "저 뜨거운 카페라떼 세 잔 할게요",
+  "items": [
+   {
+    "menu": "카페라떼",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 58,
+  "text": "캐모마일 세 잔 뜨거운이랑 시원한 벤티 레몬에이드 1잔, 치즈케이크 세개 주세요 포장해 주세요",
+  "items": [
+   {
+    "menu": "캐모마일",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "레몬에이드",
+    "qty": 1,
+    "options": {
+     "temp": "ice",
+     "size": "벤티"
+    }
+   },
+   {
+    "menu": "치즈케이크",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items3"
+ },
+ {
+  "id": 59,
+  "text": "음 녹차라떼 2 잔 따뜻한 주세요",
+  "items": [
+   {
+    "menu": "녹차라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 60,
+  "text": "저 베이글 3 개 주문할게요",
+  "items": [
+   {
+    "menu": "베이글",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 61,
+  "text": "저 녹차라떼 한잔 따뜻하게 제일 큰 걸로 주세요 가져갈게요",
+  "items": [
+   {
+    "menu": "녹차라떼",
+    "qty": 1,
+    "options": {
+     "temp": "hot",
+     "size": "벤티"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items1"
+ },
+ {
+  "id": 62,
+  "text": "차가운 자몽에이드 3잔, 페퍼민트 시원한 두 잔 부탁해요",
+  "items": [
+   {
+    "menu": "자몽에이드",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "페퍼민트",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items2"
+ },
+ {
+  "id": 63,
+  "text": "음 카푸치노 두 잔 줘요",
+  "items": [
+   {
+    "menu": "카푸치노",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 64,
+  "text": "망고스무디 차가운 중간 사이즈 세 잔 하고 딸기스무디 시원한 벤티로 1 잔 주문할게요 포장이요",
+  "items": [
+   {
+    "menu": "망고스무디",
+    "qty": 3,
+    "options": {
+     "temp": "ice",
+     "size": "그란데"
+    }
+   },
+   {
+    "menu": "딸기스무디",
+    "qty": 1,
+    "options": {
+     "temp": "ice",
+     "size": "벤티"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 65,
+  "text": "카페모카 뜨거운 벤티 샷 추가해서 한 잔 주세요",
+  "items": [
+   {
+    "menu": "카페모카",
+    "qty": 1,
+    "options": {
+     "temp": "hot",
+     "size": "벤티",
+     "extras": [
+      "샷 추가"
+     ]
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 66,
+  "text": "돌체라떼 차가운 샷 추가해서 2 잔 주세요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "돌체라떼",
+    "qty": 2,
+    "options": {
+     "temp": "ice",
+     "extras": [
+      "샷 추가"
+     ]
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 67,
+  "text": "저 치즈케이크 3 개, 얼그레이 하나 아이스로랑 소금빵 두 개 할게요",
+  "items": [
+   {
+    "menu": "치즈케이크",
+    "qty": 3,
+    "options": {}
+   },
+   {
+    "menu": "얼그레이",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "소금빵",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 68,
+  "text": "카푸치노 차가운 샷 추가해서 두 잔 하고 따뜻하게 복숭아아이스티 1 잔 줘요",
+  "items": [
+   {
+    "menu": "카푸치노",
+    "qty": 2,
+    "options": {
+     "temp": "ice",
+     "extras": [
+      "샷 추가"
+     ]
+    }
+   },
+   {
+    "menu": "복숭아아이스티",
+    "qty": 1,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items2"
+ },
+ {
+  "id": 69,
+  "text": "저기요 초코라떼 두잔 따뜻한 중간 사이즈 주세요",
+  "items": [
+   {
+    "menu": "초코라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot",
+     "size": "그란데"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 70,
+  "text": "소금빵 3 개 하고 핫으로 딸기스무디 세 잔 주세요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "소금빵",
+    "qty": 3,
+    "options": {}
+   },
+   {
+    "menu": "딸기스무디",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items2"
+ },
+ {
+  "id": 71,
+  "text": "콜드브루 2 잔 뜨거운 그란데 사이즈 하고 초코라떼 두 잔 차갑게 그리고 자몽에이드 시원한 2 잔 주문할게요 포장해 주세요",
+  "items": [
+   {
+    "menu": "콜드브루",
+    "qty": 2,
+    "options": {
+     "temp": "hot",
+     "size": "그란데"
+    }
+   },
+   {
+    "menu": "초코라떼",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "자몽에이드",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items3"
+ },
+ {
+  "id": 72,
+  "text": "그 베이글 하나, 딸기스무디 1 잔 뜨거운 그란데 하고 소금빵 세 개 주문할게요",
+  "items": [
+   {
+    "menu": "베이글",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "딸기스무디",
+    "qty": 1,
+    "options": {
+     "temp": "hot",
+     "size": "그란데"
+    }
+   },
+   {
+    "menu": "소금빵",
+    "qty": 3,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 73,
+  "text": "음 청포도에이드 한 잔 아이스 하고 레몬에이드 차갑게 2 잔 하고 초코라떼 2 잔 따뜻하게 부탁해요",
+  "items": [
+   {
+    "menu": "청포도에이드",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "레몬에이드",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "초코라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items3"
+ },
+ {
+  "id": 74,
+  "text": "그 캐모마일 핫으로 2 잔 하고 크루아상 두 개 그리고 페퍼민트 시원한 1 잔 주시겠어요 포장해 주세요",
+  "items": [
+   {
+    "menu": "캐모마일",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "크루아상",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "페퍼민트",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "포장",
+  "kind": "items3"
+ },
+ {
+  "id": 75,
+  "text": "음 뜨거운 아메리카노 두 잔 주세요",
+  "items": [
+   {
+    "menu": "아메리카노",
+    "qty": 2,
+    "options": {
+     "temp": "hot"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 76,
+  "text": "저기요 유자차 하나, 헤이즐넛라떼 핫으로 제일 큰 걸로 2 잔 할게요",
+  "items": [
+   {
+    "menu": "유자차",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "헤이즐넛라떼",
+    "qty": 2,
+    "options": {
+     "temp": "hot",
+     "size": "벤티"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items2"
+ },
+ {
+  "id": 77,
+  "text": "저 초코라떼하고 얼그레이 두 잔씩 주문할게요",
+  "items": [
+   {
+    "menu": "초코라떼",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "얼그레이",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "each"
+ },
+ {
+  "id": 78,
+  "text": "아이스 돌체라떼 샷 추가해서 2 잔 주세요",
+  "items": [
+   {
+    "menu": "돌체라떼",
+    "qty": 2,
+    "options": {
+     "temp": "ice",
+     "extras": [
+      "샷 추가"
+     ]
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 79,
+  "text": "어 아이스 돌체라떼 한 잔 주세요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "돌체라떼",
+    "qty": 1,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": "매장",
+  "kind": "items1"
+ },
+ {
+  "id": 80,
+  "text": "소금빵 하나 요",
+  "items": [
+   {
+    "menu": "소금빵",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 81,
+  "text": "저기요 카라멜마끼아또하고 카페라떼 하나씩 할게요",
+  "items": [
+   {
+    "menu": "카라멜마끼아또",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "카페라떼",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "each"
+ },
+ {
+  "id": 82,
+  "text": "얼그레이 아이스로 2 잔, 소금빵 하나 요 포장해 주세요",
+  "items": [
+   {
+    "menu": "얼그레이",
+    "qty": 2,
+    "options": {
+     "temp": "ice"
+    }
+   },
+   {
+    "menu": "소금빵",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "포장",
+  "kind": "items2"
+ },
+ {
+  "id": 83,
+  "text": "저 아이스 카라멜마끼아또 세 잔 주세요",
+  "items": [
+   {
+    "menu": "카라멜마끼아또",
+    "qty": 3,
+    "options": {
+     "temp": "ice"
+    }
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 84,
+  "text": "어 돌체라떼랑 딸기라떼 하나씩 주세요 여기서 먹고 가요",
+  "items": [
+   {
+    "menu": "돌체라떼",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "딸기라떼",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "each"
+ },
+ {
+  "id": 85,
+  "text": "어 자몽에이드 2잔 하고 망고스무디 3 잔 따뜻한 하고 소금빵 1 개 주세요 여기서 먹고 가요",
+  "items": [
+   {
+    "menu": "자몽에이드",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "망고스무디",
+    "qty": 3,
+    "options": {
+     "temp": "hot"
+    }
+   },
+   {
+    "menu": "소금빵",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "items3"
+ },
+ {
+  "id": 86,
+  "text": "그 캐모마일 한 잔 요",
+  "items": [
+   {
+    "menu": "캐모마일",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": null,
+  "kind": "items1"
+ },
+ {
+  "id": 87,
+  "text": "녹차라떼하고 자몽에이드 하나씩 요 여기서 먹고 가요",
+  "items": [
+   {
+    "menu": "녹차라떼",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "자몽에이드",
+    "qty": 1,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "each"
+ },
+ {
+  "id": 88,
+  "text": "그 베이글 1 개랑 페퍼민트 두 잔 이요 먹고 갈게요",
+  "items": [
+   {
+    "menu": "베이글",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "페퍼민트",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "items2"
+ },
+ {
+  "id": 89,
+  "text": "음 마카롱 한 개 그리고 크루아상 2 개 그리고 치즈케이크 두 개 부탁해요 매장에서 먹을게요",
+  "items": [
+   {
+    "menu": "마카롱",
+    "qty": 1,
+    "options": {}
+   },
+   {
+    "menu": "크루아상",
+    "qty": 2,
+    "options": {}
+   },
+   {
+    "menu": "치즈케이크",
+    "qty": 2,
+    "options": {}
+   }
+  ],
+  "dine": "매장",
+  "kind": "items3"
+ },
+ {
+  "id": 90,
+  "text": "망고주스 하나 할게요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 91,
+  "text": "어 생과일 키위주스 하나 주문할게요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 92,
+  "text": "팥빙수 두 개 주시겠어요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 93,
+  "text": "아이스크림 한 잔 이요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 94,
+  "text": "블루베리 머핀 하나 주문할게요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 95,
+  "text": "핫도그 하나 할게요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 96,
+  "text": "저기요 토스트 두 개 이요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 97,
+  "text": "밀크쉐이크 한 잔 부탁해요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 98,
+  "text": "저 수박주스 두 개 부탁해요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ },
+ {
+  "id": 99,
+  "text": "저기요 와플 한 잔 할게요",
+  "items": [],
+  "dine": null,
+  "kind": "not_on_menu"
+ }
+]
