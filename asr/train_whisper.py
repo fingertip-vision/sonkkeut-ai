@@ -106,6 +106,8 @@ def main():
                     help="인코더(소리)만 학습 — 디코더(어휘·hotwords 활용)를 지켜 망각을 막는다")
     ap.add_argument("--extra", nargs="*", default=[], help="추가 학습 manifest (이미 시끄러운 실제 음성 — 소음 안 섞음)")
     ap.add_argument("--select", default="cafe10", choices=["cafe10", "sd"], help="체크포인트 고르는 기준")
+    ap.add_argument("--enh-root", default=None,
+                    help="prep_enh.py 결과 폴더(data_enh/<kind>): 소음 섞기·제거가 끝난 학습·검증 데이터를 쓴다")
     ap.add_argument("--resume", default=None, help="이어서 학습할 체크포인트 폴더 (또는 'last')")
     a = ap.parse_args()
 
@@ -120,16 +122,26 @@ def main():
         n_tr = sum(p.numel() for p in model.parameters() if p.requires_grad)
         print(f"디코더 고정: 학습 파라미터 {n_tr / 1e6:.0f}M / {sum(p.numel() for p in model.parameters()) / 1e6:.0f}M", flush=True)
 
-    train = [json.loads(l) for l in open(D / "elder_train.jsonl", encoding="utf-8")]
+    if a.enh_root:   # prep_enh.py 결과: 소음 섞기·제거가 끝난 학습·검증 데이터 (다시 섞지 않음)
+        er = Path(a.enh_root)
+        ld = lambda f: [json.loads(l) for l in open(er / f, encoding="utf-8")]  # noqa: E731
+        train = ld("elder_train.jsonl") + ld("sd_train.jsonl")
+        print(f"소음 제거 데이터 {er}: 학습 {len(train)}", flush=True)
+        ds_train = ElderSet(train, proc)
+        ds_val = {"clean": ElderSet(ld("val_clean.jsonl"), proc), "cafe10": ElderSet(ld("val_cafe10.jsonl"), proc),
+                  "sd": ElderSet(ld("val_sd.jsonl"), proc)}
+    else:
+        train, ds_train, ds_val = None, None, None
+    train = train if a.enh_root else [json.loads(l) for l in open(D / "elder_train.jsonl", encoding="utf-8")]
     val = [json.loads(l) for l in open(D / "elder_val.jsonl", encoding="utf-8")][1400:1700]
-    ds_train = ElderSet(train, proc, D / "noise_train", p_noise=0.6)
-    for m in a.extra:
+    ds_train = ds_train or ElderSet(train, proc, D / "noise_train", p_noise=0.6)
+    for m in ([] if a.enh_root else a.extra):
         ex = [dict(json.loads(l), noisy=True) for l in open(D / f"{m}.jsonl", encoding="utf-8")]
         print(f"추가 {m}: {len(ex)}", flush=True)
         train += ex
-    ds_val = {"clean": ElderSet(val, proc),
-              "cafe10": ElderSet(val, proc, D / "noise_eval", fixed_snr=10, seed=1)}
-    if (D / "sd_eval.jsonl").exists():   # 실제 소음 속 대화: 녹음 앞 20개는 선택용, 나머지는 eval_asr 시험용
+    ds_val = ds_val or {"clean": ElderSet(val, proc),
+                        "cafe10": ElderSet(val, proc, D / "noise_eval", fixed_snr=10, seed=1)}
+    if not a.enh_root and (D / "sd_eval.jsonl").exists():   # 실제 소음 속 대화: 녹음 앞 20개는 선택용, 나머지는 eval_asr 시험용
         sd = [json.loads(l) for l in open(D / "sd_eval.jsonl", encoding="utf-8")]
         recs = sorted({r["audio"].split("/")[-1].rsplit("_", 1)[0] for r in sd})[:20]
         ds_val["sd"] = ElderSet([r for r in sd if r["audio"].split("/")[-1].rsplit("_", 1)[0] in recs][:300], proc)
