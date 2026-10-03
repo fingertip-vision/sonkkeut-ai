@@ -117,9 +117,28 @@ def find_menus(text: str, menus: list[str], cut: float = 77.0, screen: tuple = (
     return sorted(found)
 
 
+# 없는 메뉴를 말했을 때 비슷한 메뉴 고르기: 같은 종류(과일 음료·커피·차·디저트) > 같은 재료 > 글자 모양
+SUGGEST_GROUPS = [("주스", "쥬스", "에이드", "스무디", "프라페", "쉐이크", "셰이크"),
+                  ("아메리카노", "라떼", "커피", "모카", "브루", "에스프레소", "마끼아또", "카푸치노"),
+                  ("차", "티", "캐모마일", "페퍼민트", "얼그레이"),
+                  ("케이크", "빵", "머핀", "마카롱", "크루아상", "베이글", "티라미수", "와플", "토스트", "쿠키", "스콘")]
+FLAVORS = ("망고", "딸기", "자몽", "레몬", "청포도", "포도", "키위", "블루베리", "복숭아", "유자", "초코", "바닐라",
+           "녹차", "말차", "고구마", "치즈", "카라멜", "헤이즐넛", "사과", "수박", "바나나")
+
+
+def _group(s):
+    return next((g for g, keys in enumerate(SUGGEST_GROUPS) if any(k in s for k in keys)), None)
+
+
 def suggest(word: str, menus: list[str], k: int = 2) -> list[str]:
-    jw = jamo(nsp(word))
-    return [m for m, _ in sorted(((m, fuzz.partial_ratio(jw, jamo(nsp(m)))) for m in menus), key=lambda x: -x[1])[:k]]
+    w = nsp(word)
+    jw, gw = jamo(w), _group(w)
+    fl = {f for f in FLAVORS if f in w}
+
+    def score(m):
+        mm = nsp(m)
+        return (40 if gw is not None and _group(mm) == gw else 0) + 30 * len(fl & {f for f in FLAVORS if f in mm})             + fuzz.partial_ratio(jw, jamo(mm)) * 0.3
+    return sorted(menus, key=lambda m: -score(m))[:k]
 
 
 # ---------- 속성 ----------
