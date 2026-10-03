@@ -10,7 +10,7 @@ M1 화면 평면·M2 요소·M4 손끝 가이드는 기존 모델을 유지한�
 | 경로 | 실제 모델/기능 | 프론트 전달 |
 |---|---|---|
 | Android `react-native-sonkkeut` | ONNX M1/M2/M1-R + MediaPipe 손 + 자체 M3 CTC OCR | `SonkkeutResult.structure`, `conf_ocr`, `uncertain`, `ocr_source`, `qty` |
-| Android 음성 모듈 | CTranslate2 v4.8.2 ARM64 RUY CPU + 자체 Whisper v3, 앱의 모델 설치 절차 | `listen()`의 한국어 발화 문자열, 앱의 명시적 주문 확인 |
+| Android 음성 모듈 | CTranslate2 v4.8.2 ARM64 RUY CPU + 자체 Whisper v3, 앱의 모델 설치 절차 | `Sonkkeut.listen('custom')`의 한국어 발화 문자열, 앱의 명시적 주문 확인 |
 | Python `sonkkeut_ai` | 같은 M3 ONNX·M5 Whisper CPU + 팀의 `core` 주문 이해/플래너 | `sonkkeut.ai.v1` HTTP/함수 응답 |
 | 공개 웹 시뮬레이션 | 가상 키오스크·모의 화면/주문·결제 | 실제 카메라 모델 실행과 구분해서 표시 |
 
@@ -18,6 +18,11 @@ Cloudflare Worker는 Paddle·CTranslate2 Python 프로세스를 실행하지 않
 선택 가능한 PC 런타임이며 기본 주소는 `127.0.0.1`이다. Android는 이 API가 없어도
 기기 안에서 인식한다. Python API를 외부 호스트에 열 때는 `SONKKEUT_AI_KEY`와 명시적
 `SONKKEUT_AI_ORIGINS`를 설정한다.
+
+앱은 `downloadSpeechModel()`로 약 485 MB의 원본 ZIP을 검증·설치하고
+`prepareSpeechModel()`로 준비한다. TypeScript `Sonkkeut.listen()`의 기본 제공자는
+자체 모델이며 native `listenModel()`로 연결된다. 명시적인 `Sonkkeut.listen('system')`만
+Android 기기 음성 인식으로 연결되므로 두 제공자를 실제 적용 표시에서 구분한다.
 
 ## 모델 재현
 
@@ -145,7 +150,9 @@ M1 경로에서 먼저 수행한다. 전체 요청은 chunked 포함 8MiB, 이�
   `test_end_to_end` 3개는 별도 CPU 통합 환경에서 선택 제외했다.
 - 테스트 데이터는 공개 시연용 합성 문자·합성 음성이다. 실제 휴대폰 카메라/마이크,
   매장 소음/조명/손 가림, 키오스크 주문 전 과정의 성공률을 입증하는 평가가 아니다.
-- Android ARM64 native 빌드·최종 모델 추론 검증 결과는 앱 배포 검증 기록을 기준으로 확인한다.
+- Android API 35 ARM64 변환 에뮬레이터에서 자체 Whisper·메뉴 문맥을 사용한 합성 음성의
+  실제 추론을 확인했다. 20.376초는 이 환경의 기록이며 물리적 휴대폰 성능이 아니다.
+  최종 앱·네이티브 추론 검증은 별도 배포 검증 기록을 기준으로 확인한다.
 
 학습/평가 코드 원본은 `hyunseok/m3-ocr-core-asr`의 `ocr/`, `asr/`, `core/`를 통합했다.
 단일 메뉴/빈 메뉴의 추천 후보 처리 오류와 패키지 import 경로를 고쳤다. 기존 로컬 영상 가이드
