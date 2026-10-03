@@ -13,9 +13,16 @@
 F-03 요소 목록(`id·kind·box`) → **F-04** 가 `text·price·qty` 를 채움 → **F-05** 화면 구조 JSON → **F-07** 다음 버튼
 **F-06** 발화 → 주문 의도 JSON → F-07.  요소 종류는 명세 5종에 `cart_item`(장바구니 줄)·`text`(수량 숫자 등)·`title` 추가 제안.
 
+## 모델 내려받기
+- M5 음성인식 Whisper v3: [Release `asr-whisper-elder-v3`](https://github.com/fingertip-vision/sonkkeut-ai/releases/tag/asr-whisper-elder-v3) (`whisper-elder-v3-ct2.zip`, faster-whisper 용)
+
+## 데이터 출처
+학습·평가에 과학기술정보통신부·한국지능정보사회진흥원(NIA)의 AI Hub(aihub.or.kr) 데이터를 활용했다:
+관광 음식메뉴판 데이터, 야외 실제 촬영 한글 이미지, 명령어 음성(노인남여), 소음 환경 음성인식 데이터, 소상공인 고객 주문 질의-응답 데이터.
+
 ## 올리지 않은 것
 - AIHub 데이터(관광 음식메뉴판·야외 한글·노인 명령어·소음 환경·주문 질의응답) — 약관상 재배포 금지. `tools/aihub_download.sh` 로 각자 받기
-- 학습된 가중치(OCR `kiosk_rec_v2`, Whisper `whisper-elder-v2`) — AIHub 데이터로 학습해 공개 배포 가능 여부 확인 후 Release 로
+- OCR 학습 가중치(`kiosk_rec_v2`) — 필요하면 Release 로
 - 스크립트의 절대 경로(`D:/sonkkeutgil/...`)는 개발 PC 기준이다. 옮길 때 각 파일 상단 경로 상수를 바꾼다
 
 각 폴더 README 에 실행 방법·결과·한계를 적었다. 수치는 합성·AIHub 데이터 기준이며, **실제 키오스크 촬영·실제 주문 녹음 평가가 아직 없다.**
