@@ -21,6 +21,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule
 import kr.sonkkeut.android.SonkkeutEngine
 import kr.sonkkeut.android.KoreanWhisper
 import kr.sonkkeut.android.FeedbackPolicy
+import kr.sonkkeut.android.MenuRagDatabase
 import java.util.concurrent.Executors
 
 /**
@@ -37,6 +38,7 @@ class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBas
     private var speechPromise: Promise? = null
     private var speechGeneration = 0L
     private val whisper by lazy { KoreanWhisper(ctx.applicationContext) }
+    private val menuDatabase = lazy { MenuRagDatabase(ctx.applicationContext) }
     private var modelSpeechPromise: Promise? = null
     private var modelDownloadPromise: Promise? = null
     private var modelPreparePromise: Promise? = null
@@ -74,6 +76,20 @@ class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBas
             catch (error: Throwable) { promise.reject("ASR_STATUS", "음성 모델 상태를 확인하지 못했습니다", error) }
         }
     }
+
+    @ReactMethod
+    fun menuRagCatalog(scope: String, payload: String, promise: Promise) {
+        if (disposed) { promise.reject("CLOSED", "앱이 종료됐습니다"); return }
+        io.execute {
+            try {
+                check(!disposed)
+                promise.resolve(menuDatabase.value.catalog(scope, payload))
+            } catch (error: Throwable) { promise.reject("MENU_RAG", "메뉴 검색 DB를 준비하지 못했습니다. 다시 시도해 주세요.", error) }
+        }
+    }
+
+    @ReactMethod
+    fun finishListening() { main.post { if (modelSpeechPromise != null) whisper.finishCapture() } }
 
     @ReactMethod
     fun prepareSpeechModel(promise: Promise) { main.post {
@@ -274,7 +290,7 @@ class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBas
             speechPromise = null; modelSpeechPromise = null; modelDownloadPromise = null; modelPreparePromise = null
             whisper.close()
         }
-        io.execute { SonkkeutEngine.release() }
+        io.execute { if (menuDatabase.isInitialized()) menuDatabase.value.close(); SonkkeutEngine.release() }
         io.shutdown()
         super.invalidate()
     }

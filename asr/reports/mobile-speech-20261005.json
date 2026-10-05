@@ -1,0 +1,4573 @@
+{
+  "scope": "Synthetic Heami voice; deterministic synthetic coloured noise; no real-person or real-cafe accuracy claim.",
+  "model_sha256": "b5468a47157fad449fe6ff093786848badbd7c0c1b28aa15c3dd346ab8a365da",
+  "model_load_s": 0.5473495000005641,
+  "device": "cpu",
+  "beam_size": 5,
+  "decoder": "android",
+  "rows": [
+    {
+      "id": 0,
+      "split": "development",
+      "condition": "clean",
+      "reference": "아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.7484400999965146,
+      "audio_s": 4.004,
+      "cer_edits": 0,
+      "reference_characters": 13,
+      "no_speech_probability": 3.1969814244803274e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 1,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "아메리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.7053577000006044,
+      "audio_s": 3.155,
+      "cer_edits": 0,
+      "reference_characters": 13,
+      "no_speech_probability": 6.267373464652337e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 2,
+      "split": "development",
+      "condition": "clean",
+      "reference": "아이스 아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.8121135999972466,
+      "audio_s": 3.377,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 2.912954414568958e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 3,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "아이스 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 아메리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.8748364999992191,
+      "audio_s": 4.586,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 9.129222235060297e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 4,
+      "split": "development",
+      "condition": "clean",
+      "reference": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.905835699999443,
+      "audio_s": 4.015,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 4.8945894377538934e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 5,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.9209692000003997,
+      "audio_s": 3.544,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 2.6862870072363876e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 6,
+      "split": "development",
+      "condition": "clean",
+      "reference": "카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "카페라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8627672999973584,
+      "audio_s": 3.958,
+      "cer_edits": 0,
+      "reference_characters": 12,
+      "no_speech_probability": 1.219210844283225e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 7,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "카페라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8521360000013374,
+      "audio_s": 3.125,
+      "cer_edits": 0,
+      "reference_characters": 12,
+      "no_speech_probability": 2.4116941403917735e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 8,
+      "split": "development",
+      "condition": "clean",
+      "reference": "아이스 카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 카페라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8993940000000293,
+      "audio_s": 3.314875,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 1.0669627954484895e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 9,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "아이스 카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 카페라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.883318699998199,
+      "audio_s": 4.547,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 2.4224916614912217e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 10,
+      "split": "development",
+      "condition": "clean",
+      "reference": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 카페라떼 한 찬 포장해 주세요.",
+      "latency_s": 0.9247724999986531,
+      "audio_s": 3.9,
+      "cer_edits": 1,
+      "reference_characters": 15,
+      "no_speech_probability": 1.8834053889804636e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 11,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.9146017999992182,
+      "audio_s": 3.471875,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 3.9997330532060005e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 12,
+      "split": "development",
+      "condition": "clean",
+      "reference": "바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "바닐라라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.877322300002561,
+      "audio_s": 4.126,
+      "cer_edits": 0,
+      "reference_characters": 13,
+      "no_speech_probability": 1.7000629668473266e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 13,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8933990000004997,
+      "audio_s": 3.25,
+      "cer_edits": 1,
+      "reference_characters": 13,
+      "no_speech_probability": 4.720022843685001e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 14,
+      "split": "development",
+      "condition": "clean",
+      "reference": "아이스 바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 바닐라떼 한 찬 포장해 주세요.",
+      "latency_s": 0.8932565999966755,
+      "audio_s": 3.39975,
+      "cer_edits": 2,
+      "reference_characters": 16,
+      "no_speech_probability": 1.1722956969606457e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 15,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "아이스 바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 바닐라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8939651000000595,
+      "audio_s": 4.602,
+      "cer_edits": 1,
+      "reference_characters": 16,
+      "no_speech_probability": 7.262879080371931e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 바닐라라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 16,
+      "split": "development",
+      "condition": "clean",
+      "reference": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.9174336000032781,
+      "audio_s": 4.03,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 7.466915576515021e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 17,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.9169077999977162,
+      "audio_s": 3.544,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 7.3252649599453434e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 18,
+      "split": "development",
+      "condition": "clean",
+      "reference": "아메리카노 세 잔 매장에서 먹고 갈게요.",
+      "hypothesis": "아메리카노 세 잔 매장에서 먹고 갈게요.",
+      "latency_s": 0.8535205000007409,
+      "audio_s": 4.524,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 4.4763855839846656e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 3,
+            "temp": null
+          }
+        ],
+        "dine": "매장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 3,
+              "temp": null
+            }
+          ],
+          "dine": "매장"
+        },
+        "corrected": "아메리카노 세 잔 매장에서 먹고 갈게요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 19,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "아아 한 잔 주세요.",
+      "hypothesis": "아아 한 잔 주세요.",
+      "latency_s": 0.7870554000000993,
+      "audio_s": 2.125,
+      "cer_edits": 0,
+      "reference_characters": 7,
+      "no_speech_probability": 2.0587905964930542e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "아아 한 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "아아 한 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 20,
+      "split": "development",
+      "condition": "clean",
+      "reference": "차가운 카페라떼 두 잔 주세요.",
+      "hypothesis": "차가운 카페라떼 두 잔 주세요.",
+      "latency_s": 0.8702505000001111,
+      "audio_s": 2.744,
+      "cer_edits": 0,
+      "reference_characters": 12,
+      "no_speech_probability": 1.4094921425567009e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "차가운 카페라떼 두 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "차가운 카페라떼 두 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 21,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "바닐라라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.967820900001243,
+      "audio_s": 6.293,
+      "cer_edits": 1,
+      "reference_characters": 23,
+      "no_speech_probability": 4.436536528373836e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": null
+          },
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": null
+            },
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 22,
+      "split": "development",
+      "condition": "clean",
+      "reference": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+      "hypothesis": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+      "latency_s": 0.9932932000010624,
+      "audio_s": 5.44,
+      "cer_edits": 0,
+      "reference_characters": 24,
+      "no_speech_probability": 7.195341368060326e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "hot"
+          },
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            },
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            },
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 23,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "아이스 카페라떼 한 잔 그리고 따뜻한 바닐라라떼 한 잔 포장이요.",
+      "hypothesis": "아이스 카페라떼 한찬 그리고 따뜻한 바닐라떼 한찬 포장이요.",
+      "latency_s": 1.0122389999996813,
+      "audio_s": 5.188375,
+      "cer_edits": 3,
+      "reference_characters": 26,
+      "no_speech_probability": 1.3307814015206532e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          },
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 24,
+      "split": "development",
+      "condition": "clean",
+      "reference": "레몬에이드 한 잔 주세요.",
+      "hypothesis": "레모네이드 한 잔 주세요.",
+      "latency_s": 0.8332427999994252,
+      "audio_s": 3.201,
+      "cer_edits": 2,
+      "reference_characters": 10,
+      "no_speech_probability": 3.4894064810941927e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 25,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "아이스크림 하나 주세요.",
+      "hypothesis": "아이스크림 하나 주세요.",
+      "latency_s": 0.8195053999988886,
+      "audio_s": 2.375,
+      "cer_edits": 0,
+      "reference_characters": 10,
+      "no_speech_probability": 8.280102520075161e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 26,
+      "split": "development",
+      "condition": "clean",
+      "reference": "디카페인 아메리카노 한 잔 주세요.",
+      "hypothesis": "디카페인 아메리카노 한 잔 주세요.",
+      "latency_s": 0.866908500000136,
+      "audio_s": 2.973125,
+      "cer_edits": 0,
+      "reference_characters": 14,
+      "no_speech_probability": 6.947206202312373e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 27,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "카페모카 한 잔 주세요.",
+      "hypothesis": "카페모카 한 잔 주세요.",
+      "latency_s": 0.8206095999994432,
+      "audio_s": 3.235,
+      "cer_edits": 0,
+      "reference_characters": 9,
+      "no_speech_probability": 1.348113187304989e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 28,
+      "split": "development",
+      "condition": "clean",
+      "reference": "메뉴가 뭐가 있나요?",
+      "hypothesis": "메뉴가 뭐가 있나요?",
+      "latency_s": 0.8251399000000674,
+      "audio_s": 2.125,
+      "cer_edits": 0,
+      "reference_characters": 8,
+      "no_speech_probability": 5.2236315241316333e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 29,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "오늘 날씨가 좋네요.",
+      "hypothesis": "오늘 날씨가 좋네요.",
+      "latency_s": 0.8136580999998841,
+      "audio_s": 1.975625,
+      "cer_edits": 0,
+      "reference_characters": 8,
+      "no_speech_probability": 4.019459447590634e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 30,
+      "split": "development",
+      "condition": "clean",
+      "reference": "주문을 취소하고 싶어요.",
+      "hypothesis": "주문을 취소하고 싶어요.",
+      "latency_s": 0.7943182000017259,
+      "audio_s": 3.056,
+      "cer_edits": 0,
+      "reference_characters": 10,
+      "no_speech_probability": 9.835156561166514e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 31,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "카드로 결제하려면 어떻게 하나요?",
+      "hypothesis": "카드로 결제하려면 어떻게 하나요?",
+      "latency_s": 0.8541642000018328,
+      "audio_s": 3.205,
+      "cer_edits": 0,
+      "reference_characters": 14,
+      "no_speech_probability": 1.3340056284505408e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 32,
+      "split": "development",
+      "condition": "clean",
+      "reference": "",
+      "hypothesis": "아메리카노 카페라",
+      "latency_s": 0.7992339999982505,
+      "audio_s": 3,
+      "cer_edits": 8,
+      "reference_characters": 0,
+      "no_speech_probability": 0.45300981402397156,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 33,
+      "split": "holdout",
+      "condition": "clean",
+      "reference": "",
+      "hypothesis": "아이스크림",
+      "latency_s": 0.8134073000001081,
+      "audio_s": 3,
+      "cer_edits": 5,
+      "reference_characters": 0,
+      "no_speech_probability": 0.4783896505832672,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 0,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "아��리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.8612265999981901,
+      "audio_s": 4.004,
+      "cer_edits": 1,
+      "reference_characters": 13,
+      "no_speech_probability": 4.984231054550037e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 1,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "아��리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.8491558999994595,
+      "audio_s": 3.155,
+      "cer_edits": 1,
+      "reference_characters": 13,
+      "no_speech_probability": 6.1557798289868515e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 2,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "아이스 아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.8745027999975719,
+      "audio_s": 3.377,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 2.309172305103857e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 3,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "아이스 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 아메리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.8663440999989689,
+      "audio_s": 4.586,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 4.869118583883392e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 4,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.9051985000005516,
+      "audio_s": 4.015,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 1.0506988473935053e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 5,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.8922058999996807,
+      "audio_s": 3.544,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 3.764342545764521e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 6,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "카페라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8496460000023944,
+      "audio_s": 3.958,
+      "cer_edits": 0,
+      "reference_characters": 12,
+      "no_speech_probability": 7.128770107556193e-07,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 7,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "카페라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8584981999993033,
+      "audio_s": 3.125,
+      "cer_edits": 0,
+      "reference_characters": 12,
+      "no_speech_probability": 5.613537723547779e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 8,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "아이스 카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 카페라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8721103999996558,
+      "audio_s": 3.314875,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 1.493302193011914e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 9,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "아이스 카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 카페라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8742966999998316,
+      "audio_s": 4.547,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 3.898431714333128e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 10,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 카페라떼 한 찬 포장해 주세요.",
+      "latency_s": 0.9008621000029962,
+      "audio_s": 3.9,
+      "cer_edits": 1,
+      "reference_characters": 15,
+      "no_speech_probability": 5.186143880564487e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 11,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.9170422999995935,
+      "audio_s": 3.471875,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 6.699560344713973e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 12,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8469794000011461,
+      "audio_s": 4.126,
+      "cer_edits": 1,
+      "reference_characters": 13,
+      "no_speech_probability": 1.3296551060193451e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 13,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8767603000014788,
+      "audio_s": 3.25,
+      "cer_edits": 1,
+      "reference_characters": 13,
+      "no_speech_probability": 4.592779077938758e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 14,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "아이스 바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 바닐라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8767742999989423,
+      "audio_s": 3.39975,
+      "cer_edits": 1,
+      "reference_characters": 16,
+      "no_speech_probability": 7.927225169623853e-07,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 15,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "아이스 바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 바닐라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8833783999980369,
+      "audio_s": 4.602,
+      "cer_edits": 1,
+      "reference_characters": 16,
+      "no_speech_probability": 1.8717887542152312e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 2,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 바닐라라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 16,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 바닐라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.901024700000562,
+      "audio_s": 4.03,
+      "cer_edits": 1,
+      "reference_characters": 16,
+      "no_speech_probability": 8.188397259800695e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 17,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 바닐라떼 두 잔 포장해 주세요.",
+      "latency_s": 0.8987003000002005,
+      "audio_s": 3.544,
+      "cer_edits": 1,
+      "reference_characters": 16,
+      "no_speech_probability": 9.180505003314465e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 2,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 18,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "아메리카노 세 잔 매장에서 먹고 갈게요.",
+      "hypothesis": "아메리카노 세찬 매장에서 먹고 갈게요.",
+      "latency_s": 0.8618156000011368,
+      "audio_s": 4.524,
+      "cer_edits": 1,
+      "reference_characters": 16,
+      "no_speech_probability": 1.5668407513658167e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 3,
+            "temp": null
+          }
+        ],
+        "dine": "매장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 3,
+              "temp": null
+            }
+          ],
+          "dine": "매장"
+        },
+        "corrected": "아메리카노 세 잔 매장에서 먹고 갈게요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 19,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "아아 한 잔 주세요.",
+      "hypothesis": "한 잔 주세요.",
+      "latency_s": 0.7794528000013088,
+      "audio_s": 2.125,
+      "cer_edits": 2,
+      "reference_characters": 7,
+      "no_speech_probability": 2.8007898436044343e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 20,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "차가운 카페라떼 두 잔 주세요.",
+      "hypothesis": "차가운 카페라떼 등장 주세요.",
+      "latency_s": 0.8642882999993162,
+      "audio_s": 2.744,
+      "cer_edits": 2,
+      "reference_characters": 12,
+      "no_speech_probability": 4.7264261411328334e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 21,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "바닐라라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+      "latency_s": 0.930367799999658,
+      "audio_s": 6.293,
+      "cer_edits": 1,
+      "reference_characters": 23,
+      "no_speech_probability": 2.7293006041873014e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": null
+          },
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": null
+            },
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 22,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+      "hypothesis": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+      "latency_s": 0.9941915000017616,
+      "audio_s": 5.44,
+      "cer_edits": 0,
+      "reference_characters": 24,
+      "no_speech_probability": 2.2934023036214057e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "hot"
+          },
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            },
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 2,
+              "temp": "hot"
+            },
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": null
+        },
+        "corrected": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 23,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "아이스 카페라떼 한 잔 그리고 따뜻한 바닐라라떼 한 잔 포장이요.",
+      "hypothesis": "아이스 카페라떼 한 잔 그리고 따뜻한 바닐라떼 한 잔 포장력.",
+      "latency_s": 1.014475300002232,
+      "audio_s": 5.188375,
+      "cer_edits": 3,
+      "reference_characters": 26,
+      "no_speech_probability": 7.845802656447631e-07,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          },
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 24,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "레몬에이드 한 잔 주세요.",
+      "hypothesis": "레몬에이드 한 잔 주세요.",
+      "latency_s": 0.8396979000026477,
+      "audio_s": 3.201,
+      "cer_edits": 0,
+      "reference_characters": 10,
+      "no_speech_probability": 7.79935817263322e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 25,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "아이스크림 하나 주세요.",
+      "hypothesis": "아이스크림 하나 주세요.",
+      "latency_s": 0.8068935000010242,
+      "audio_s": 2.375,
+      "cer_edits": 0,
+      "reference_characters": 10,
+      "no_speech_probability": 4.337083737482317e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 26,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "디카페인 아메리카노 한 잔 주세요.",
+      "hypothesis": "비카페인 아메리카노 한 잔 주세요.",
+      "latency_s": 0.8660208999972383,
+      "audio_s": 2.973125,
+      "cer_edits": 1,
+      "reference_characters": 14,
+      "no_speech_probability": 2.8307294996920973e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 27,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "카페모카 한 잔 주세요.",
+      "hypothesis": "카페모카 한 잔 주세요.",
+      "latency_s": 0.8305733999986842,
+      "audio_s": 3.235,
+      "cer_edits": 0,
+      "reference_characters": 9,
+      "no_speech_probability": 1.5738957017674693e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 28,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "메뉴가 뭐가 있나요?",
+      "hypothesis": "메뉴가 뭐가 있나요?",
+      "latency_s": 0.7970184000005247,
+      "audio_s": 2.125,
+      "cer_edits": 0,
+      "reference_characters": 8,
+      "no_speech_probability": 9.037114068632945e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 29,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "오늘 날씨가 좋네요.",
+      "hypothesis": "오늘 날씨가 좋네요.",
+      "latency_s": 0.8264390000003914,
+      "audio_s": 1.975625,
+      "cer_edits": 0,
+      "reference_characters": 8,
+      "no_speech_probability": 5.9947527915937826e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 30,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "주문을 취소하고 싶어요.",
+      "hypothesis": "주문을 취소하고 싶어요.",
+      "latency_s": 0.8233696999996027,
+      "audio_s": 3.056,
+      "cer_edits": 0,
+      "reference_characters": 10,
+      "no_speech_probability": 9.20939419302158e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 31,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "카드로 결제하려면 어떻게 하나요?",
+      "hypothesis": "카드로 결제하려면 어떻게 하나요?",
+      "latency_s": 0.8553317999976571,
+      "audio_s": 3.205,
+      "cer_edits": 0,
+      "reference_characters": 14,
+      "no_speech_probability": 2.3323518689721823e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 32,
+      "split": "development",
+      "condition": "synthetic15",
+      "reference": "",
+      "hypothesis": "아메리카노 카페라",
+      "latency_s": 0.798375300000771,
+      "audio_s": 3,
+      "cer_edits": 8,
+      "reference_characters": 0,
+      "no_speech_probability": 0.45300981402397156,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 33,
+      "split": "holdout",
+      "condition": "synthetic15",
+      "reference": "",
+      "hypothesis": "아이스크림",
+      "latency_s": 0.8075099999987287,
+      "audio_s": 3,
+      "cer_edits": 5,
+      "reference_characters": 0,
+      "no_speech_probability": 0.4783896505832672,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 0,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.8528681999996479,
+      "audio_s": 4.004,
+      "cer_edits": 0,
+      "reference_characters": 13,
+      "no_speech_probability": 4.213955435261596e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 1,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "아메리카노 등찬 포장해 주세요.",
+      "latency_s": 0.8630054999994172,
+      "audio_s": 3.155,
+      "cer_edits": 2,
+      "reference_characters": 13,
+      "no_speech_probability": 1.3533462151826825e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 2,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "아이스 아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.8679573999979766,
+      "audio_s": 3.377,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 6.4716473389125895e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 3,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "아이스 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 아메리카노 등장 포장해 주세요.",
+      "latency_s": 0.8514270999985456,
+      "audio_s": 4.586,
+      "cer_edits": 2,
+      "reference_characters": 16,
+      "no_speech_probability": 2.9460627501975978e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 4,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.8827845000014349,
+      "audio_s": 4.015,
+      "cer_edits": 0,
+      "reference_characters": 16,
+      "no_speech_probability": 9.176703315461054e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 5,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 아메리카노 등장 포장해 주세요.",
+      "latency_s": 0.9112581999979739,
+      "audio_s": 3.544,
+      "cer_edits": 2,
+      "reference_characters": 16,
+      "no_speech_probability": 1.5001705833128653e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 6,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "카페라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8443931000001612,
+      "audio_s": 3.958,
+      "cer_edits": 0,
+      "reference_characters": 12,
+      "no_speech_probability": 1.0894752904277993e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 7,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "카페라떼 등장 포장해 주세요.",
+      "latency_s": 0.8293648999970173,
+      "audio_s": 3.125,
+      "cer_edits": 2,
+      "reference_characters": 12,
+      "no_speech_probability": 3.056348532481934e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 8,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "아이스 카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 카페라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8822148999970523,
+      "audio_s": 3.314875,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 2.9074899430270307e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 9,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "아이스 카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 카페라떼 등장 포장해 주세요.",
+      "latency_s": 0.8638175999985833,
+      "audio_s": 4.547,
+      "cer_edits": 2,
+      "reference_characters": 15,
+      "no_speech_probability": 2.3748136754875304e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 10,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8919561000002432,
+      "audio_s": 3.9,
+      "cer_edits": 0,
+      "reference_characters": 15,
+      "no_speech_probability": 3.6858959902019706e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "카페라떼",
+              "qty": 1,
+              "temp": "hot"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 11,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 카페라떼 등장 포장해 주세요.",
+      "latency_s": 0.9024002000005567,
+      "audio_s": 3.471875,
+      "cer_edits": 2,
+      "reference_characters": 15,
+      "no_speech_probability": 8.870844794728328e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 12,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.8615657000009378,
+      "audio_s": 4.126,
+      "cer_edits": 1,
+      "reference_characters": 13,
+      "no_speech_probability": 7.163139912336192e-07,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 13,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 괜찮은 포장해 주세요.",
+      "latency_s": 0.8778947999999218,
+      "audio_s": 3.25,
+      "cer_edits": 4,
+      "reference_characters": 13,
+      "no_speech_probability": 1.0506074431759771e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 14,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "아이스 바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "아이스 바닐라떼 한 잔 포장해 주세요.",
+      "latency_s": 0.863308700001653,
+      "audio_s": 3.39975,
+      "cer_edits": 1,
+      "reference_characters": 16,
+      "no_speech_probability": 2.095657464451506e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": "ice"
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "아이스 바닐라라떼 한 잔 포장해 주세요.",
+        "correct": true,
+        "accepted": true
+      }
+    },
+    {
+      "id": 15,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "아이스 바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "아이스 다닐라떼 등장 포장해 주세요.",
+      "latency_s": 0.8562634000008984,
+      "audio_s": 4.602,
+      "cer_edits": 4,
+      "reference_characters": 16,
+      "no_speech_probability": 5.413604412751738e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 16,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 바닐라떼 한참 포장해 주세요.",
+      "latency_s": 0.9119007999979658,
+      "audio_s": 4.03,
+      "cer_edits": 2,
+      "reference_characters": 16,
+      "no_speech_probability": 2.319663508387748e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 17,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+      "hypothesis": "따뜻한 바닐라떼 등찬 포장해 주세요.",
+      "latency_s": 0.9127112999995006,
+      "audio_s": 3.544,
+      "cer_edits": 3,
+      "reference_characters": 16,
+      "no_speech_probability": 2.0869107174803503e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 2,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 18,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "아메리카노 세 잔 매장에서 먹고 갈게요.",
+      "hypothesis": "아메리카노 세찬 매장에서 먹고 가야 돼요.",
+      "latency_s": 0.8994766000032541,
+      "audio_s": 4.524,
+      "cer_edits": 4,
+      "reference_characters": 16,
+      "no_speech_probability": 1.164606146630831e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 3,
+            "temp": null
+          }
+        ],
+        "dine": "매장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 19,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "아아 한 잔 주세요.",
+      "hypothesis": "아야 한 잔 주세요.",
+      "latency_s": 0.7765040000012959,
+      "audio_s": 2.125,
+      "cer_edits": 1,
+      "reference_characters": 7,
+      "no_speech_probability": 7.511534204240888e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 20,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "차가운 카페라떼 두 잔 주세요.",
+      "hypothesis": "차가운 카페라떼 등찬 주세요.",
+      "latency_s": 0.8378903999982867,
+      "audio_s": 2.744,
+      "cer_edits": 2,
+      "reference_characters": 12,
+      "no_speech_probability": 1.2591386621352285e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 2,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 21,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "바닐라라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+      "hypothesis": "바닐라떼 한 잔 그리고 아메리카노 한 잔 포장해 주세요.",
+      "latency_s": 0.9304507999986527,
+      "audio_s": 6.293,
+      "cer_edits": 2,
+      "reference_characters": 23,
+      "no_speech_probability": 3.720261474882136e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": null
+          },
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": null
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "parsed": {
+          "items": [
+            {
+              "menu": "바닐라라떼",
+              "qty": 1,
+              "temp": null
+            },
+            {
+              "menu": "아메리카노",
+              "qty": 1,
+              "temp": null
+            }
+          ],
+          "dine": "포장"
+        },
+        "corrected": "바닐라라떼 한 잔 그리고 아메리카노 한 잔 포장해 주세요.",
+        "correct": false,
+        "accepted": true
+      }
+    },
+    {
+      "id": 22,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+      "hypothesis": "따뜻한 아메리카노 등장하고 아이스 카페라떼 한 잔 주세요.",
+      "latency_s": 0.993391399999382,
+      "audio_s": 5.44,
+      "cer_edits": 2,
+      "reference_characters": 24,
+      "no_speech_probability": 1.3306772416399326e-05,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "아메리카노",
+            "qty": 2,
+            "temp": "hot"
+          },
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          }
+        ],
+        "dine": null
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 23,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "아이스 카페라떼 한 잔 그리고 따뜻한 바닐라라떼 한 잔 포장이요.",
+      "hypothesis": "아이스 카페라떼 한참 그리고 따뜻한 바닐라떼 한참 포장여.",
+      "latency_s": 1.0295024000006379,
+      "audio_s": 5.188375,
+      "cer_edits": 5,
+      "reference_characters": 26,
+      "no_speech_probability": 1.080008701137558e-06,
+      "accepted_asr": true,
+      "negative": false,
+      "expected": {
+        "items": [
+          {
+            "menu": "카페라떼",
+            "qty": 1,
+            "temp": "ice"
+          },
+          {
+            "menu": "바닐라라떼",
+            "qty": 1,
+            "temp": "hot"
+          }
+        ],
+        "dine": "포장"
+      },
+      "baseline": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": false,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 24,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "레몬에이드 한 잔 주세요.",
+      "hypothesis": "레몬엔드 한 잔 주세요.",
+      "latency_s": 0.8577001000012388,
+      "audio_s": 3.201,
+      "cer_edits": 2,
+      "reference_characters": 10,
+      "no_speech_probability": 5.0053280574502423e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 25,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "아이스크림 하나 주세요.",
+      "hypothesis": "아이스크림 하나 주세요.",
+      "latency_s": 0.8085987999984354,
+      "audio_s": 2.375,
+      "cer_edits": 0,
+      "reference_characters": 10,
+      "no_speech_probability": 5.60439148102887e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 26,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "디카페인 아메리카노 한 잔 주세요.",
+      "hypothesis": "이 카페인 아메리카노 한 잔 주세요.",
+      "latency_s": 0.8836879000009503,
+      "audio_s": 2.973125,
+      "cer_edits": 1,
+      "reference_characters": 14,
+      "no_speech_probability": 8.71150114107877e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 27,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "카페모카 한 잔 주세요.",
+      "hypothesis": "카페모카 한 잔 주세요.",
+      "latency_s": 0.8343247000011615,
+      "audio_s": 3.235,
+      "cer_edits": 0,
+      "reference_characters": 9,
+      "no_speech_probability": 5.8368282225274015e-06,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 28,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "메뉴가 뭐가 있나요?",
+      "hypothesis": "메뉴가 뭐가 있나요?",
+      "latency_s": 0.8303257000006852,
+      "audio_s": 2.125,
+      "cer_edits": 0,
+      "reference_characters": 8,
+      "no_speech_probability": 9.29236484807916e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 29,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "오늘 날씨가 좋네요.",
+      "hypothesis": "오늘 날씨가 좋네요.",
+      "latency_s": 0.7935791999989306,
+      "audio_s": 1.975625,
+      "cer_edits": 0,
+      "reference_characters": 8,
+      "no_speech_probability": 0.00010250265768263489,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 30,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "주문을 취소하고 싶어요.",
+      "hypothesis": "주문을 취소하고 싶어요.",
+      "latency_s": 0.816326799998933,
+      "audio_s": 3.056,
+      "cer_edits": 0,
+      "reference_characters": 10,
+      "no_speech_probability": 5.8879333664663136e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 31,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "카드로 결제하려면 어떻게 하나요?",
+      "hypothesis": "카드로 결제하려면 어떻게 하나요?",
+      "latency_s": 0.8561039000014716,
+      "audio_s": 3.205,
+      "cer_edits": 0,
+      "reference_characters": 14,
+      "no_speech_probability": 3.091638063779101e-05,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    },
+    {
+      "id": 32,
+      "split": "development",
+      "condition": "synthetic5",
+      "reference": "",
+      "hypothesis": "아메리카노 카페라",
+      "latency_s": 0.8031076000006578,
+      "audio_s": 3,
+      "cer_edits": 8,
+      "reference_characters": 0,
+      "no_speech_probability": 0.45300981402397156,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "일부 메뉴나 옵션을 이해하지 못했습니다. 메뉴, 온도, 수량으로 다시 말씀해 주세요."
+      }
+    },
+    {
+      "id": 33,
+      "split": "holdout",
+      "condition": "synthetic5",
+      "reference": "",
+      "hypothesis": "아이스크림",
+      "latency_s": 0.8003592999993998,
+      "audio_s": 3,
+      "cer_edits": 5,
+      "reference_characters": 0,
+      "no_speech_probability": 0.4783896505832672,
+      "accepted_asr": true,
+      "negative": true,
+      "expected": {
+        "items": [],
+        "dine": null
+      },
+      "baseline": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      },
+      "retrieval": {
+        "correct": true,
+        "accepted": false,
+        "error": "해당 메뉴를 찾지 못했습니다. 화면 읽기로 메뉴를 확인해 주세요."
+      }
+    }
+  ],
+  "summary": {
+    "all": {
+      "clean": {
+        "orders": 24,
+        "negatives": 10,
+        "raw_cer": 0.024193548387096774,
+        "latency_mean_s": 0.8653292647056386,
+        "baseline": {
+          "order_exact": 17,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 7,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 23,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 1,
+          "false_accepts": 0
+        }
+      },
+      "synthetic15": {
+        "orders": 24,
+        "negatives": 10,
+        "raw_cer": 0.04838709677419355,
+        "latency_mean_s": 0.8676625911765072,
+        "baseline": {
+          "order_exact": 10,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 14,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 19,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 5,
+          "false_accepts": 0
+        }
+      },
+      "synthetic5": {
+        "orders": 24,
+        "negatives": 10,
+        "raw_cer": 0.11559139784946236,
+        "latency_mean_s": 0.867012411764496,
+        "baseline": {
+          "order_exact": 6,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 18,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 8,
+          "wrong_orders_accepted_for_confirmation": 1,
+          "orders_rejected_for_retry": 15,
+          "false_accepts": 0
+        }
+      }
+    },
+    "development": {
+      "clean": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.016304347826086956,
+        "latency_mean_s": 0.8633672529407811,
+        "baseline": {
+          "order_exact": 9,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 3,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 12,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 0,
+          "false_accepts": 0
+        }
+      },
+      "synthetic15": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.043478260869565216,
+        "latency_mean_s": 0.8666530823532358,
+        "baseline": {
+          "order_exact": 5,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 7,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 10,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 2,
+          "false_accepts": 0
+        }
+      },
+      "synthetic5": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.06521739130434782,
+        "latency_mean_s": 0.869462111764733,
+        "baseline": {
+          "order_exact": 6,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 6,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 8,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 4,
+          "false_accepts": 0
+        }
+      }
+    },
+    "holdout": {
+      "clean": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.031914893617021274,
+        "latency_mean_s": 0.8672912764704961,
+        "baseline": {
+          "order_exact": 8,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 4,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 11,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 1,
+          "false_accepts": 0
+        }
+      },
+      "synthetic15": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.05319148936170213,
+        "latency_mean_s": 0.8686720999997787,
+        "baseline": {
+          "order_exact": 5,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 7,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 9,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 3,
+          "false_accepts": 0
+        }
+      },
+      "synthetic5": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.16489361702127658,
+        "latency_mean_s": 0.8645627117642588,
+        "baseline": {
+          "order_exact": 0,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 12,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 0,
+          "wrong_orders_accepted_for_confirmation": 1,
+          "orders_rejected_for_retry": 11,
+          "false_accepts": 0
+        }
+      }
+    }
+  },
+  "before_decoder_and_retrieval": {
+    "all": {
+      "clean": {
+        "orders": 24,
+        "negatives": 10,
+        "raw_cer": 0.03225806451612903,
+        "latency_mean_s": 0.8343733117645196,
+        "baseline": {
+          "order_exact": 15,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 9,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 21,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 3,
+          "false_accepts": 0
+        }
+      },
+      "synthetic15": {
+        "orders": 24,
+        "negatives": 10,
+        "raw_cer": 0.056451612903225805,
+        "latency_mean_s": 0.8250064205879907,
+        "baseline": {
+          "order_exact": 10,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 14,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 18,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 6,
+          "false_accepts": 0
+        }
+      },
+      "synthetic5": {
+        "orders": 24,
+        "negatives": 10,
+        "raw_cer": 0.12903225806451613,
+        "latency_mean_s": 0.825339349999387,
+        "baseline": {
+          "order_exact": 5,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 19,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 7,
+          "wrong_orders_accepted_for_confirmation": 1,
+          "orders_rejected_for_retry": 16,
+          "false_accepts": 0
+        }
+      }
+    },
+    "development": {
+      "clean": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.03260869565217391,
+        "latency_mean_s": 0.8366322882352774,
+        "baseline": {
+          "order_exact": 7,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 5,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 10,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 2,
+          "false_accepts": 0
+        }
+      },
+      "synthetic15": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.04891304347826087,
+        "latency_mean_s": 0.8248600411763405,
+        "baseline": {
+          "order_exact": 5,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 7,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 9,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 3,
+          "false_accepts": 0
+        }
+      },
+      "synthetic5": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.07608695652173914,
+        "latency_mean_s": 0.8267591705876197,
+        "baseline": {
+          "order_exact": 5,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 7,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 7,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 5,
+          "false_accepts": 0
+        }
+      }
+    },
+    "holdout": {
+      "clean": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.031914893617021274,
+        "latency_mean_s": 0.8321143352937618,
+        "baseline": {
+          "order_exact": 8,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 4,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 11,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 1,
+          "false_accepts": 0
+        }
+      },
+      "synthetic15": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.06382978723404255,
+        "latency_mean_s": 0.825152799999641,
+        "baseline": {
+          "order_exact": 5,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 7,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 9,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 3,
+          "false_accepts": 0
+        }
+      },
+      "synthetic5": {
+        "orders": 12,
+        "negatives": 5,
+        "raw_cer": 0.18085106382978725,
+        "latency_mean_s": 0.8239195294111542,
+        "baseline": {
+          "order_exact": 0,
+          "wrong_orders_accepted_for_confirmation": 0,
+          "orders_rejected_for_retry": 12,
+          "false_accepts": 0
+        },
+        "retrieval": {
+          "order_exact": 0,
+          "wrong_orders_accepted_for_confirmation": 1,
+          "orders_rejected_for_retry": 11,
+          "false_accepts": 0
+        }
+      }
+    }
+  },
+  "date": "2026-10-05",
+  "baseline_app": "0.1.7",
+  "baseline_source_commit": "14e4df70fa5308441661255ceedbb8ea2324e4cc",
+  "improved_app": "0.1.8",
+  "sdk": "0.1.4",
+  "weights_changed": false,
+  "case_count": 34,
+  "audio_conditions": 3,
+  "hypotheses": 102,
+  "latency_scope": "PC CPU int8/4 threads; decoder only, not phone capture/end-to-end",
+  "retrieval_type": "SQLite menu documents + exact/alias/Hangul phonetic bigram retrieval; no generative LLM",
+  "evaluation_split": "Even IDs development, odd IDs holdout. Only development error texts inspected for implementation; aggregate holdout scores observed. Single synthetic voice; no independent real-person test.",
+  "physical_phone_tested": false,
+  "gpu_training_performed": false,
+  "decision": "Clean synthetic test passes provisional 95% gate; 15dB and 5dB noise fail 90% gate. Do not claim real-world readiness."
+}

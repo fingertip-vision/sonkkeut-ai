@@ -1,0 +1,475 @@
+{
+  "scope": "Synthetic Heami voice; deterministic synthetic coloured noise; no real-person or real-cafe accuracy claim.",
+  "store_scope": "speech-bench/Z9XZSN/v1",
+  "menus": [
+    {
+      "name": "아메리카노",
+      "aliases": [
+        "아아"
+      ],
+      "sold_out": false
+    },
+    {
+      "name": "카페라떼",
+      "aliases": [
+        "라떼"
+      ],
+      "sold_out": false
+    },
+    {
+      "name": "바닐라라떼",
+      "aliases": [],
+      "sold_out": false
+    }
+  ],
+  "cases": [
+    {
+      "id": 0,
+      "text": "아메리카노 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 1,
+          "temp": null
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": -2
+    },
+    {
+      "id": 1,
+      "text": "아메리카노 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 2,
+          "temp": null
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": 0
+    },
+    {
+      "id": 2,
+      "text": "아이스 아메리카노 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 1,
+          "temp": "ice"
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": 1
+    },
+    {
+      "id": 3,
+      "text": "아이스 아메리카노 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 2,
+          "temp": "ice"
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": -2
+    },
+    {
+      "id": 4,
+      "text": "따뜻한 아메리카노 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 1,
+          "temp": "hot"
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": 0
+    },
+    {
+      "id": 5,
+      "text": "따뜻한 아메리카노 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 2,
+          "temp": "hot"
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": 1
+    },
+    {
+      "id": 6,
+      "text": "카페라떼 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 1,
+          "temp": null
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": -2
+    },
+    {
+      "id": 7,
+      "text": "카페라떼 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 2,
+          "temp": null
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": 0
+    },
+    {
+      "id": 8,
+      "text": "아이스 카페라떼 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 1,
+          "temp": "ice"
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": 1
+    },
+    {
+      "id": 9,
+      "text": "아이스 카페라떼 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 2,
+          "temp": "ice"
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": -2
+    },
+    {
+      "id": 10,
+      "text": "따뜻한 카페라떼 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 1,
+          "temp": "hot"
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": 0
+    },
+    {
+      "id": 11,
+      "text": "따뜻한 카페라떼 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 2,
+          "temp": "hot"
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": 1
+    },
+    {
+      "id": 12,
+      "text": "바닐라라떼 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "바닐라라떼",
+          "qty": 1,
+          "temp": null
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": -2
+    },
+    {
+      "id": 13,
+      "text": "바닐라라떼 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "바닐라라떼",
+          "qty": 2,
+          "temp": null
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": 0
+    },
+    {
+      "id": 14,
+      "text": "아이스 바닐라라떼 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "바닐라라떼",
+          "qty": 1,
+          "temp": "ice"
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": 1
+    },
+    {
+      "id": 15,
+      "text": "아이스 바닐라라떼 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "바닐라라떼",
+          "qty": 2,
+          "temp": "ice"
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": -2
+    },
+    {
+      "id": 16,
+      "text": "따뜻한 바닐라라떼 한 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "바닐라라떼",
+          "qty": 1,
+          "temp": "hot"
+        }
+      ],
+      "dine": "포장",
+      "split": "development",
+      "rate": 0
+    },
+    {
+      "id": 17,
+      "text": "따뜻한 바닐라라떼 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "바닐라라떼",
+          "qty": 2,
+          "temp": "hot"
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": 1
+    },
+    {
+      "id": 18,
+      "text": "아메리카노 세 잔 매장에서 먹고 갈게요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 3,
+          "temp": null
+        }
+      ],
+      "dine": "매장",
+      "split": "development",
+      "rate": -2
+    },
+    {
+      "id": 19,
+      "text": "아아 한 잔 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 1,
+          "temp": "ice"
+        }
+      ],
+      "dine": null,
+      "split": "holdout",
+      "rate": 0
+    },
+    {
+      "id": 20,
+      "text": "차가운 카페라떼 두 잔 주세요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 2,
+          "temp": "ice"
+        }
+      ],
+      "dine": null,
+      "split": "development",
+      "rate": 1
+    },
+    {
+      "id": 21,
+      "text": "바닐라라떼 한 잔 그리고 아메리카노 두 잔 포장해 주세요.",
+      "items": [
+        {
+          "menu": "바닐라라떼",
+          "qty": 1,
+          "temp": null
+        },
+        {
+          "menu": "아메리카노",
+          "qty": 2,
+          "temp": null
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": -2
+    },
+    {
+      "id": 22,
+      "text": "따뜻한 아메리카노 두 잔 하고 아이스 카페라떼 한 잔 주세요.",
+      "items": [
+        {
+          "menu": "아메리카노",
+          "qty": 2,
+          "temp": "hot"
+        },
+        {
+          "menu": "카페라떼",
+          "qty": 1,
+          "temp": "ice"
+        }
+      ],
+      "dine": null,
+      "split": "development",
+      "rate": 0
+    },
+    {
+      "id": 23,
+      "text": "아이스 카페라떼 한 잔 그리고 따뜻한 바닐라라떼 한 잔 포장이요.",
+      "items": [
+        {
+          "menu": "카페라떼",
+          "qty": 1,
+          "temp": "ice"
+        },
+        {
+          "menu": "바닐라라떼",
+          "qty": 1,
+          "temp": "hot"
+        }
+      ],
+      "dine": "포장",
+      "split": "holdout",
+      "rate": 1
+    },
+    {
+      "id": 24,
+      "text": "레몬에이드 한 잔 주세요.",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "development",
+      "rate": -2
+    },
+    {
+      "id": 25,
+      "text": "아이스크림 하나 주세요.",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "holdout",
+      "rate": 0
+    },
+    {
+      "id": 26,
+      "text": "디카페인 아메리카노 한 잔 주세요.",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "development",
+      "rate": 1
+    },
+    {
+      "id": 27,
+      "text": "카페모카 한 잔 주세요.",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "holdout",
+      "rate": -2
+    },
+    {
+      "id": 28,
+      "text": "메뉴가 뭐가 있나요?",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "development",
+      "rate": 0
+    },
+    {
+      "id": 29,
+      "text": "오늘 날씨가 좋네요.",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "holdout",
+      "rate": 1
+    },
+    {
+      "id": 30,
+      "text": "주문을 취소하고 싶어요.",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "development",
+      "rate": -2
+    },
+    {
+      "id": 31,
+      "text": "카드로 결제하려면 어떻게 하나요?",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "split": "holdout",
+      "rate": 0
+    },
+    {
+      "id": 32,
+      "text": "",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "signal": "silence",
+      "split": "development",
+      "rate": 1
+    },
+    {
+      "id": 33,
+      "text": "",
+      "items": [],
+      "dine": null,
+      "negative": true,
+      "signal": "noise",
+      "split": "holdout",
+      "rate": -2
+    }
+  ],
+  "provisional_gate": {
+    "clean_order_exact": 0.95,
+    "synthetic15_order_exact": 0.9,
+    "negative_false_accept": 0
+  }
+}

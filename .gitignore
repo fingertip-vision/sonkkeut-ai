@@ -46,3 +46,8 @@ core/data/*
 *.bin
 *.pdparams
 *.pdiparams
+
+# Small generated public benchmark labels; keep actual recordings/data ignored.
+!asr/data/
+asr/data/*
+!asr/data/kiosk_speech_cases.json

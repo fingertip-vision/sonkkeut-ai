@@ -12,6 +12,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
 import { type Frame, useFrameProcessor, VisionCameraProxy } from 'react-native-vision-camera'
+import { MenuRagIndex, type MenuDocument } from './menuRag'
+export { MenuRagIndex } from './menuRag'
+export type { MenuDocument, MenuRagResult, MenuAmbiguity, MenuCorrection } from './menuRag'
 
 // ---------- 결과 형식 (sonkkeut-ai/docs/interface.md와 같음) ----------
 export type Kind = 'tab' | 'menu' | 'price' | 'button' | 'back' | 'cart_item' | 'text' | 'title'
@@ -126,6 +129,8 @@ const Native = NativeModules.Sonkkeut as
       silence(): void
       listen(): Promise<string>
       listenModel(): Promise<string>
+      finishListening(): void
+      menuRagCatalog(scope: string, payload: string): Promise<string>
       cancelListening(): void
       getSpeechModelStatus(): Promise<SpeechModelStatus>
       prepareSpeechModel(): Promise<SpeechModelStatus>
@@ -165,6 +170,12 @@ export const Sonkkeut = {
   listen: (provider: 'custom' | 'system' = 'custom') =>
     (provider === 'custom' ? Native?.listenModel() : Native?.listen()) ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
   cancelListening: () => Native?.cancelListening(),
+  finishListening: () => Native?.finishListening(),
+  async correctMenuSpeech(text: string, scope: string, menus: MenuDocument[]) {
+    if (!Native) throw new Error('네이티브 모듈이 없습니다')
+    const snapshot = await Native.menuRagCatalog(scope, JSON.stringify(menus))
+    return new MenuRagIndex(JSON.parse(snapshot)).correct(text)
+  },
   getSpeechModelStatus: () => Native?.getSpeechModelStatus() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
   prepareSpeechModel: () => Native?.prepareSpeechModel() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
   downloadSpeechModel: () => Native?.downloadSpeechModel() ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),

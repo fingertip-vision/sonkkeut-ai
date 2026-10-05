@@ -32,6 +32,7 @@ class KoreanWhisper(context: Context) : AutoCloseable {
     private val closed = AtomicBoolean(false)
     private val lifecycle = Any()
     private val recording = AtomicReference<AudioRecord?>(null)
+    private val finishRequested = AtomicBoolean(false)
     private val installer = WhisperModelInstaller(ctx)
     @Volatile private var handle = 0L
     @Volatile private var decoder: WhisperByteDecoder? = null
@@ -52,6 +53,7 @@ class KoreanWhisper(context: Context) : AutoCloseable {
     }
 
     fun status(): Map<String, Any?> = mapOf("provider" to "ct2-whisper-v3", "model_version" to "v3",
+        "decoder_beam_size" to 5,
         "installed" to installer.isInstalled(), "ready" to (handle != 0L),
         "downloading" to downloading, "busy" to busy.get(), "requires_download" to !installer.isInstalled())
 
@@ -76,7 +78,9 @@ class KoreanWhisper(context: Context) : AutoCloseable {
         catch (error: Throwable) { deliver(token) { onError(error) } }
     }
 
-    fun listen(onResult: (Result) -> Unit, onError: (Throwable) -> Unit) = begin(onError) { token ->
+    fun listen(onResult: (Result) -> Unit, onError: (Throwable) -> Unit) {
+      finishRequested.set(false)
+      begin(onError) { token ->
         try {
             check(ctx.checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                 "마이크 권한을 허용해 주세요."
@@ -87,7 +91,11 @@ class KoreanWhisper(context: Context) : AutoCloseable {
             checkCurrent(token)
             infer(pcm, token, onResult)
         } catch (error: Throwable) { deliver(token) { onError(error) } }
+      }
     }
+
+    /** Ends recording and transcribes captured audio; unlike cancel(), keeps the result. */
+    fun finishCapture() { finishRequested.set(true) }
 
     /** Deterministic real-inference fixture; accepts 16 kHz mono PCM16, never mock output. */
     fun transcribePcm(pcm: ShortArray, onResult: (Result) -> Unit, onError: (Throwable) -> Unit) = begin(onError) { token ->
@@ -140,6 +148,7 @@ class KoreanWhisper(context: Context) : AutoCloseable {
                 check(count > 0) { "마이크 녹음이 중단됐습니다." }
                 chunk.copyInto(result, length, 0, count)
                 length += count
+                if (finishRequested.get() && length >= SAMPLE_RATE * 4 / 10) break
                 var energy = 0.0
                 for (i in 0 until count) { val sample = chunk[i] / 32768.0; energy += sample * sample }
                 // Simple energy endpointing; this is not a trained voice-activity model.
