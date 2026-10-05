@@ -143,7 +143,9 @@ const plugin = VisionCameraProxy.initFrameProcessorPlugin('sonkkeut', {})
 export function sonkkeutProcess(frame: Frame, rotation?: number) {
   'worklet'
   if (plugin == null) return null
-  return plugin.call(frame, rotation == null ? undefined : { rotation }) as {
+  // VisionCamera 4.6.4 converts a supplied second argument to a native Map.
+  // Passing explicit undefined crashes the frame processor; omit the argument instead.
+  return (rotation == null ? plugin.call(frame) : plugin.call(frame, { rotation })) as {
     found?: boolean
     type?: string
     speak?: string

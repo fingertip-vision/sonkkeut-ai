@@ -10,6 +10,8 @@ JS(useSonkkeut) ◀──결과 이벤트──────────┘  { ev
 
 지원: **Android ARM64** (iOS는 아직 없음). 이번 연결은 React Native 0.76.9, VisionCamera 4.6.4, Worklets Core 1.5.0에서 검증했습니다.
 
+SDK 0.1.2는 카메라 첫 프레임의 `Value is undefined, expected an Object` 종료 오류를 수정합니다. VisionCamera 4.6.4의 `plugin.call`은 두 번째 인자가 있으면 객체로 변환하므로, 회전값을 지정하지 않을 때는 인자를 생략합니다. 수정된 앱 v0.1.3의 실제 release APK에서 카메라 두 번 시작과 일시 정지·재개, 지속 프레임 처리 및 Jest 회귀 검사를 통과했습니다.
+
 ## 1. 설치 (sonkkeut-frontend 앱에서)
 
 ```bash
