@@ -29,6 +29,7 @@ class FrameResult {
         verdict?.let { put("verdict", it.toMap()) }
         if (targetMissing) put("target_missing", true)
         tip?.pos?.let { put("tip", listOf(round4(it.x), round4(it.y))) }
+        tip?.let { put("tip_conf",round3(it.conf)); put("tip_pointing",round3(it.pointing)) }
         plane?.let { p -> put("corners", p.corners.flatMap { listOf(it.x, it.y) }) }
         put("timings", timings.mapValues { Math.round(it.value * 10) / 10.0 })
     }
