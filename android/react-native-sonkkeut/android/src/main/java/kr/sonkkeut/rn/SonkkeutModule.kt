@@ -20,6 +20,7 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import kr.sonkkeut.android.SonkkeutEngine
 import kr.sonkkeut.android.KoreanWhisper
+import kr.sonkkeut.android.FeedbackPolicy
 import java.util.concurrent.Executors
 
 /**
@@ -42,7 +43,18 @@ class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBas
     @Volatile private var disposed = false
 
     @ReactMethod
-    fun say(text: String) { main.post { SonkkeutEngine.feedback?.say(text, true) } }
+    fun say(text: String) { main.post { SonkkeutEngine.feedback?.say(text, true, explicit = true) } }
+
+    @ReactMethod
+    fun announce(text: String) { main.post { SonkkeutEngine.feedback?.say(text, true) } }
+
+    @ReactMethod
+    fun configureFeedback(voice: Boolean, vibration: Boolean, rate: Double) { main.post {
+        val safeRate = FeedbackPolicy.safeRate(rate.toFloat())
+        ctx.getSharedPreferences("sonkkeut_feedback", android.content.Context.MODE_PRIVATE).edit()
+            .putBoolean("voice", voice).putBoolean("vibration", vibration).putFloat("rate", safeRate).apply()
+        SonkkeutEngine.feedback?.configure(voice, vibration, safeRate)
+    } }
 
     @ReactMethod
     fun silence() { main.post { SonkkeutEngine.feedback?.silence() } }

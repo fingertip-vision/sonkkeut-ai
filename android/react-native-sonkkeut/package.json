@@ -1,6 +1,6 @@
 {
   "name": "react-native-sonkkeut",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "손끝길 온디바이스 영상·OCR·음성 AI React Native 모듈",
   "main": "src/index.ts",
   "react-native": "src/index.ts",

@@ -121,6 +121,8 @@ const Native = NativeModules.Sonkkeut as
       clearTarget(): void
       requestKeyframe(): void
       say(text: string): void
+      announce(text: string): void
+      configureFeedback(voice: boolean, vibration: boolean, rate: number): void
       silence(): void
       listen(): Promise<string>
       listenModel(): Promise<string>
@@ -155,7 +157,10 @@ export function sonkkeutProcess(frame: Frame, rotation?: number) {
 }
 
 export const Sonkkeut = {
+  /** Explicit speech, including repeat and screen reading, bypasses the automatic voice preference. */
   say: (text: string) => Native?.say(text),
+  announce: (text: string) => Native?.announce(text),
+  configureFeedback: (voice: boolean, vibration: boolean, rate: number) => Native?.configureFeedback(voice, vibration, rate),
   silence: () => Native?.silence(),
   listen: (provider: 'custom' | 'system' = 'custom') =>
     (provider === 'custom' ? Native?.listenModel() : Native?.listen()) ?? Promise.reject(new Error('네이티브 모듈이 없습니다')),
