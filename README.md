@@ -1,5 +1,9 @@
 # sonkkeut-ai · 손끝길 통합 AI
 
+## Kotlin 앱 직접 연동 · 0.2.0
+
+[순수 Android 라이브러리 `android/sonkkeut-native`](android/sonkkeut-native/README.md)를 추가했습니다. 프론트의 `native/kotlin-20261005` 브랜치에서 이 모듈을 직접 빌드합니다. React Native 브리지나 JavaScript 실행 없이 기존 ONNX·OCR·MediaPipe·Whisper JNI와 메뉴 SQLite DB를 사용합니다. 모델 가중치는 변경하지 않았습니다. Kotlin 메뉴 보정과 주문 흐름 단위 테스트 63개, 실제 AI·JNI·DB·Compose·CameraX 에뮬레이터 검사 12개가 통과했습니다. 실제 휴대폰 검증과 LLM은 아직 포함하지 않습니다.
+
 SDK 0.1.4 / 앱 0.1.8: 매장별 SQLite 메뉴 검색 보정과 5개 후보 디코딩, 녹음 완료 버튼을 추가했습니다. [새 성능 평가·DB·프론트 연결](docs/speech-menu-rag.md)을 확인하세요. 가중치 재학습은 없으며 소음 환경의 실사용 성능은 미달입니다.
 
 스마트폰 카메라로 키오스크 화면과 손끝을 함께 보고, 목표 버튼까지 손가락을 음성·진동으로 유도하는 온디바이스 AI입니다.

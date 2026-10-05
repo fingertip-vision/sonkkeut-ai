@@ -26,6 +26,8 @@ yolov8n-pose.pt
 android/parity/golden/
 android/react-native-sonkkeut/android/build/
 android/react-native-sonkkeut/android/.gradle/
+android/sonkkeut-native/build/
+android/sonkkeut-native/.gradle/
 android/react-native-sonkkeut/android/src/main/assets/sonkkeut/hand_landmarker.task
 node_modules/
 
