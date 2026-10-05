@@ -2,7 +2,7 @@
 
 ## Kotlin 앱 직접 연동 · 0.2.1
 
-[순수 Android 라이브러리 `android/sonkkeut-native`](android/sonkkeut-native/README.md)를 프론트의 `native/kotlin-20261005` 브랜치에서 직접 빌드합니다. React Native 브리지 없이 기존 ONNX·OCR·MediaPipe·Whisper JNI와 메뉴 SQLite DB를 사용합니다. 0.2.1은 단계별 음성 확인·수정, 메뉴 화면 탐색, 유사/음식 개념 추천, 사용자가 준비한 뒤의 근접 타일 OCR을 연결합니다. 단위 테스트 82개와 Android 에뮬레이터 검사 17개를 검사하며, 대화 재현은 입력 텍스트/TTS 완료 이벤트를 주입한 검사입니다. 모델 재학습·신경망 임베딩·LLM은 포함하지 않습니다. 실물 휴대폰의 음성 대화와 키오스크 사용성은 추가 검증이 필요합니다.
+[순수 Android 라이브러리 `android/sonkkeut-native`](android/sonkkeut-native/README.md)를 프론트의 `native/kotlin-20261005` 브랜치에서 직접 빌드합니다. React Native 브리지 없이 기존 ONNX·OCR·MediaPipe·Whisper JNI와 메뉴 SQLite DB를 사용합니다. 0.2.1은 단계별 음성 확인·수정, 메뉴 화면 탐색, 유사/음식 개념 추천, 사용자가 준비한 뒤의 근접 타일 OCR을 연결합니다. 단위 테스트 83개와 Android 에뮬레이터 검사 18개를 검사하며, 대화 재현은 입력 텍스트/TTS 완료 이벤트를 주입한 검사입니다. 모델 재학습·신경망 임베딩·LLM은 포함하지 않습니다. 실물 휴대폰의 음성 대화와 키오스크 사용성은 추가 검증이 필요합니다.
 
 SDK 0.1.4 / 앱 0.1.8: 매장별 SQLite 메뉴 검색 보정과 5개 후보 디코딩, 녹음 완료 버튼을 추가했습니다. [새 성능 평가·DB·프론트 연결](docs/speech-menu-rag.md)을 확인하세요. 가중치 재학습은 없으며 소음 환경의 실사용 성능은 미달입니다.
 
