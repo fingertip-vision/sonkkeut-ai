@@ -2,6 +2,8 @@
 
 This is a real CTranslate2 CPU adapter for the user's `whisper-elder-v3-ct2` model. It does not replace the model with mock transcripts or other weights. All production image/audio inference stays on the Android device; only the explicit first model installation downloads an archive.
 
+SDK 0.1.4 uses beam size 5. The execution measurements below describe the earlier beam-size-1 fixture; the updated evaluation and menu retrieval correction are documented in [speech-menu-rag.md](../../../../docs/speech-menu-rag.md). The matching wrapper is also available in [android/native-whisper](../../../native-whisper/).
+
 ## Verified execution
 
 - CTranslate2 4.8.2 was cross-compiled with Android NDK 26.1.10909125 / Clang 17 / CMake 3.22.1 for `arm64-v8a`, API 24.

@@ -13,5 +13,6 @@
   "abi": "arm64-v8a",
   "minimum_api": 24,
   "mel_filters_sha256": "7450ae70723a5ef9d341e3cee628c7cb0177f36ce42c44b7ed2bf3325f0f6d4c",
-  "model_archive_sha256": "d6d5b3c3efbc7be6b9d6585fca8155e4418fa00f443eeb9aff464075da37c3ea"
+  "model_archive_sha256": "d6d5b3c3efbc7be6b9d6585fca8155e4418fa00f443eeb9aff464075da37c3ea",
+  "decoder_beam_size": 5
 }

@@ -28,7 +28,7 @@ jstring generate(JNIEnv* env, const std::shared_ptr<Whisper>& model, const std::
   const auto begin = std::chrono::steady_clock::now();
   StorageView features({1, 80, 3000}, mel, Device::CPU);
   models::WhisperOptions options;
-  options.beam_size = 1;
+  options.beam_size = 5;
   options.max_length = 448;
   options.return_scores = true;
   options.return_no_speech_prob = true;
