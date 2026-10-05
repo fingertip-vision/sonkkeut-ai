@@ -5,7 +5,8 @@ import java.util.Locale
 import kotlin.math.abs
 
 data class MenuDocument(val name: String, val aliases: List<String> = emptyList(), val soldOut: Boolean = false,
-                        val category: String = "", val price: Int? = null)
+                        val category: String = "", val price: Int? = null,
+                        val relatedTerms: List<String> = emptyList(), val description: String = "")
 data class MenuCandidate(val menu: MenuDocument, val score: Double)
 data class SpeechCorrection(val start: Int, val end: Int, val replacement: String)
 data class SpeechAmbiguity(val start: Int, val end: Int, val original: String, val candidates: List<MenuCandidate>)

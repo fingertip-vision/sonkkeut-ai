@@ -28,6 +28,11 @@ class MenuMatcher(private val catalog: List<MenuDocument>) {
     }
     fun exact(text: String): List<MenuMatch> {
         val query=normalize(text)
+        if(query.isBlank()) return emptyList()
+        // A displayed canonical name must win over another menu's broad alias.
+        // A sold-out canonical item must not silently resolve to an available alias.
+        val named=catalog.filter { normalize(it.name)==query }
+        if(named.isNotEmpty()) return named.filter { !it.soldOut }.map { MenuMatch(it,1.0,"exact") }
         return catalog.filter { !it.soldOut && (listOf(it.name)+it.aliases).any { name -> normalize(name)==query } }
             .map { MenuMatch(it,1.0,"exact") }
     }
@@ -39,7 +44,14 @@ class MenuMatcher(private val catalog: List<MenuDocument>) {
             val names=listOf(menu.name)+menu.aliases
             val lexical=names.maxOf { similarity(query,normalize(it)) }
             val semantic=names.maxOf { cosine(q,vector(it)) }
-            MenuMatch(menu,maxOf(lexical,semantic*.85),if(lexical>=semantic*.85) "edit_distance" else "domain_concepts")
+            val metadata=when {
+                menu.relatedTerms.any { normalize(it)==query } -> .97
+                menu.category.isNotBlank() && normalize(menu.category)==query -> .82
+                query.length>=3 && menu.description.isNotBlank() && normalize(menu.description).contains(query) -> .75
+                else -> 0.0
+            }
+            val score=maxOf(lexical,semantic*.85,metadata)
+            MenuMatch(menu,score,when { metadata>0 && metadata==score -> "store_knowledge"; lexical>=semantic*.85 -> "edit_distance"; else -> "domain_concepts" })
         }.filter { it.score>=threshold }.sortedWith(compareByDescending<MenuMatch> { it.score }.thenByDescending { it.menu.name in observed }).take(3)
     }
 }
