@@ -43,6 +43,7 @@ class MenuMatcher(private val catalog: List<MenuDocument>) {
         return catalog.filter { !it.soldOut }.map { menu ->
             val names=listOf(menu.name)+menu.aliases
             val lexical=names.maxOf { similarity(query,normalize(it)) }
+            val family=if(query.length>=2 && names.any { normalize(it).contains(query) }) .82 else 0.0
             val semantic=names.maxOf { cosine(q,vector(it)) }
             val metadata=when {
                 menu.relatedTerms.any { normalize(it)==query } -> .97
@@ -50,8 +51,8 @@ class MenuMatcher(private val catalog: List<MenuDocument>) {
                 query.length>=3 && menu.description.isNotBlank() && normalize(menu.description).contains(query) -> .75
                 else -> 0.0
             }
-            val score=maxOf(lexical,semantic*.85,metadata)
-            MenuMatch(menu,score,when { metadata>0 && metadata==score -> "store_knowledge"; lexical>=semantic*.85 -> "edit_distance"; else -> "domain_concepts" })
+            val score=maxOf(lexical,semantic*.85,metadata,family)
+            MenuMatch(menu,score,when { metadata>0 && metadata==score -> "store_knowledge"; family==score -> "name_contains"; lexical>=semantic*.85 -> "edit_distance"; else -> "domain_concepts" })
         }.filter { it.score>=threshold }.sortedWith(compareByDescending<MenuMatch> { it.score }.thenByDescending { it.menu.name in observed }).take(3)
     }
 }

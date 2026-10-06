@@ -96,7 +96,7 @@ class KoreanStructure(context: Context) : StructureProvider, AutoCloseable {
             val type = when {
                 Regex("카드를?(넣|삽입|대)|결제진행중|결제완료|카드결제화면").containsMatchIn(all) -> "payment"
                 Regex("장바구니|주문내역").containsMatchIn(all) && Regex("총.?금액|합계|총액").containsMatchIn(all) -> "cart"
-                Regex("담기|추가하기").containsMatchIn(all) && Regex("온도|HOT|ICE|따뜻|차갑|사이즈|크기").containsMatchIn(all) -> "option"
+                Regex("담기|추가하기").containsMatchIn(all) && Regex("온도|HOT|ICE|따뜻|차갑|사이즈|크기|옵션선택|맵기|당도|토핑|굽기|추가선택").containsMatchIn(all) -> "option"
                 OcrText.hasMethodButtons(methodButtons) -> "method"
                 elements.any { it.kind == "menu" && !it.text.isNullOrBlank() && it.uncertain != true } -> "menu"
                 Regex("주문시작|시작하기").containsMatchIn(all) -> "start"
