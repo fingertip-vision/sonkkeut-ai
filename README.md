@@ -1,5 +1,9 @@
 # sonkkeut-ai · 손끝길 통합 AI
 
+## Kotlin 메뉴·OCR 연결 · 앱 0.2.4
+
+[ScreenMenuResolver](docs/screen-menu-resolver.md)가 확인한 주문과 화면 글자를 같은 매장 메뉴 ID에 연결합니다. 정식 이름·등록 별칭·가격/줄바꿈 정규화와 한 글자 OCR 손상 확인 후보를 지원합니다. 근접 경쟁 상품·중복 위치·상품 구분어 손상은 선택을 보류합니다. 프론트 공통 매칭기로 메뉴 탐색과 옵션 화면 검사를 연결하며 별도 AI 서버·LLM·가중치 재학습은 없습니다. 프론트 단위 테스트 127개 및 Android 에뮬레이터 테스트 25개 통과. 실제 키오스크·마이크 성공률은 별도 검증해야 합니다.
+
 ## Kotlin 앱 직접 연동 · 0.2.1
 
 [순수 Android 라이브러리 `android/sonkkeut-native`](android/sonkkeut-native/README.md)를 프론트의 `native/kotlin-20261005` 브랜치에서 직접 빌드합니다. React Native 브리지 없이 기존 ONNX·OCR·MediaPipe·Whisper JNI와 메뉴 SQLite DB를 사용합니다. 0.2.1은 단계별 음성 확인·수정, 메뉴 화면 탐색, 유사/음식 개념 추천, 사용자가 준비한 뒤의 근접 타일 OCR을 연결합니다. 단위 테스트 83개와 Android 에뮬레이터 검사 18개를 검사하며, 대화 재현은 입력 텍스트/TTS 완료 이벤트를 주입한 검사입니다. 모델 재학습·신경망 임베딩·LLM은 포함하지 않습니다. 실물 휴대폰의 음성 대화와 키오스크 사용성은 추가 검증이 필요합니다.

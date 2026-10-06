@@ -77,7 +77,10 @@ class KoreanStructure(context: Context) : StructureProvider, AutoCloseable {
                 val label = textLines.joinToString(" ") { it.label.replace("선택됨", "").trim() }.trim()
                 val quantity = OcrText.quantity(label)
                 val name = if (quantity == null) label else label.replace(Regex("[xX×]\\s*[0-9]{1,2}\\s*$"), "").trim()
-                val canonicalName = aliases[name.replace(" ", "")] ?: name
+                // Keep menu/option OCR evidence intact. Product identity and ambiguous aliases
+                // are resolved against the whole catalog by ScreenMenuResolver in the app.
+                // Quantity-bearing cart rows retain legacy canonicalization for cart auditing.
+                val canonicalName = if (quantity != null) aliases[name.replace(" ", "")] ?: name else name
                 el.text = if (quantity == null) canonicalName else "$canonicalName x$quantity"
                 el.price = priceLines.firstOrNull()?.let { OcrText.price(it.label) } ?: OcrText.findPrice(raw)
                 el.qty = quantity
