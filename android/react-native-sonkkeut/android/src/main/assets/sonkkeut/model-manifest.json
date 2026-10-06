@@ -1,0 +1,286 @@
+{
+  "version": "2026.10.03",
+  "source_archive": "sonkkeut-ai.tar",
+  "source_archive_sha256": "152b4e207fd2d877a4785da8d75717baa85643723caec00fb7f3030fec95b257",
+  "models": [
+    {
+      "name": "m1_screen_corners_int8.onnx",
+      "sha256": "9121f7de3b200231d022790ac6345497ab4d32022a3280889e0e616e750cdfce",
+      "size_bytes": 6097266,
+      "input": {
+        "name": "images",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "type": "tensor(float)"
+      },
+      "outputs": [
+        {
+          "name": "output0",
+          "shape": [
+            1,
+            17,
+            8400
+          ]
+        }
+      ],
+      "metadata": {
+        "onnx.infer": "onnxruntime.quant",
+        "docs": "https://docs.ultralytics.com",
+        "onnx.quant.pre_process": "onnxruntime.quant",
+        "kpt_shape": "[4, 3]",
+        "task": "pose",
+        "channels": "3",
+        "end2end": "False",
+        "description": "Ultralytics YOLOv8n-pose model trained on data\\m1\\data.yaml",
+        "author": "Ultralytics",
+        "head": "Pose",
+        "kpt_names": "{0: ['0', '1', '2', '3']}",
+        "version": "8.4.171",
+        "batch": "1",
+        "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+        "stride": "32",
+        "date": "2026-10-02T08:45:31.531656+09:00",
+        "imgsz": "[640, 640]",
+        "names": "{0: 'screen'}",
+        "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': None, 'dynamic': False, 'simplify': True, 'opset': None}"
+      },
+      "cpu_smoke_test": "passed"
+    },
+    {
+      "name": "m1r_corner_refiner.onnx",
+      "sha256": "331f3073d5fad57a79485c5b18f03cea94bbd6e782d2bd0fb0905b0986b33c50",
+      "size_bytes": 1632622,
+      "input": {
+        "name": "patches",
+        "shape": [
+          "n",
+          1,
+          64,
+          64
+        ],
+        "type": "tensor(float)"
+      },
+      "outputs": [
+        {
+          "name": "offsets",
+          "shape": [
+            1,
+            2
+          ]
+        }
+      ],
+      "metadata": {},
+      "cpu_smoke_test": "passed"
+    },
+    {
+      "name": "m2_screen_elements_int8.onnx",
+      "sha256": "8c30a754567fb9b4e1fceba5533cc103a429aaeb2bd1deabfd93137f7fba1a4f",
+      "size_bytes": 5701588,
+      "input": {
+        "name": "images",
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "type": "tensor(float)"
+      },
+      "outputs": [
+        {
+          "name": "output0",
+          "shape": [
+            1,
+            9,
+            8400
+          ]
+        }
+      ],
+      "metadata": {
+        "onnx.infer": "onnxruntime.quant",
+        "docs": "https://docs.ultralytics.com",
+        "onnx.quant.pre_process": "onnxruntime.quant",
+        "channels": "3",
+        "end2end": "False",
+        "description": "Ultralytics m2_screen_elements model trained on data\\m2\\data.yaml",
+        "author": "Ultralytics",
+        "head": "Detect",
+        "version": "8.4.171",
+        "batch": "1",
+        "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+        "stride": "32",
+        "task": "detect",
+        "date": "2026-10-02T08:46:24.338051+09:00",
+        "imgsz": "[640, 640]",
+        "names": "{0: 'tab', 1: 'menu', 2: 'price', 3: 'button', 4: 'back'}",
+        "args": "{'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': None, 'dynamic': False, 'simplify': True, 'opset': None}"
+      },
+      "cpu_smoke_test": "passed"
+    },
+    {
+      "name": "m3_kiosk_rec_v2.onnx",
+      "sha256": "80d6462d5cc0d0a189ecd810940df484902594a11087a4592e8a8dec47d87145",
+      "size_bytes": 13413875,
+      "model_id": "ocr-kiosk-rec-v2-onnx",
+      "bundled": true,
+      "download_first_use": false,
+      "cloud_runtime": false,
+      "runtime_location": "android_on_device",
+      "input": {
+        "name": "x",
+        "shape": [
+          1,
+          3,
+          48,
+          "dynamic_width"
+        ],
+        "type": "tensor(float)"
+      },
+      "outputs": [
+        {
+          "name": "fetch_name_0",
+          "shape": [
+            1,
+            "time",
+            11947
+          ],
+          "type": "tensor(float)",
+          "probabilities": true
+        }
+      ],
+      "source_release_url": "https://github.com/fingertip-vision/sonkkeut-ai/releases/tag/ocr-kiosk-rec-v2",
+      "source_archive_download_url": "https://github.com/fingertip-vision/sonkkeut-ai/releases/download/ocr-kiosk-rec-v2/kiosk_rec_v2-paddle.zip",
+      "source_archive_sha256": "e14ac5d92849b4e1d542c523882c3f010879420ce29248d8c92cf3faf9561326",
+      "source_archive_size_bytes": 8732106,
+      "url": "https://github.com/fingertip-vision/sonkkeut-ai/releases/download/v0.1.1-unified-20261003/m3_kiosk_rec_v2.onnx",
+      "format": "ONNX",
+      "opset": 17,
+      "architecture": {
+        "algorithm": "SVTR_LCNet",
+        "backbone": "PPLCNetV3",
+        "scope": "recognizer_only",
+        "source_config": "ocr/configs/kiosk_rec_v2.yml",
+        "release_inference_model_name": "korean_PP-OCRv5_mobile_rec"
+      },
+      "exporter": "paddle2onnx 2.1.0 / paddlepaddle 3.1.1 / opset 17",
+      "preprocess": {
+        "channel_order": "BGR",
+        "height": 48,
+        "min_width": 320,
+        "max_width": 3200,
+        "keep_aspect": true,
+        "right_padding_after_normalization": 0,
+        "normalization": "(pixel / 255.0 - 0.5) / 0.5"
+      },
+      "ctc": {
+        "blank_index": 0,
+        "collapse_adjacent_repeats": true,
+        "characters_excluding_blank": 11946,
+        "trailing_space": true,
+        "unicode_normalization": "NFC",
+        "confidence": "mean probability of emitted nonblank tokens"
+      },
+      "companion_assets": [
+        {
+          "name": "m3_kiosk_rec_v2_dictionary.txt",
+          "sha256": "7539371e8ddba314d664151be039687f45089854e9ae985f79c114c1019d0a7d",
+          "size_bytes": 59399
+        },
+        {
+          "name": "m3_kiosk_rec_v2_metadata.json",
+          "sha256": "a071b784db5160c34a8e6d04f7a7004c7aae24838fe5d08cfcc6079a952fa7c1",
+          "size_bytes": 1299
+        }
+      ],
+      "cpu_smoke_test": "passed_synthetic_Korean_text_3_samples",
+      "kotlin_ctc_parity_test": "passed_same_3_actual_ONNX_outputs",
+      "physical_camera_tested": false,
+      "android_onnx_smoke_test": "passed_3_actual_synthetic_text_inferences_API35_ARM64_translation"
+    },
+    {
+      "name": "whisper-elder-v3-ct2.zip",
+      "sha256": "d6d5b3c3efbc7be6b9d6585fca8155e4418fa00f443eeb9aff464075da37c3ea",
+      "size_bytes": 484672869,
+      "model_id": "asr-whisper-elder-v3-ct2",
+      "bundled": false,
+      "download_first_use": true,
+      "cloud_runtime": false,
+      "runtime_location": "android_on_device_after_verified_install",
+      "source_release_url": "https://github.com/fingertip-vision/sonkkeut-ai/releases/tag/asr-whisper-elder-v3",
+      "url": "https://github.com/fingertip-vision/sonkkeut-ai/releases/download/asr-whisper-elder-v3/whisper-elder-v3-ct2.zip",
+      "format": "CTranslate2 archive",
+      "serialized_compute_type": "float16",
+      "runtime_compute_type": "int8_float32",
+      "runtime": "CTranslate2 v4.8.2 ARM64 RUY CPU / Python faster-whisper 1.2.1",
+      "input": {
+        "name": "log_mel",
+        "shape": [
+          1,
+          80,
+          3000
+        ],
+        "type": "tensor(float)",
+        "sampling_rate_hz": 16000
+      },
+      "outputs": [
+        {
+          "name": "transcript",
+          "type": "string",
+          "language": "ko"
+        }
+      ],
+      "archive_root": "whisper-elder-v3",
+      "archive_members": [
+        {
+          "name": "config.json",
+          "sha256": "364e66f09ce360358f61e549786419eedc8e6ab709186304dc77f84a3c4966c8",
+          "size_bytes": 2609,
+          "path": "whisper-elder-v3/config.json"
+        },
+        {
+          "name": "model.bin",
+          "sha256": "b5468a47157fad449fe6ff093786848badbd7c0c1b28aa15c3dd346ab8a365da",
+          "size_bytes": 483546977,
+          "path": "whisper-elder-v3/model.bin"
+        },
+        {
+          "name": "preprocessor_config.json",
+          "sha256": "3e4dc53c73e7e3954fc4435034f5027733c61d7c123b38bbd1461598fd8503ef",
+          "size_bytes": 329,
+          "path": "whisper-elder-v3/preprocessor_config.json"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "sha256": "852662bea40ac4b9e200eb6c56c688f4f7420c68760e5c4fe7cc4d082234e451",
+          "size_bytes": 2253,
+          "path": "whisper-elder-v3/tokenizer_config.json"
+        },
+        {
+          "name": "vocabulary.json",
+          "sha256": "aa4e6188766a36f6a7f3e44db3f74823c6fee0bf33a9559247e18fedb3bc8d55",
+          "size_bytes": 1119969,
+          "path": "whisper-elder-v3/vocabulary.json"
+        }
+      ],
+      "cpu_smoke_test": "passed_synthetic_Korean_order_with_menu_hotwords",
+      "android_arm64_smoke_test": "passed_API35_ARM64_translation_synthetic_PCM_with_menu_context",
+      "physical_microphone_tested": false,
+      "actual_recordings_distributed": false
+    }
+  ],
+  "source_archive_scope": [
+    "M1",
+    "M1-R",
+    "M2"
+  ],
+  "runtime_scope": {
+    "camera_and_speech": "android_on_device",
+    "cloud_model_inference": false,
+    "python_runtime": "optional_local_CPU_provider",
+    "web_simulation": "mock_recognition_and_virtual_payment"
+  }
+}

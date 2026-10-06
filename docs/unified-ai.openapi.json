@@ -1,0 +1,924 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "손끝길 unified AI",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/ai/capabilities": {
+      "get": {
+        "summary": "Capabilities",
+        "operationId": "capabilities_v1_ai_capabilities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Capabilities"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ai/order": {
+      "post": {
+        "summary": "Order",
+        "operationId": "order_v1_ai_order_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ai/screen": {
+      "post": {
+        "summary": "Screen",
+        "operationId": "screen_v1_ai_screen_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OCRInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScreenResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ai/speech": {
+      "post": {
+        "summary": "Speech",
+        "operationId": "speech_v1_ai_speech_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_speech_v1_ai_speech_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ai/plan": {
+      "post": {
+        "summary": "Next Step",
+        "operationId": "next_step_v1_ai_plan_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_speech_v1_ai_speech_post": {
+        "properties": {
+          "audio": {
+            "type": "string",
+            "format": "binary",
+            "title": "Audio"
+          },
+          "menus": {
+            "type": "string",
+            "title": "Menus",
+            "default": "[]"
+          },
+          "store_menus": {
+            "type": "string",
+            "title": "Store Menus",
+            "default": "[]"
+          }
+        },
+        "type": "object",
+        "required": [
+          "audio"
+        ],
+        "title": "Body_speech_v1_ai_speech_post"
+      },
+      "Capabilities": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "sonkkeut.ai.v1",
+            "title": "Schema Version"
+          },
+          "ocr": {
+            "$ref": "#/components/schemas/ProviderCapability"
+          },
+          "asr": {
+            "$ref": "#/components/schemas/ProviderCapability"
+          },
+          "nlu": {
+            "$ref": "#/components/schemas/ProviderCapability"
+          },
+          "vision": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Vision"
+          },
+          "payment": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Payment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema_version",
+          "ocr",
+          "asr",
+          "nlu",
+          "vision",
+          "payment"
+        ],
+        "title": "Capabilities"
+      },
+      "Element": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "menu",
+              "button",
+              "tab",
+              "back",
+              "price",
+              "cart_item",
+              "text",
+              "title"
+            ],
+            "title": "Kind"
+          },
+          "box": {
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 4,
+            "title": "Box"
+          },
+          "conf": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Conf",
+            "default": 1.0
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 300,
+            "title": "Text",
+            "default": ""
+          },
+          "price": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 1000000.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price"
+          },
+          "qty": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 99.0,
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Qty"
+          },
+          "conf_ocr": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Conf Ocr"
+          },
+          "uncertain": {
+            "type": "boolean",
+            "title": "Uncertain",
+            "default": false
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "box"
+        ],
+        "title": "Element"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Intent": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Items"
+          },
+          "dine": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "매장",
+                  "포장"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dine"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "title": "Intent"
+      },
+      "Item": {
+        "properties": {
+          "menu": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Menu"
+          },
+          "qty": {
+            "type": "integer",
+            "maximum": 99.0,
+            "minimum": 1.0,
+            "title": "Qty"
+          },
+          "options": {
+            "$ref": "#/components/schemas/Options",
+            "default": {
+              "extras": []
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "added"
+            ],
+            "title": "Status",
+            "default": "pending"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "menu",
+          "qty"
+        ],
+        "title": "Item"
+      },
+      "OCRInput": {
+        "properties": {
+          "image_base64": {
+            "type": "string",
+            "maxLength": 8388608,
+            "minLength": 1,
+            "title": "Image Base64"
+          },
+          "elements": {
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Elements"
+          },
+          "keyframe_id": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Keyframe Id",
+            "default": 0
+          },
+          "previous": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Screen"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "image_base64",
+          "elements"
+        ],
+        "title": "OCRInput"
+      },
+      "Options": {
+        "properties": {
+          "temp": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "hot",
+                  "ice"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Temp"
+          },
+          "size": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Size"
+          },
+          "extras": {
+            "items": {
+              "type": "string",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 10,
+            "title": "Extras",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "Options"
+      },
+      "OrderInput": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 4000,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "screen_menus": {
+            "items": {
+              "type": "string",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Screen Menus",
+            "default": []
+          },
+          "store_menus": {
+            "items": {
+              "type": "string",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 500,
+            "title": "Store Menus",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "OrderInput"
+      },
+      "OrderResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "sonkkeut.ai.v1",
+            "title": "Schema Version"
+          },
+          "transcript": {
+            "type": "string",
+            "title": "Transcript"
+          },
+          "intent": {
+            "$ref": "#/components/schemas/Intent"
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation"
+          },
+          "plan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanTarget"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "providers": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Providers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema_version",
+          "transcript",
+          "intent",
+          "requires_confirmation",
+          "providers"
+        ],
+        "title": "OrderResponse"
+      },
+      "PlanInput": {
+        "properties": {
+          "screen": {
+            "$ref": "#/components/schemas/Screen"
+          },
+          "intent": {
+            "$ref": "#/components/schemas/Intent"
+          },
+          "confirmed": {
+            "type": "boolean",
+            "title": "Confirmed",
+            "default": false
+          },
+          "progress": {
+            "$ref": "#/components/schemas/ProgressInput"
+          }
+        },
+        "type": "object",
+        "required": [
+          "screen",
+          "intent"
+        ],
+        "title": "PlanInput"
+      },
+      "PlanResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "sonkkeut.ai.v1",
+            "title": "Schema Version"
+          },
+          "plan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlanTarget"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requires_confirmation": {
+            "type": "boolean",
+            "title": "Requires Confirmation"
+          },
+          "progress": {
+            "$ref": "#/components/schemas/ProgressInput"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema_version",
+          "plan",
+          "requires_confirmation",
+          "progress"
+        ],
+        "title": "PlanResponse"
+      },
+      "PlanTarget": {
+        "properties": {
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          },
+          "say": {
+            "type": "string",
+            "title": "Say"
+          },
+          "why": {
+            "type": "string",
+            "title": "Why"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target_id",
+          "say",
+          "why"
+        ],
+        "title": "PlanTarget"
+      },
+      "ProgressInput": {
+        "properties": {
+          "current": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 49.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current"
+          },
+          "variant_temp": {
+            "type": "boolean",
+            "title": "Variant Temp",
+            "default": false
+          },
+          "opt_done": {
+            "items": {
+              "type": "string",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Opt Done",
+            "default": []
+          },
+          "qty_pressed": {
+            "type": "integer",
+            "maximum": 98.0,
+            "minimum": 0.0,
+            "title": "Qty Pressed",
+            "default": 0
+          },
+          "tabs_tried": {
+            "items": {
+              "type": "string",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Tabs Tried",
+            "default": []
+          },
+          "pages_moved": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "title": "Pages Moved",
+            "default": 0
+          },
+          "last": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last"
+          },
+          "cur_tab": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cur Tab"
+          },
+          "seen": {
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 100,
+              "minLength": 1
+            },
+            "type": "object",
+            "title": "Seen",
+            "default": {}
+          },
+          "relook": {
+            "type": "integer",
+            "maximum": 3.0,
+            "minimum": 0.0,
+            "title": "Relook",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "title": "ProgressInput"
+      },
+      "ProviderCapability": {
+        "properties": {
+          "ready": {
+            "type": "boolean",
+            "title": "Ready"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ready",
+          "provider"
+        ],
+        "title": "ProviderCapability"
+      },
+      "Screen": {
+        "properties": {
+          "screen_type": {
+            "type": "string",
+            "enum": [
+              "menu",
+              "option",
+              "cart",
+              "payment",
+              "start",
+              "unknown",
+              "method",
+              "other"
+            ],
+            "title": "Screen Type"
+          },
+          "keyframe_id": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Keyframe Id",
+            "default": 0
+          },
+          "elements": {
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Elements"
+          },
+          "cart": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Cart",
+            "default": []
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "screen_type",
+          "elements"
+        ],
+        "title": "Screen"
+      },
+      "ScreenResponse": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "sonkkeut.ai.v1",
+            "title": "Schema Version"
+          },
+          "structure": {
+            "$ref": "#/components/schemas/Screen"
+          },
+          "providers": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Providers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "schema_version",
+          "structure",
+          "providers"
+        ],
+        "title": "ScreenResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+# 파이썬
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# 학습 데이터·결과 (용량이 크고 스크립트로 다시 만들 수 있음)
+data/
+runs/
+*.mp4
+*_events.jsonl
+
+# 자동으로 내려받는 모델
+models/hand_landmarker.task
+yolov8n.pt
+yolov8n-pose.pt
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.ruff_cache/
+
+# 앱 모듈
+android/parity/golden/
+android/react-native-sonkkeut/android/build/
+android/react-native-sonkkeut/android/.gradle/
+android/sonkkeut-native/build/
+android/sonkkeut-native/.gradle/
+android/react-native-sonkkeut/android/src/main/assets/sonkkeut/hand_landmarker.task
+node_modules/
+
+# New OCR/ASR training workspaces and user audio stay out of the integration source.
+asr/ct2/
+asr/hf/
+asr/out/
+ocr/pretrained/
+ocr/output/
+ocr/PaddleOCR/
+core/data/utt100_wav/
+!core/data/
+core/data/*
+!core/data/utt100.json
+!core/data/tts.ps1
+*.zip
+*.wav
+*.bin
+*.pdparams
+*.pdiparams
+
+# Small generated public benchmark labels; keep actual recordings/data ignored.
+!asr/data/
+asr/data/*
+!asr/data/kiosk_speech_cases.json

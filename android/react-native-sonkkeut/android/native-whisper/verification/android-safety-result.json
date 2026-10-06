@@ -1,0 +1,114 @@
+{
+  "fixture": "synthetic-installer-and-lifecycle",
+  "checks": [
+    {
+      "name": "zip_reject_traversal",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_absolute",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_windows_absolute",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_unknown_file",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_nested",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_wrong_hash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_oversize",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_missing",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_duplicate_normalized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zip_reject_too_many_entries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_path_escape",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "extract_cancel_during_stream",
+      "passed": true,
+      "detail": "Cancelled while reading the real archive, not a synthetic result."
+    },
+    {
+      "name": "failed_install_cleanup_and_no_publication",
+      "passed": true,
+      "detail": "HTTP URL rejected before network; unpublished archive\/staging removed."
+    },
+    {
+      "name": "url_reject_credentials_non443_nonhttps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original_five_files_size_and_sha256",
+      "passed": true,
+      "detail": "Actual model.bin and four metadata files, strict per-file digest validation."
+    },
+    {
+      "name": "atomic_pointer_interrupted_write_reads_previous",
+      "passed": true,
+      "detail": "Production reader plus Android AtomicFile; download publication was fixture-seeded."
+    },
+    {
+      "name": "wrapper_prepare_actual_installed_model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "actual_audio_record_cancel_suppresses_callbacks",
+      "passed": true,
+      "detail": "Silent API35 emulator capture, not a physical microphone quality test."
+    },
+    {
+      "name": "cancel_active_inference_and_reject_busy_new_request",
+      "passed": true,
+      "detail": "CT2 finishes worker inference; invalidated callbacks stay suppressed."
+    },
+    {
+      "name": "new_request_after_cancel_uses_real_contextual_model",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "closed_engine_rejects_new_request",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "status": "completed",
+  "new_request_text": "따뜻한 아메리카노 두 잔 하고 카페라떼 한 잔 포장해 주세요.",
+  "inference_ms": 20101,
+  "passed": 21
+}

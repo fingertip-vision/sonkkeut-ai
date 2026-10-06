@@ -1,0 +1,47 @@
+{
+  "schema_version": "sonkkeut.ocr.v1",
+  "model_id": "ocr-kiosk-rec-v2-onnx",
+  "source_release": "https://github.com/fingertip-vision/sonkkeut-ai/releases/tag/ocr-kiosk-rec-v2",
+  "source_zip_sha256": "e14ac5d92849b4e1d542c523882c3f010879420ce29248d8c92cf3faf9561326",
+  "sha256": "80d6462d5cc0d0a189ecd810940df484902594a11087a4592e8a8dec47d87145",
+  "bytes": 13413875,
+  "input": {
+    "name": "x",
+    "dtype": "float32",
+    "shape": [
+      1,
+      3,
+      48,
+      "dynamic_width"
+    ]
+  },
+  "output": {
+    "name": "fetch_name_0",
+    "dtype": "float32",
+    "shape": [
+      1,
+      "time",
+      11947
+    ],
+    "probabilities": true
+  },
+  "preprocess": {
+    "channel_order": "BGR",
+    "height": 48,
+    "min_width": 320,
+    "max_width": 3200,
+    "keep_aspect": true,
+    "right_padding_after_normalization": 0,
+    "normalization": "(pixel / 255.0 - 0.5) / 0.5"
+  },
+  "ctc": {
+    "blank_index": 0,
+    "collapse_adjacent_repeats": true,
+    "characters_excluding_blank": 11946,
+    "trailing_space": true,
+    "unicode_normalization": "NFC",
+    "confidence": "mean probability of emitted nonblank tokens"
+  },
+  "runtime": "onnxruntime-android 1.19.2 CPU",
+  "exporter": "paddle2onnx 2.1.0 / paddlepaddle 3.1.1 / opset 17"
+}
