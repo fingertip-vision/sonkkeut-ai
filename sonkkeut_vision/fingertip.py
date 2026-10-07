@@ -12,6 +12,7 @@ M4는 직접 학습하지 않고 MediaPipe Hand Landmarker(손 관절 21점)를 
 """
 from __future__ import annotations
 
+import hashlib
 import os
 import time
 import urllib.request
@@ -23,18 +24,37 @@ import numpy as np
 from .schema import Fingertip
 
 INDEX_TIP = 8
+# 버전과 해시를 고정한다. latest는 모델이 바뀌어도 알 수 없고, Android 빌드(sonkkeut-native, 버전 1)와 결과가 달라진다.
 HAND_MODEL_URL = ("https://storage.googleapis.com/mediapipe-models/hand_landmarker/"
-                  "hand_landmarker/float16/latest/hand_landmarker.task")
+                  "hand_landmarker/float16/1/hand_landmarker.task")
+HAND_MODEL_SHA256 = "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1"
 DEFAULT_HAND_MODEL = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                                   "models", "hand_landmarker.task")
 
 
+def _sha256(path):
+    with open(path, "rb") as f:
+        return hashlib.sha256(f.read()).hexdigest()
+
+
 def ensure_hand_model(path=DEFAULT_HAND_MODEL):
-    """hand_landmarker.task(약 7.8MB)가 없으면 내려받는다. 첫 실행 때 한 번만 필요하다."""
-    if not os.path.exists(path):
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        print(f"손 관절 모델 내려받는 중: {HAND_MODEL_URL}")
-        urllib.request.urlretrieve(HAND_MODEL_URL, path)
+    """hand_landmarker.task(약 7.8MB)가 없거나 고정 버전과 다르면 내려받는다. 첫 실행 때 한 번만 필요하다."""
+    if os.path.exists(path) and _sha256(path) == HAND_MODEL_SHA256:
+        return path
+    if os.path.exists(path):
+        print(f"손 관절 모델이 고정 버전과 달라 다시 받습니다: {path}")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    print(f"손 관절 모델 내려받는 중: {HAND_MODEL_URL}")
+    # 임시 파일로 받아 검증한 뒤에만 바꿔 넣어, 받다가 끊겨도 깨진 파일이 남지 않게 한다.
+    tmp = path + ".download"
+    try:
+        urllib.request.urlretrieve(HAND_MODEL_URL, tmp)
+        if _sha256(tmp) != HAND_MODEL_SHA256:
+            raise RuntimeError("손 관절 모델 파일의 검증값이 일치하지 않습니다")
+        os.replace(tmp, path)
+    finally:
+        if os.path.exists(tmp):
+            os.remove(tmp)
     return path
 
 
