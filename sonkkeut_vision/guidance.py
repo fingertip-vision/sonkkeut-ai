@@ -175,9 +175,14 @@ class Guide:
 
         if inside_core:
             distance = "reach"
-            if self.inside_since is None:
+            if tip.conf < self.tip_conf_min:
+                # 믿을 수 없는 손끝 위치로 머무른 시간을 쌓으면, 확실한 프레임이 한 번만 와도 바로 누르라고 하게 된다.
+                # 안전장치 ②(0.3초 머무름)는 ③(손끝 신뢰도)을 만족하는 프레임으로만 센다.
+                self.inside_since = None
+            elif self.inside_since is None:
                 self.inside_since = t
-            ok = (t - self.inside_since >= self.dwell and tip.conf >= self.tip_conf_min
+            ok = (self.inside_since is not None and t - self.inside_since >= self.dwell
+                  and tip.conf >= self.tip_conf_min
                   and tconf >= self.target_conf_min
                   and t - self.last_speak_t >= self.speak_interval)  # 직전 안내와 겹치지 않게(0.8초 규칙)
             if ok and not self.pressed_latch:

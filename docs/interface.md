@@ -61,7 +61,8 @@ Android 기본 provider는 한국어 OCR을 포함합니다. Python에서 F-05�
 F-07이 다음에 누를 버튼을 정하면 호출한다.
 
 ```python
-pipe.set_target("e7", expect={"screen_type": "option", "success_speak": "옵션 화면이 열렸습니다"})
+pipe.set_target("e7", expect={"screen_type": "option", "success_speak": "옵션 화면이 열렸습니다"},
+                keyframe_id=structure["keyframe_id"])  # 고른 뒤 화면을 다시 읽었으면 KeyError (id가 다른 버튼일 수 있음)
 ```
 
 `expect`(누른 뒤 기대 결과) 형식은 `sonkkeut_vision/verify.py` 머리말에 있다.

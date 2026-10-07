@@ -204,7 +204,10 @@ class ScreenPlaneEstimator:
             if len(self._pts) < 80:  # 특징점이 줄어들면 다시 뿌린다
                 self._pts = self._seed_points(gray, self.state.corners)
         elif det is not None:
-            self._adopt(gray, kp, conf, reframe_from=prev)
+            # 이 프레임의 추적값이 없으므로 prev(이전 프레임 좌표계)를 거쳐 버튼 좌표를 옮기면
+            # 두 프레임 사이 휴대폰 움직임만큼 좌표가 밀린다. 옮기지 않고 다시 읽도록 rebased로 알린다.
+            self._adopt(gray, kp, conf)
+            self.state.rebased = True
             mode = "detect"
         else:
             self.state, self._pts = None, None

@@ -119,6 +119,7 @@ const Native = NativeModules.Sonkkeut as
       start(): void
       stop(): void
       setTarget(id: string, expect: Expect | null): Promise<boolean>
+      setTargetOnKeyframe(id: string, keyframeId: number, expect: Expect | null): Promise<boolean>
       setTargetAt(x: number, y: number, expect: Expect | null): Promise<string | null>
       setTargetAtImage(px: number, py: number, expect: Expect | null): Promise<string | null>
       clearTarget(): void
@@ -192,8 +193,15 @@ export const Sonkkeut = {
   init: (options: { nativeFeedback?: boolean } = {}) => Native?.init(options) ?? Promise.resolve(false),
   start: () => Native?.start(),
   stop: () => Native?.stop(),
-  /** 목표 버튼 지정 (언어 쪽 F-07이 정한 요소 id). 지금 화면에 없으면 false */
-  setTarget: (id: string, expect?: Expect) => Native?.setTarget(id, expect ?? null) ?? Promise.resolve(false),
+  /**
+   * 목표 버튼 지정 (언어 쪽 F-07이 정한 요소 id). 지금 화면에 없으면 false.
+   * keyframeId: id를 고른 screen의 keyframe_id. 요소 id는 키프레임마다 새로 매겨지므로, 넘기면 그 사이 화면을
+   * 다시 읽었을 때 다른 버튼을 목표로 잡지 않고 false를 돌려준다. 음성 확인처럼 고른 뒤 시간이 걸리면 꼭 넘긴다.
+   */
+  setTarget: (id: string, expect?: Expect, keyframeId?: number) =>
+    (keyframeId == null
+      ? Native?.setTarget(id, expect ?? null)
+      : Native?.setTargetOnKeyframe(id, keyframeId, expect ?? null)) ?? Promise.resolve(false),
   /** 화면 좌표(0~1)를 눌러 목표 지정 (시연·저시력 모드). 지정된 요소 id */
   setTargetAt: (x: number, y: number, expect?: Expect) => Native?.setTargetAt(x, y, expect ?? null) ?? Promise.resolve(null),
   /** 카메라 영상 픽셀(result.frame_size 기준)로 목표 지정 */

@@ -58,6 +58,9 @@ class PlaneState:
     frame_idx: int = 0
     reframed: bool = False  # 이번 프레임에 기준 좌표계가 바뀜 (추적을 놓쳐 새로 검출)
     ref_prev: Optional["PlaneState"] = field(default=None, repr=False)  # 바뀌기 전 기준 (좌표 옮기기용)
+    # 같은 프레임의 추적값 없이 새로 검출함 (추적 실패, 화면을 놓쳤다 다시 찾음).
+    # 이전 프레임 좌표계와 이어 줄 근거가 없으므로 읽어 둔 버튼 좌표는 쓸 수 없다.
+    rebased: bool = False
 
     def to_screen(self, pts_px):
         """카메라 픽셀 좌표 (N,2) → 화면 0~1 좌표 (N,2)"""

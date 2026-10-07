@@ -243,6 +243,12 @@ class SonkkeutModule(private val ctx: ReactApplicationContext) : ReactContextBas
         promise.resolve(SonkkeutEngine.setTarget(id, expect?.toHashMap()))
     }
 
+    /** setTarget과 같되, id를 고른 화면의 keyframe_id가 지금과 다르면 false. 기존 호출을 깨지 않으려고 따로 둔다. */
+    @ReactMethod
+    fun setTargetOnKeyframe(id: String, keyframeId: Double, expect: ReadableMap?, promise: Promise) {
+        promise.resolve(SonkkeutEngine.setTarget(id, expect?.toHashMap(), keyframeId.toInt()))
+    }
+
     @ReactMethod
     fun setTargetAt(x: Double, y: Double, expect: ReadableMap?, promise: Promise) {
         promise.resolve(SonkkeutEngine.setTargetAt(x, y, expect?.toHashMap()))

@@ -83,7 +83,7 @@ function Guide() {
 
 | 함수 | 언제 |
 | --- | --- |
-| `setTarget(id, expect?)` | 언어 쪽(F-07 버튼 순서 계획)이 `screen.elements`에서 고른 id로 |
+| `setTarget(id, expect?, keyframeId?)` | 언어 쪽(F-07 버튼 순서 계획)이 `screen.elements`에서 고른 id로. 요소 id는 키프레임마다 새로 매겨지므로, 음성 확인처럼 고른 뒤 시간이 걸리면 고른 화면의 `screen.keyframe_id`를 함께 넘긴다. 그 사이 화면을 다시 읽었으면 `false` |
 | `setTargetAtPreview(x, y, viewW, viewH, result.frame_size)` | 미리보기를 탭해서 (시연·저시력 모드) |
 | `clearTarget()` | 안내 중지 |
 
