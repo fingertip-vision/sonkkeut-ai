@@ -11,6 +11,11 @@
 | faster-whisper | [SYSTRAN/faster-whisper](https://github.com/SYSTRAN/faster-whisper), MIT | Python CPU 추론 |
 | CTranslate2 | [OpenNMT/CTranslate2](https://github.com/OpenNMT/CTranslate2), MIT | 실제 Whisper 가중치 추론, Android ARM64 런타임 |
 | RUY | [google/ruy](https://github.com/google/ruy), Apache-2.0 | ARM64 CPU 연산 |
+| Ultralytics YOLOv8 | [ultralytics/ultralytics](https://github.com/ultralytics/ultralytics), AGPL-3.0 | M1(`yolov8n-pose.pt`)·M2(`yolov8n.pt`) 학습 시작 가중치와 학습·내보내기 도구 (`training/train.py`) |
+| MediaPipe Hand Landmarker | [google-ai-edge/mediapipe](https://github.com/google-ai-edge/mediapipe), Apache-2.0 | 손 관절 21점 추정 라이브러리(`tasks-vision`)와 모델 `hand_landmarker.task`(float16 버전 1, 빌드 때 내려받음) |
+
+M1·M2 ONNX 메타데이터에는 Ultralytics의 AGPL-3.0이 표기되어 있다. 이 모델을 담은 앱을 배포할 때
+AGPL-3.0의 조건(소스 공개 등)을 어떻게 지킬지는 팀에서 확인한다.
 
 각 upstream LICENSE 원문은 `licenses/`에 보존한다. 팀의 OCR/Whisper 릴리스에는 별도
 추가 모델 라이선스가 제공되지 않았으므로 이 통합이 그 모델에 새로운 라이선스를 부여하지 않는다.

@@ -53,6 +53,9 @@ class VisionPipeline(
     val verifier = PressVerifier()
     var elements: List<Element> = emptyList()
         private set
+    /** elements를 읽은 키프레임 번호 (id e1, e2…는 키프레임마다 새로 매겨진다) */
+    var elementsKeyframeId = 0
+        private set
     var structure: ScreenStructure? = null
         private set
     private var expect: Expect? = null
@@ -60,7 +63,14 @@ class VisionPipeline(
     private var lastForced = -1e9
 
     // ---------- 언어 쪽(F-07)·앱에서 부르는 API ----------
-    fun setTarget(elementId: String, expect: Expect? = null) {
+    /**
+     * keyframeId: elementId를 고른 화면 구조의 keyframe_id. 그 사이 화면을 다시 읽었다면 같은 id가 다른 버튼일 수 있으므로
+     * 거부한다. 넘기지 않으면 예전처럼 검사하지 않는다.
+     */
+    fun setTarget(elementId: String, expect: Expect? = null, keyframeId: Int? = null) {
+        if (keyframeId != null && keyframeId != elementsKeyframeId) {
+            throw NoSuchElementException("화면을 다시 읽었습니다 (고른 화면 $keyframeId, 현재 $elementsKeyframeId). 새 화면 구조에서 다시 골라 주세요")
+        }
         val el = elements.firstOrNull { it.id == elementId } ?: throw NoSuchElementException("현재 화면에 $elementId 가 없습니다")
         require(el.uncertain != true && (el.confOcr?.let { it.isFinite() && it >= 0.8 } ?: true)) {
             "글자를 확실하게 읽지 못한 요소에는 안내할 수 없습니다"
@@ -95,11 +105,34 @@ class VisionPipeline(
             if (best.uncertain == true || (best.confOcr?.let { !it.isFinite() || it < 0.8 } ?: false)) {
                 clearTarget(); return true
             }
+            if (!sameLabel(tgt, best)) {
+                // 같은 자리에 다른 글자의 버튼 = 화면이 바뀜 (탭 전환, 잘못 누름). 다른 버튼으로 바꿔 끼우지 않는다.
+                guide.target = Element(tgt.id, tgt.kind, tgt.box, 0.0, text = tgt.text)
+                return true
+            }
             guide.updateTargetBox(best); return false
         }
         if (handBox != null && overlaps(handBox, tgt.box)) return false // 손가락이 가린 것
         guide.target = Element(tgt.id, tgt.kind, tgt.box, 0.0, text = tgt.text)
         return true
+    }
+
+    /** 목표와 같은 글자의 버튼인가. 목표에 글자가 없으면(아이콘 등) 비교할 근거가 없어 위치만 본다. */
+    private fun sameLabel(target: Element, element: Element): Boolean {
+        val want = target.text?.takeIf { it.isNotBlank() } ?: return true
+        val got = element.text?.takeIf { it.isNotBlank() } ?: return false
+        fun norm(s: String) = s.filterNot { it.isWhitespace() }.lowercase()
+        return norm(want) == norm(got)
+    }
+
+    /**
+     * 이전 프레임과 이어지지 않는 새 좌표계 → 읽어 둔 버튼 좌표를 버리고 다시 읽는다.
+     * 목표는 신뢰도 0으로 두어("잠시 멈춰 주세요") 다시 읽은 뒤 rematchTarget으로 확인될 때까지 누르라고 하지 않는다.
+     */
+    private fun invalidateCoordinates() {
+        elements = emptyList()
+        guide.target?.let { guide.target = Element(it.id, it.kind, it.box, 0.0, text = it.text) }
+        requestKeyframe()
     }
 
     private fun moveToNewFrame(old: PlaneState, new: PlaneState) {
@@ -153,6 +186,7 @@ class VisionPipeline(
             e.confOcr = d.confOcr; e.uncertain = d.uncertain; e.ocrSource = d.ocrSource; e.qty = d.qty
         }
         elements = els
+        elementsKeyframeId = kid
         structure = s
         return s
         } finally {
@@ -177,7 +211,9 @@ class VisionPipeline(
             res.timings["total_ms"] = (System.nanoTime() - t0) / 1e6
             return res
         }
-        pl.refPrev?.let { if (pl.reframed) moveToNewFrame(it, pl) }
+        val ref = pl.refPrev
+        if (pl.reframed && ref != null) moveToNewFrame(ref, pl)
+        else if (pl.rebased) invalidateCoordinates()
         if (guide.target != null) guide.aspect = pl.aspect
 
         val t1 = System.nanoTime()
@@ -192,7 +228,11 @@ class VisionPipeline(
         ops.release(smallFlat)
         val hb = tracker.handBoxScreen(pl)
         val hands = hb?.let { listOf(it) }
-        val (isKf, _) = kf.update(small, hands, forceKf)
+        val forced = forceKf
+        // 판정 대기 중의 강제 키프레임(좌표계 교체·앱 요청)은 화면이 바뀌어서 생긴 게 아니다.
+        // 강제하기 전에 실제로 바뀌었는지 봐 두고, 바뀌지 않았으면 판정하지 않는다.
+        val changedBefore = if (forced && verifier.armed) kf.changedSinceKey(small, hands) else true
+        val (isKf, _) = kf.update(small, hands, forced)
         forceKf = false
         res.timings["keyframe_ms"] = (System.nanoTime() - t2) / 1e6
         res.keyframe = isKf
@@ -203,7 +243,7 @@ class VisionPipeline(
             val before = structure
             res.structure = readScreen(frame, pl, kf.keyframeId, res.timings)
             res.timings["read_ms"] = (System.nanoTime() - t3) / 1e6
-            if (verifier.armed) {
+            if (verifier.armed && changedBefore) {
                 val v = verifier.judge(res.structure!!)
                 res.verdict = v
                 if (v.result == "success" || v.result == "restarted") guide.target = null

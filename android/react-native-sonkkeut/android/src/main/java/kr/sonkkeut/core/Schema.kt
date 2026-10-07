@@ -47,6 +47,9 @@ class PlaneState(
 ) {
     var reframed = false
     var refPrev: PlaneState? = null
+    // 같은 프레임의 추적값 없이 새로 검출함 (추적 실패, 화면을 놓쳤다 다시 찾음).
+    // 이전 프레임 좌표계와 이어 줄 근거가 없으므로 읽어 둔 버튼 좌표는 쓸 수 없다. (파이썬 schema.py와 같음)
+    var rebased = false
     private val hInv by lazy { H.inverse() }
 
     fun toScreen(p: Pt) = H.apply(p)

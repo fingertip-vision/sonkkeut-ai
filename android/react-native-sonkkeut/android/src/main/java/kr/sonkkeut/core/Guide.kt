@@ -130,8 +130,10 @@ class Guide(
         if (!insideAny) pressedLatch = false
 
         if (insideCore) {
-            val since = insideSince ?: t.also { insideSince = it }
-            val ok = t - since >= dwell && tip.conf >= tipConfMin && tconf >= targetConfMin &&
+            // 믿을 수 없는 손끝 위치로 머무른 시간을 쌓으면, 확실한 프레임이 한 번만 와도 바로 누르라고 하게 된다.
+            // 안전장치 ②(0.3초 머무름)는 ③(손끝 신뢰도)을 만족하는 프레임으로만 센다. (파이썬 guidance.py와 같음)
+            val since = if (tip.conf < tipConfMin) { insideSince = null; null } else insideSince ?: t.also { insideSince = it }
+            val ok = since != null && t - since >= dwell && tip.conf >= tipConfMin && tconf >= targetConfMin &&
                 t - lastSpeakT >= speakInterval
             if (ok && !pressedLatch) {
                 pressedLatch = true

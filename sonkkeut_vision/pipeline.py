@@ -27,6 +27,16 @@ def _overlaps(a, b):
     return min(a[2], b[2]) > max(a[0], b[0]) and min(a[3], b[3]) > max(a[1], b[1])
 
 
+def _same_label(target, element):
+    """목표와 같은 글자의 버튼인가. 목표에 글자가 없으면(아이콘 등) 비교할 근거가 없어 위치만 본다."""
+    if not target.text:
+        return True
+    if not element.text:
+        return False
+    norm = lambda s: "".join(s.split()).casefold()
+    return norm(target.text) == norm(element.text)
+
+
 @dataclass
 class FrameResult:
     plane: object = None
@@ -55,13 +65,19 @@ class VisionPipeline:
         self.verifier = PressVerifier()
         self.structure_fn = structure_fn or (lambda els, crops, flat, kid: elements_to_structure(els, kid))
         self.elements, self.structure, self.flat = [], None, None
+        self.elements_keyframe_id = 0  # self.elements를 읽은 키프레임 번호 (id e1, e2…는 키프레임마다 새로 매겨짐)
         self.expect = None
         self._force_kf = False
         self._last_forced = -1e9
 
     # ---------- 언어 쪽(F-07)에서 부르는 API ----------
-    def set_target(self, element_id, expect=None):
-        """목표 버튼 지정. expect는 누른 뒤 기대 결과 (verify.py 참고)"""
+    def set_target(self, element_id, expect=None, keyframe_id=None):
+        """목표 버튼 지정. expect는 누른 뒤 기대 결과 (verify.py 참고)
+        keyframe_id: element_id를 고른 화면 구조의 keyframe_id. 그 사이 화면을 다시 읽었다면 같은 id가
+        다른 버튼일 수 있으므로 거부한다. 넘기지 않으면 예전처럼 검사하지 않는다."""
+        if keyframe_id is not None and keyframe_id != self.elements_keyframe_id:
+            raise KeyError(f"화면을 다시 읽었습니다 (고른 화면 {keyframe_id}, 현재 {self.elements_keyframe_id}). "
+                           "새 화면 구조에서 다시 골라 주세요")
         el = next((e for e in self.elements if e.id == element_id), None)
         if el is None:
             raise KeyError(f"현재 화면에 {element_id} 가 없습니다")
@@ -85,8 +101,12 @@ class VisionPipeline:
             return False
         best = max(self.elements, key=lambda e: iou(e.box, tgt.box) if e.kind == tgt.kind else 0.0, default=None)
         if best is not None and best.kind == tgt.kind and iou(best.box, tgt.box) > 0.5:
-            self.guide.update_target_box(best)
-            return False
+            if _same_label(tgt, best):
+                self.guide.update_target_box(best)
+                return False
+            # 같은 자리에 다른 글자의 버튼 = 화면이 바뀜 (탭 전환, 잘못 누름). 다른 버튼으로 바꿔 끼우지 않는다.
+            self.guide.target = Element(tgt.id, tgt.kind, tgt.box, 0.0, text=tgt.text)
+            return True
         if hand_box is not None and _overlaps(hand_box, tgt.box):
             # 손가락이 버튼을 가려서 못 찾은 것 → 버튼이 사라진 게 아니므로 기존 좌표를 유지
             return False
@@ -107,10 +127,20 @@ class VisionPipeline:
             tgt.box = conv(tgt.box)
         self.request_keyframe()
 
+    def _invalidate_coordinates(self):
+        """이전 프레임과 이어지지 않는 새 좌표계 → 읽어 둔 버튼 좌표를 버리고 다시 읽는다.
+        목표는 신뢰도 0으로 두어("잠시 멈춰 주세요") 다시 읽은 뒤 _rematch_target으로 확인될 때까지 누르라고 하지 않는다."""
+        self.elements = []
+        tgt = self.guide.target
+        if tgt is not None:
+            self.guide.target = Element(tgt.id, tgt.kind, tgt.box, 0.0, text=tgt.text)
+        self.request_keyframe()
+
     def _read_screen(self, frame, plane, kid):
         els, flat = self.elem_det.detect(frame, plane)
         crops = ElementDetector.crops(flat, els, margin=self.elem_det.margin)
         self.elements, self.flat = els, flat
+        self.elements_keyframe_id = kid
         self.structure = self.structure_fn(els, crops, flat, kid)
         # 언어 쪽이 텍스트를 채워 돌려줬다면 요소에도 반영
         by_id = {d["id"]: d for d in self.structure.get("elements", []) if isinstance(d, dict)}
@@ -139,6 +169,8 @@ class VisionPipeline:
             return res
         if plane.reframed and plane.ref_prev is not None:
             self._move_to_new_frame(plane.ref_prev, plane)
+        elif plane.rebased:
+            self._invalidate_coordinates()
         if self.guide.target is not None:
             self.guide.aspect = plane.aspect
 
@@ -150,7 +182,11 @@ class VisionPipeline:
         t1 = time.perf_counter()
         small = flatten(frame, plane, long_side=96)
         hb = self.tracker.hand_box_screen(plane)
-        is_kf, _ = self.kf.update(small, [hb] if hb else None, force=self._force_kf)
+        forced = self._force_kf
+        # 판정 대기 중의 강제 키프레임(좌표계 교체·앱 요청)은 화면이 바뀌어서 생긴 게 아니다.
+        # 강제하기 전에 실제로 바뀌었는지 봐 두고, 바뀌지 않았으면 판정하지 않는다.
+        changed_before = self.kf.changed_since_key(small, [hb] if hb else None) if forced and self.verifier.armed else True
+        is_kf, _ = self.kf.update(small, [hb] if hb else None, force=forced)
         self._force_kf = False
         res.timings["keyframe_ms"] = (time.perf_counter() - t1) * 1000
         res.keyframe, res.keyframe_id = is_kf, self.kf.keyframe_id
@@ -161,7 +197,7 @@ class VisionPipeline:
             res.structure = self._read_screen(frame, plane, self.kf.keyframe_id)
             res.timings["read_ms"] = (time.perf_counter() - t2) * 1000
             res.timings.update(self.elem_det.last_timing)
-            if self.verifier.armed:
+            if self.verifier.armed and changed_before:
                 res.verdict = self.verifier.judge(res.structure)
                 if res.verdict.result in ("success", "restarted"):
                     self.guide.target = None  # 다음 목표는 F-07이 정한다

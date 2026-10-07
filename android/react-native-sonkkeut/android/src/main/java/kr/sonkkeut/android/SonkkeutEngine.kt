@@ -102,8 +102,9 @@ object SonkkeutEngine {
 
     // ---------- 목표 지정 (F-07 / 화면 터치) ----------
     /** 현재 화면에 그 id가 없으면 false (화면이 바뀌었으면 언어 쪽이 다시 계획) */
-    fun setTarget(id: String, expect: Map<String, Any?>? = null): Boolean = synchronized(lock) {
-        runCatching { pipeline?.setTarget(id, Expect.fromMap(expect)) }.isSuccess && pipeline != null
+    /** keyframeId: id를 고른 화면 구조의 keyframe_id. 넘기면 그 사이 화면을 다시 읽었을 때 false를 돌려준다. */
+    fun setTarget(id: String, expect: Map<String, Any?>? = null, keyframeId: Int? = null): Boolean = synchronized(lock) {
+        runCatching { pipeline?.setTarget(id, Expect.fromMap(expect), keyframeId) }.isSuccess && pipeline != null
     }
 
     /** 화면 좌표(0~1)로 목표 지정. 지정된 요소 id (없으면 null) */
