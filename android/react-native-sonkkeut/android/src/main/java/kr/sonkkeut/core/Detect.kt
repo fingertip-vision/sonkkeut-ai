@@ -65,12 +65,21 @@ object YoloDecoder {
     }
 
     /** M1: out = [5+3k][n], 점수가 가장 높은 1개 (pose 머리는 꼭짓점 conf에 시그모이드가 이미 적용됨) */
-    fun decodePoseBest(out: FloatArray, nk: Int, n: Int, lb: Letterbox, conf: Double): Detection? {
+    fun decodePoseBest(out: FloatArray, nk: Int, n: Int, lb: Letterbox, conf: Double,
+                       accept: (Detection) -> Boolean = { true }): Detection? {
+        require(n > 0 && out.size == (5 + 3 * nk) * n) { "Pose output shape differs from keypoints" }
         var bi = -1
         var bs = conf.toFloat()
         for (i in 0 until n) {
             val s = out[4 * n + i]
-            if (s > bs) { bs = s; bi = i }
+            if (s.isFinite() && s > bs) {
+                val points = (0 until nk).map { k -> lb.toSrc(out[(5+3*k)*n+i].toDouble(),out[(6+3*k)*n+i].toDouble()) }
+                val confidence = (0 until nk).map { k -> out[(7+3*k)*n+i].toDouble() }
+                val candidate = Detection(xywhToBox(out,n,i,lb),0,s.toDouble(),points,confidence)
+                if (points.all { it.x.isFinite() && it.y.isFinite() } && confidence.all { it.isFinite() && it in 0.0..1.0 } && accept(candidate)) {
+                    bs = s; bi = i
+                }
+            }
         }
         if (bi < 0) return null
         val kps = ArrayList<Pt>()

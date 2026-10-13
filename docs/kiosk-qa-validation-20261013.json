@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-13",
+  "version": "0.2.5",
+  "version_code": 15,
+  "frontend_commit": "2d8ed49ae5d22db66301f717f59dd4b51e8512a5",
+  "frontend_source_changed": false,
+  "ai_branch": "fix/kiosk-qa-20261013",
+  "ai_base_commit": "6b8653204b4b847e1066ee3cd5848296dffe27c2",
+  "ai_unit_tests_passed": 16,
+  "existing_app_unit_tests_passed": 146,
+  "python_tests_passed": 16,
+  "android_ocr_tests_passed": 2,
+  "android_ocr_scope": "ML Kit + M3 on generated Korean menu images, not photographs of kiosks",
+  "release_apk_update_install_and_camera_start_passed": true,
+  "camera_scope": "Android emulator virtual scene; no real kiosk recognition accuracy measured",
+  "model_weights_unchanged": true,
+  "whisper_native_decoder_unchanged": true,
+  "update_signature_matches_0_2_5": true,
+  "physical_phone_tested": false,
+  "real_kiosk_tested": false,
+  "real_laptop_screen_photograph_tested": false,
+  "gpu_retraining_performed": false,
+  "frontend_download_menu_or_location_prompts_changed": false,
+  "apk": {
+    "name": "sonkkeut-kotlin-0.2.5-ai-qa-20261013.apk",
+    "size_bytes": 65313327,
+    "sha256": "a18ad8b36ac7e80b58cbec5a0a38654bf5a8b6a009b98609a80df3b2c8c17db3"
+  },
+  "aar": {
+    "name": "sonkkeut-ai-kiosk-qa-20261013.aar",
+    "size_bytes": 27061974,
+    "sha256": "e1a857b46d1c54e00bdca92fb71afecc49a5b68299b96c625697dcb727b25b39"
+  }
+}

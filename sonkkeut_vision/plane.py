@@ -88,12 +88,19 @@ class ScreenPlaneEstimator:
         r = self.model.predict(frame, conf=self.conf, imgsz=self.imgsz, device=self.device, verbose=False)[0]
         if r.keypoints is None or len(r.boxes) == 0:
             return None
-        i = int(np.argmax(r.boxes.conf.cpu().numpy()))
-        kp = r.keypoints.xy[i].cpu().numpy().astype(np.float32)
+        scores = r.boxes.conf.cpu().numpy()
+        points = r.keypoints.xy.cpu().numpy().astype(np.float32)
         kc = r.keypoints.conf
-        kc = kc[i].cpu().numpy() if kc is not None else np.ones(4, np.float32)
-        box_conf = float(r.boxes.conf[i])
-        return kp, box_conf * float(kc.mean()), kc
+        confidence = kc.cpu().numpy() if kc is not None else np.ones((len(scores), 4), np.float32)
+        ranked = [int(i) for i in np.argsort(-scores) if np.isfinite(scores[i]) and
+                  np.isfinite(points[i]).all() and np.isfinite(confidence[i]).all()]
+        if not ranked:
+            return None
+        valid = [i for i in ranked if self.missing_hint(points[i], confidence[i], frame.shape, self.kp_conf) is None
+                 and is_valid_quad(points[i], frame.shape)]
+        # Keep the best rejected candidate only to produce the existing framing hint.
+        i = valid[0] if valid else ranked[0]
+        return points[i], float(scores[i]) * float(confidence[i].mean()), confidence[i]
 
     @staticmethod
     def missing_hint(kp, kc, frame_shape, kp_conf=0.5, margin=4):

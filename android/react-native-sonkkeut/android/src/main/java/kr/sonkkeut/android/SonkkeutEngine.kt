@@ -28,7 +28,7 @@ import org.opencv.imgproc.Imgproc
  */
 object SonkkeutEngine {
     private const val TAG = "Sonkkeut"
-    private const val MAX_LONG_SIDE = 1280 // 학습 영상(960×1280)과 같은 크기로 맞춘다
+    private const val MAX_LONG_SIDE = 1920 // Preserve small Korean letters; M1/M2 still use 640 tensors.
 
     private val lock = Any()
     private var pipeline: VisionPipeline? = null
@@ -74,7 +74,7 @@ object SonkkeutEngine {
                 val h = MediaPipeHands(context)
                 hands = h
                 if (nativeFeedback) feedback = NativeFeedback(context)
-                pipeline = VisionPipeline(m1, m2, ops, h, refiner,
+                pipeline = VisionPipeline(m1, m2, ops, h, refiner, longSide = 1440,
                     structureProvider = StructureProvider { els, crops, flat, kid -> structureProvider.build(els, crops, flat, kid) })
                 Log.i(TAG, "모델 준비 완료 (첨부 모델 M1, M2, M1-R 사용)")
             } catch (e: Throwable) {
