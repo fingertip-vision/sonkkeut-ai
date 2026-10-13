@@ -72,6 +72,7 @@ class VisionPipeline(
             throw NoSuchElementException("화면을 다시 읽었습니다 (고른 화면 $keyframeId, 현재 $elementsKeyframeId). 새 화면 구조에서 다시 골라 주세요")
         }
         val el = elements.firstOrNull { it.id == elementId } ?: throw NoSuchElementException("현재 화면에 $elementId 가 없습니다")
+        require(el.kind in listOf("menu","button","tab","back")) { "읽기 전용 글자 영역에는 터치 안내할 수 없습니다" }
         require(el.uncertain != true && (el.confOcr?.let { it.isFinite() && it >= 0.8 } ?: true)) {
             "글자를 확실하게 읽지 못한 요소에는 안내할 수 없습니다"
         }
@@ -82,7 +83,7 @@ class VisionPipeline(
 
     /** 화면 좌표(0~1)를 눌러 목표 지정 (데모·저시력 모드용). 겹치면 가장 작은 요소 */
     fun setTargetAt(x: Double, y: Double, expect: Expect? = null): Element? {
-        val hit = elements.filter { it.uncertain != true && (it.confOcr?.let { c -> c.isFinite() && c >= 0.8 } ?: true) && it.box.contains(x, y) }
+        val hit = elements.filter { it.kind in listOf("menu","button","tab","back") && it.uncertain != true && (it.confOcr?.let { c -> c.isFinite() && c >= 0.8 } ?: true) && it.box.contains(x, y) }
             .minByOrNull { it.box.w * it.box.h } ?: return null
         setTarget(hit.id, expect)
         return hit
@@ -185,7 +186,8 @@ class VisionPipeline(
             e.text = d.text ?: e.text; e.price = d.price ?: e.price
             e.confOcr = d.confOcr; e.uncertain = d.uncertain; e.ocrSource = d.ocrSource; e.qty = d.qty
         }
-        elements = els
+        // Retain OCR-only regions as read-only evidence. Never turn them into touch targets.
+        elements = s.elements
         elementsKeyframeId = kid
         structure = s
         return s

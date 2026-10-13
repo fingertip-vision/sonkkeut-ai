@@ -76,7 +76,13 @@ class ScreenPlaneEstimator(
         val lb = Letterbox.of(frame.width, frame.height, imgsz)
         val out = m1.run(ops.letterboxTensor(frame, lb), longArrayOf(1, 3, imgsz.toLong(), imgsz.toLong()))
         val n = out.size / 17
-        val d = YoloDecoder.decodePoseBest(out, 4, n, lb, conf) ?: return null
+        // A clipped/low-keypoint top candidate must not hide a complete lower-ranked screen.
+        val valid = YoloDecoder.decodePoseBest(out, 4, n, lb, conf) { candidate ->
+            val points = candidate.keypoints!!
+            missingHint(points,candidate.kpConf!!,frame.width,frame.height,kpConf) == null &&
+                isValidQuad(points,frame.width,frame.height)
+        }
+        val d = valid ?: YoloDecoder.decodePoseBest(out, 4, n, lb, conf) ?: return null
         return CornerDetection(d.keypoints!!, d.score * d.kpConf!!.average(), d.kpConf)
     }
 
